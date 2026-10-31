@@ -178,6 +178,48 @@ form.contact .full{grid-column:1/-1}
 footer{border-top:1px solid var(--line);padding-block:22px;color:var(--muted);font-size:.85rem}
 footer .wrap{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
 
+/* Detail pages + live search */
+.cardlink{color:inherit;text-decoration:none}
+.cardlink:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto}
+.card-foot .cmp{margin-top:0}
+.more{font-weight:600;font-size:.88rem;text-decoration:none}
+a.pick{color:inherit;text-decoration:none}
+a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
+.back{display:inline-block;font-weight:600;text-decoration:none;margin-bottom:16px}
+.d-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:start;margin-bottom:24px}
+.d-title{font-size:clamp(2rem,6vw,3rem)}
+.d-score{background:var(--dmd-bg);color:var(--amber);font-family:var(--f-dmd);border-radius:12px;padding:12px 18px;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:inset 0 0 0 3px #2b2116}
+.d-score b{font-weight:400;font-size:2.6rem;line-height:1}
+.d-score span{font-size:.72rem;letter-spacing:.12em;opacity:.8}
+.d-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:20px;align-items:start}
+.pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pc-col{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px}
+.pros,.cons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.pros li,.cons li{padding-left:24px;position:relative}
+.pros li::before,.cons li::before{position:absolute;left:0;top:0;font-weight:800}
+.pros li::before{content:"+";color:var(--good)}
+.cons li::before{content:"–";color:var(--accent)}
+.facts{font-size:.95rem;gap:8px 18px}
+.sim{display:flex;flex-direction:column;gap:8px}
+.sim a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px;border-radius:8px;background:var(--sunk);text-decoration:none;color:inherit}
+.sim a:hover{box-shadow:inset 0 0 0 2px var(--line)}
+.sim small{display:block;color:var(--muted);font-variant-numeric:tabular-nums}
+.near{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.near-q{flex:1 1 220px}
+.near-out{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.near-out:empty{display:none}
+.locs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.locs li{display:flex;justify-content:space-between;gap:14px;padding:12px 2px;border-bottom:1px solid var(--line)}
+.locs li>div:first-child{min-width:0}
+.locs small{display:block;color:var(--muted)}
+.locs .games{font-size:.8rem;margin-top:2px}
+.loc-r{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none;font-size:.88rem;font-weight:600}
+.count-pill{font-family:var(--f-dmd);background:var(--dmd-bg);color:var(--amber);border-radius:6px;padding:2px 8px;white-space:nowrap}
+.near-box{margin-bottom:14px}
+@media (max-width:900px){.d-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:600px){.pc{grid-template-columns:minmax(0,1fr)}.d-head{grid-template-columns:minmax(0,1fr)}.d-score{flex-direction:row;align-self:start;gap:10px}}
+
 @media (max-width:900px){
   .hero-grid,.quiz,.guide,.svc{grid-template-columns:minmax(0,1fr)}
   .paths{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -262,7 +304,7 @@ footer .wrap{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
       </div>
       <div class="stack">
         <h3>Your top three</h3>
-        <div class="picks" id="picks" aria-live="polite"></div>
+        <div class="picks" id="picks" aria-live="polite" data-needs-data></div>
         <p class="note">Prices are approximate street ranges. Always confirm with a distributor before buying.</p>
       </div>
     </form>
@@ -285,7 +327,7 @@ footer .wrap{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
       <label class="field">Sort<select id="fsort"><option value="score">Advisor score</option><option value="price">Price, low first</option><option value="year">Newest</option><option value="diff">Easiest first</option></select></label>
       <span class="count" id="count"></span>
     </div>
-    <div class="grid" id="grid"></div>
+    <div class="grid" id="grid" data-needs-data></div>
     <div class="cmpbar" id="cmpbar" hidden>
       <span id="cmptext"></span>
       <button class="btn" type="button" id="cmpgo">Compare</button>
@@ -351,6 +393,7 @@ footer .wrap{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
       <h2>Play it before you buy it</h2>
       <p class="lede">Ten games on location will tell you more than a hundred gameplay videos. These are the best places to find machines near you.</p>
     </div>
+    <div class="box near-box" id="play-near"></div>
     <div class="split">
       <div class="box">
         <h3>Pinball Map</h3>
@@ -411,6 +454,10 @@ footer .wrap{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
     </div>
   </div>
 </section>
+<!-- MACHINE DETAIL -->
+<section class="view" id="v-detail" data-view="detail" hidden>
+  <div class="wrap" id="detail"></div>
+</section>
 </main>
 
 <footer><div class="wrap"><span>© 2026 PinballAdvisor.com</span><span>Scores are editorial opinions. Prices are estimates and change often.</span></div></footer>
@@ -418,48 +465,55 @@ footer .wrap{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
 <script>
 (function(){
 "use strict";
-// ---------- Data (editorial, edit freely) ----------
-const M=[
- {n:"Godzilla",mk:"Stern",y:2021,c:"new",lo:7800,hi:13500,s:9.4,d:3,th:"movie",who:["casual","deep","family"],tags:["Pro / Prem / LE","Building toy"],note:"Huge shot variety and a great mix of goofy and deep. A modern benchmark."},
- {n:"Jurassic Park",mk:"Stern",y:2019,c:"used",lo:6000,hi:9500,s:8.6,d:3,th:"movie",who:["family","casual"],tags:["Family hit","T-Rex toy"],note:"Instantly fun for guests, with enough modes to keep owners busy."},
- {n:"Foo Fighters",mk:"Stern",y:2023,c:"new",lo:7800,hi:13500,s:8.7,d:3,th:"music",who:["casual","family"],tags:["Pro / Prem / LE","Fast flow"],note:"Flowing ramps and a fun, cartoony presentation. Plays great even as a Pro."},
- {n:"Jaws",mk:"Stern",y:2024,c:"new",lo:7800,hi:13500,s:8.9,d:3,th:"movie",who:["casual","deep"],tags:["Pro / Prem / LE","Shark mech"],note:"Smart layout with modes that tell the story well. Premium's boat mech is the highlight."},
- {n:"John Wick",mk:"Stern",y:2024,c:"new",lo:7800,hi:13500,s:8.5,d:4,th:"movie",who:["deep","casual"],tags:["Pro / Prem / LE","Tough shots"],note:"Tight, aggressive shots that reward precise players. Can frustrate beginners."},
- {n:"Metallica Remastered",mk:"Stern",y:2024,c:"new",lo:7800,hi:13500,s:8.6,d:3,th:"music",who:["casual","deep"],tags:["Pro / Prem / LE","Classic layout"],note:"Updated version of a modern classic layout. Satisfying shots and a heavy soundtrack."},
- {n:"Deadpool",mk:"Stern",y:2018,c:"used",lo:6000,hi:8500,s:8.3,d:3,th:"movie",who:["family","casual"],tags:["Funny callouts","Used deal"],note:"Funny, fast and approachable. Often a good used value."},
- {n:"Elton John",mk:"Jersey Jack",y:2023,c:"new",lo:9000,hi:15000,s:8.8,d:3,th:"music",who:["casual","family","deep"],tags:["Big lightshow","Collector"],note:"Bright, polished presentation with a strong music package. Feels premium in every trim."},
- {n:"The Godfather",mk:"Jersey Jack",y:2023,c:"new",lo:9000,hi:15000,s:8.4,d:4,th:"movie",who:["deep"],tags:["Deep rules","Moody"],note:"A slower, deliberate game with deep strategy. Best for players who like long-term goals."},
- {n:"Halloween",mk:"Spooky",y:2022,c:"new",lo:7500,hi:9500,s:8.0,d:4,th:"horror",who:["deep","casual"],tags:["Boutique","Creepy toys"],note:"Atmospheric with great sound. Boutique build means spare parts can take longer."},
- {n:"Dune",mk:"Barrels of Fun",y:2024,c:"new",lo:8000,hi:11000,s:8.1,d:3,th:"movie",who:["casual","deep"],tags:["Boutique","Unique art"],note:"Distinct look and inventive shots from a newer maker. Worth playing before buying."},
- {n:"Houdini",mk:"American Pinball",y:2017,c:"used",lo:5000,hi:7000,s:7.8,d:2,th:"classic",who:["family","casual"],tags:["Value pick","Good starter"],note:"Friendly rules and a classic feel at a lower price. A solid first machine."},
- {n:"Medieval Madness (Remake)",mk:"Chicago Gaming",y:2016,c:"used",lo:8000,hi:10500,s:9.1,d:2,th:"classic",who:["family","casual"],tags:["Remake","Crowd pleaser"],note:"New-build version of the castle game everyone loves. Huge with guests."},
- {n:"Attack From Mars (Remake)",mk:"Chicago Gaming",y:2017,c:"used",lo:7500,hi:10000,s:8.9,d:2,th:"classic",who:["family","casual"],tags:["Remake","Easy to learn"],note:"Simple, satisfying shots and a goofy alien invasion. Very easy to love."},
- {n:"Twilight Zone",mk:"Bally",y:1993,c:"used",lo:8000,hi:12000,s:9.2,d:5,th:"classic",who:["deep"],tags:["Classic","Needs a good tech"],note:"One of the deepest rule sets ever made. Older electronics need a careful pre-purchase check."},
- {n:"The Addams Family",mk:"Bally",y:1992,c:"used",lo:6500,hi:9500,s:9.0,d:2,th:"classic",who:["family","casual"],tags:["Classic","Best-selling"],note:"The best-selling modern pinball game for a reason. Easy to play, easy to service."},
- {n:"Monster Bash",mk:"Williams",y:1998,c:"used",lo:7000,hi:10000,s:8.8,d:2,th:"horror",who:["family","casual"],tags:["Classic","Fun theme"],note:"Spooky-fun theme with great toys. A strong pick for a game room."},
- {n:"Alien",mk:"Pinball Brothers",y:2022,c:"new",lo:9500,hi:13000,s:8.0,d:4,th:"horror",who:["deep"],tags:["Boutique","Intense"],note:"Dark and intense with big toys. Check local support before buying a boutique import."}
-];
+// ---------- Helpers ----------
+const $=id=>document.getElementById(id);
 const fmt=n=>"$"+n.toLocaleString("en-US");
 const range=m=>fmt(m.lo)+"–"+fmt(m.hi);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const diffDots=d=>'<span class="diff" aria-label="Difficulty '+d+' of 5">'+[1,2,3,4,5].map(i=>'<i class="'+(i<=d?"on":"")+'"></i>').join("")+"</span>";
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const diffDots=d=>'<span class="diff" role="img" aria-label="Difficulty '+d+' of 5">'+[1,2,3,4,5].map(i=>'<i class="'+(i<=d?"on":"")+'"></i>').join("")+"</span>";
 const store={get(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const WHO={family:"Family & guests",casual:"Casual players",deep:"Deep-rules players"};
+const THEME={movie:"Movie",music:"Music",horror:"Horror",classic:"Classic / original"};
+const DISPLAY={dmd:"Dot-matrix (DMD)",lcd:"LCD screen",alpha:"Alphanumeric",cga:"CGA monitor",reels:"Score reels",lights:"Backglass lights"};
+const TYPE={ss:"Solid state",em:"Electro-mechanical",me:"Purely mechanical"};
+const simple=s=>String(s).toLowerCase().replace(/\(.*?\)/g," ").replace(/^the\s+/,"").replace(/[^a-z0-9]+/g," ").trim();
+
+let M=[],OPDB={machines:{},updated:null};
+
+// ---------- Data ----------
+async function loadData(){
+  try{
+    const [a,b]=await Promise.all([
+      fetch("data/machines.json",{cache:"no-cache"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}),
+      fetch("data/opdb.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null)
+    ]);
+    M=a.machines.map(x=>({id:x.id,n:x.name,mk:x.maker,y:x.year,c:x.condition,lo:x.price[0],hi:x.price[1],s:x.score,d:x.difficulty,th:x.theme,who:x.bestFor,tags:x.tags||[],note:x.take,pros:x.pros||[],cons:x.cons||[],pinside:x.pinside||""}));
+    if(b&&b.machines)OPDB=b;
+    return true;
+  }catch(e){
+    document.querySelectorAll("[data-needs-data]").forEach(el=>el.innerHTML='<div class="empty">Machine data couldn\'t load. If you opened this file directly from your computer, view it through the website (or a local server) instead.</div>');
+    return false;
+  }
+}
+const byId=id=>M.find(m=>m.id===id);
 
 // ---------- Routing ----------
 const views=["home","machines","guide","play","service"];
 function route(){
-  let h=location.hash.slice(1);
+  const h=location.hash.slice(1);
   let target=views.includes(h)?h:"home";
-  if(h==="quiz") target="home";
+  if(h.startsWith("machine-"))target="detail";
   document.querySelectorAll(".view").forEach(v=>v.hidden=v.dataset.view!==target);
-  document.querySelectorAll("nav.main a").forEach(a=>{a.toggleAttribute("aria-current",a.getAttribute("href")==="#"+target);if(a.hasAttribute("aria-current"))a.setAttribute("aria-current","page")});
-  if(h==="quiz"){const q=document.getElementById("quiz");q&&q.scrollIntoView()}else window.scrollTo(0,0);
+  const navTarget=target==="detail"?"machines":target;
+  document.querySelectorAll("nav.main a").forEach(a=>{if(a.getAttribute("href")==="#"+navTarget)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  if(target==="detail")renderDetail(h.slice(8));else document.title="Pinball Advisor";
+  if(h==="quiz"){const q=$("quiz");q&&q.scrollIntoView()}else window.scrollTo(0,0);
 }
-addEventListener("hashchange",route);route();
+addEventListener("hashchange",route);
 
 // ---------- DMD ----------
 (function(){
-  const cv=document.getElementById("dmd"),ctx=cv.getContext("2d");
+  const cv=$("dmd");if(!cv)return;const ctx=cv.getContext("2d");
   const W=128,H=32,P=4;const off=document.createElement("canvas");off.width=2000;off.height=H;const o=off.getContext("2d",{willReadFrequently:true});
   const msgs=["PINBALL ADVISOR","REPLAY AWARDED","FIND YOUR GAME","SHOOT AGAIN"];
   let text="  "+msgs.join("   *   ")+"   *   ",tw=0,mask=null;
@@ -472,8 +526,9 @@ addEventListener("hashchange",route);route();
 })();
 
 // ---------- Quiz ----------
-const quiz=document.getElementById("quiz");
+const quiz=$("quiz");
 function match(){
+  if(!M.length)return;
   const f=new FormData(quiz),b=+f.get("budget"),w=f.get("who"),t=f.get("theme"),c=f.get("cond");
   const scored=M.filter(m=>c!=="new"||m.c==="new").map(m=>{
     let s=m.s*2;
@@ -484,56 +539,128 @@ function match(){
     if(w==="deep")s+=m.d;
     return {m,s};
   }).sort((a,b2)=>b2.s-a.s).slice(0,3);
-  document.getElementById("picks").innerHTML=scored.map((x,i)=>'<div class="pick"><span class="rank">#'+(i+1)+'</span><div><b>'+esc(x.m.n)+'</b><small>'+esc(x.m.mk)+" · "+x.m.y+" · "+(x.m.c==="new"?"New production":"Used market")+'</small></div><span class="price">'+range(x.m)+"</span></div>").join("");
+  $("picks").innerHTML=scored.map((x,i)=>'<a class="pick" href="#machine-'+x.m.id+'"><span class="rank">#'+(i+1)+'</span><div><b>'+esc(x.m.n)+'</b><small>'+esc(x.m.mk)+" · "+x.m.y+" · "+(x.m.c==="new"?"New production":"Used market")+'</small></div><span class="price">'+range(x.m)+"</span></a>").join("");
 }
-quiz.addEventListener("change",match);quiz.addEventListener("submit",e=>e.preventDefault());match();
+quiz.addEventListener("change",match);quiz.addEventListener("submit",e=>e.preventDefault());
 
-// ---------- Machines ----------
-const grid=document.getElementById("grid"),sel=new Set();
-const makers=[...new Set(M.map(m=>m.mk))].sort();
-document.getElementById("fmaker").insertAdjacentHTML("beforeend",makers.map(m=>'<option>'+esc(m)+"</option>").join(""));
-const ctrls=["q","fmaker","fcond","fprice","fsort"].map(id=>document.getElementById(id));
-const saved=store.get("pa-filters",null);if(saved)ctrls.forEach(el=>{if(saved[el.id]!=null)el.value=saved[el.id]});
+// ---------- Machines grid ----------
+const grid=$("grid"),sel=new Set();
+const ctrls=["q","fmaker","fcond","fprice","fsort"].map($);
+function initGrid(){
+  const makers=[...new Set(M.map(m=>m.mk))].sort();
+  $("fmaker").insertAdjacentHTML("beforeend",makers.map(m=>'<option>'+esc(m)+"</option>").join(""));
+  const saved=store.get("pa-filters",null);if(saved)ctrls.forEach(el=>{if(saved[el.id]!=null)el.value=saved[el.id]});
+  ctrls.forEach(el=>el.addEventListener("input",render));
+  render();
+}
 function render(){
   const [q,mk,cond,price,sort]=ctrls.map(el=>el.value);
   store.set("pa-filters",Object.fromEntries(ctrls.map(el=>[el.id,el.value])));
   let list=M.filter(m=>(!q||(m.n+" "+m.mk).toLowerCase().includes(q.toLowerCase()))&&(!mk||m.mk===mk)&&(!cond||m.c===cond)&&(!price||m.lo<=+price));
   const by={score:(a,b)=>b.s-a.s,price:(a,b)=>a.lo-b.lo,year:(a,b)=>b.y-a.y,diff:(a,b)=>a.d-b.d||b.s-a.s};
   list.sort(by[sort]);
-  document.getElementById("count").textContent=list.length+" of "+M.length+" machines";
-  grid.innerHTML=list.length?list.map(m=>{const i=M.indexOf(m);return '<article class="card"><div class="card-top"><div><div class="maker">'+esc(m.mk)+" · "+m.y+'</div><h3>'+esc(m.n)+'</h3></div><span class="score" title="Advisor score">'+m.s.toFixed(1)+'</span></div><p>'+esc(m.note)+'</p><dl class="meta"><dt>Price</dt><dd>'+range(m)+'</dd><dt>Difficulty</dt><dd>'+diffDots(m.d)+'</dd></dl><div class="tags"><span class="tag '+m.c+'">'+(m.c==="new"?"New":"Used")+"</span>"+m.tags.map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+'</div><label class="cmp"><input type="checkbox" id="cmp-'+i+'" data-i="'+i+'"'+(sel.has(i)?" checked":"")+'> Compare</label></article>'}).join(""):'<div class="empty">No machines match those filters. Try raising the max price or clearing the search.</div>';
+  $("count").textContent=list.length+" of "+M.length+" machines";
+  grid.innerHTML=list.length?list.map(m=>{const i=M.indexOf(m);return '<article class="card"><div class="card-top"><div><div class="maker">'+esc(m.mk)+" · "+m.y+'</div><h3><a class="cardlink" href="#machine-'+m.id+'">'+esc(m.n)+'</a></h3></div><span class="score" title="Advisor score">'+m.s.toFixed(1)+'</span></div><p>'+esc(m.note)+'</p><dl class="meta"><dt>Price</dt><dd>'+range(m)+'</dd><dt>Difficulty</dt><dd>'+diffDots(m.d)+'</dd></dl><div class="tags"><span class="tag '+m.c+'">'+(m.c==="new"?"New":"Used")+"</span>"+m.tags.map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+'</div><div class="card-foot"><label class="cmp"><input type="checkbox" id="cmp-'+i+'" data-i="'+i+'"'+(sel.has(i)?" checked":"")+'> Compare</label><a class="more" href="#machine-'+m.id+'">Full review →</a></div></article>'}).join(""):'<div class="empty">No machines match those filters. Try raising the max price or clearing the search.</div>';
 }
-ctrls.forEach(el=>el.addEventListener("input",render));
 grid.addEventListener("change",e=>{const cb=e.target.closest("input[data-i]");if(!cb)return;const i=+cb.dataset.i;if(cb.checked){if(sel.size>=3){cb.checked=false;flash();return}sel.add(i)}else sel.delete(i);bar()});
-function flash(){const t=document.getElementById("cmptext");t.textContent="You can compare up to 3 machines.";setTimeout(bar,1600)}
-function bar(){const b=document.getElementById("cmpbar");b.hidden=sel.size===0;document.getElementById("cmptext").textContent=sel.size+" selected"+(sel.size<2?" · pick at least 2":"");document.getElementById("cmpgo").disabled=sel.size<2}
-document.getElementById("cmpclear").onclick=()=>{sel.clear();render();bar();document.getElementById("cmpout").innerHTML=""};
-document.getElementById("cmpgo").onclick=()=>{
+function flash(){$("cmptext").textContent="You can compare up to 3 machines.";setTimeout(bar,1600)}
+function bar(){$("cmpbar").hidden=sel.size===0;$("cmptext").textContent=sel.size+" selected"+(sel.size<2?" · pick at least 2":"");$("cmpgo").disabled=sel.size<2}
+$("cmpclear").onclick=()=>{sel.clear();render();bar();$("cmpout").innerHTML=""};
+$("cmpgo").onclick=()=>{
   const ms=[...sel].map(i=>M[i]);
-  const rows=[["Maker",m=>esc(m.mk)],["Year",m=>m.y],["Advisor score",m=>m.s.toFixed(1)],["Price range",range],["Condition",m=>m.c==="new"?"New production":"Used market"],["Difficulty",m=>diffDots(m.d)],["Best for",m=>m.who.map(w=>({family:"Family",casual:"Casual",deep:"Deep rules"}[w])).join(", ")],["Take",m=>esc(m.note)]];
-  const out=document.getElementById("cmpout");
-  out.innerHTML='<div class="table-wrap"><table><thead><tr><th></th>'+ms.map(m=>"<th>"+esc(m.n)+"</th>").join("")+"</tr></thead><tbody>"+rows.map(r=>"<tr><th>"+r[0]+"</th>"+ms.map(m=>"<td>"+r[1](m)+"</td>").join("")+"</tr>").join("")+"</tbody></table></div>";
+  const rows=[["Maker",m=>esc(m.mk)],["Year",m=>m.y],["Advisor score",m=>m.s.toFixed(1)],["Price range",range],["Condition",m=>m.c==="new"?"New production":"Used market"],["Difficulty",m=>diffDots(m.d)],["Best for",m=>m.who.map(w=>WHO[w]).join(", ")],["Display",m=>{const o=OPDB.machines[m.id];return o&&o.display?esc(DISPLAY[o.display]||o.display):"—"}],["Take",m=>esc(m.note)]];
+  const out=$("cmpout");
+  out.innerHTML='<div class="table-wrap"><table><thead><tr><th></th>'+ms.map(m=>'<th><a href="#machine-'+m.id+'">'+esc(m.n)+"</a></th>").join("")+"</tr></thead><tbody>"+rows.map(r=>"<tr><th>"+r[0]+"</th>"+ms.map(m=>"<td>"+r[1](m)+"</td>").join("")+"</tr>").join("")+"</tbody></table></div>";
   out.scrollIntoView({block:"nearest"});
 };
-render();
+
+// ---------- Pinball Map (live) ----------
+const PBM="https://pinballmap.com/api/v1/locations/";
+function nearForm(prefix,label){
+  return '<form class="near" id="'+prefix+'-form" novalidate><label class="field near-q">'+label+'<input type="text" id="'+prefix+'-q" placeholder="City, address or ZIP" autocomplete="postal-code"></label><div class="btns"><button class="btn" type="submit">Search</button><button class="btn ghost" type="button" id="'+prefix+'-geo">Use my location</button></div></form><div class="near-out" id="'+prefix+'-out" aria-live="polite"></div>';
+}
+function wireNear(prefix,filterName){
+  const form=$(prefix+"-form"),out=$(prefix+"-out"),q=$(prefix+"-q");
+  const saved=store.get("pa-near","");if(saved&&!q.value)q.value=saved;
+  const run=async url=>{
+    out.innerHTML='<p class="note">Searching Pinball Map…</p>';
+    try{
+      const r=await fetch(url,{headers:{Accept:"application/json"}});
+      if(!r.ok)throw new Error("HTTP "+r.status);
+      const data=await r.json();
+      let locs=data.locations||(data.location?[data.location]:[]);
+      if(data.errors&&!locs.length){out.innerHTML='<p class="note">No pinball found within 30 miles of that spot. Try a bigger nearby city.</p>';return}
+      let total=locs.length;
+      if(filterName){const want=simple(filterName);locs=locs.filter(l=>(l.machine_names||[]).some(n=>simple(n).includes(want)))}
+      const head=filterName?'<p class="note">'+locs.length+" of "+total+" nearby locations list "+esc(filterName)+".</p>":'<p class="note">'+total+" locations within 30 miles.</p>";
+      out.innerHTML=head+(locs.length?'<ul class="locs">'+locs.slice(0,12).map(l=>{const addr=[l.street,l.city,l.state].filter(Boolean).join(", ");const n=l.num_machines||(l.machine_names||[]).length;const names=(l.machine_names||[]).slice(0,6);return '<li><div><b>'+esc(l.name)+'</b><small>'+esc(addr)+'</small>'+(names.length?'<small class="games">'+names.map(esc).join(" · ")+((l.machine_names||[]).length>6?" · …":"")+"</small>":"")+'</div><div class="loc-r"><span class="count-pill">'+n+(n===1?" game":" games")+'</span><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(l.name+" "+addr)+'" target="_blank" rel="noopener">Directions</a></div></li>'}).join("")+"</ul>":"")+'<p class="note">Location data from <a href="https://pinballmap.com" target="_blank" rel="noopener">Pinball Map</a>. Spot something out of date? Update it there.</p>';
+    }catch(e){
+      out.innerHTML='<p class="note">Couldn\'t reach Pinball Map right now. You can <a href="https://pinballmap.com" target="_blank" rel="noopener">search on pinballmap.com</a> instead.</p>';
+    }
+  };
+  form.addEventListener("submit",e=>{e.preventDefault();const v=q.value.trim();if(!v){q.focus();return}store.set("pa-near",v);run(PBM+"closest_by_address.json?address="+encodeURIComponent(v)+"&max_distance=30&send_all_within_distance=1")});
+  $(prefix+"-geo").addEventListener("click",()=>{
+    if(!navigator.geolocation){out.innerHTML='<p class="note">Your browser can\'t share location. Type a city or ZIP instead.</p>';return}
+    out.innerHTML='<p class="note">Getting your location…</p>';
+    navigator.geolocation.getCurrentPosition(p=>run(PBM+"closest_by_lat_lon.json?lat="+p.coords.latitude.toFixed(4)+"&lon="+p.coords.longitude.toFixed(4)+"&max_distance=30&send_all_within_distance=1"),()=>{out.innerHTML='<p class="note">Location access was blocked. Type a city or ZIP instead.</p>'},{timeout:10000,maximumAge:600000});
+  });
+}
+$("play-near").innerHTML=nearForm("play","Find pinball near you");wireNear("play","");
+
+// ---------- Machine detail ----------
+function renderDetail(id){
+  const el=$("detail");
+  if(!M.length){el.innerHTML='<p class="note">Loading…</p>';return}
+  const m=byId(id);
+  if(!m){el.innerHTML='<div class="empty">We don\'t have a review for that machine yet. <a href="#machines">Browse all machines</a>.</div>';return}
+  document.title=m.n+" review · Pinball Advisor";
+  const o=OPDB.machines[m.id];
+  const facts=[["Price range",range(m)],["Condition",m.c==="new"?"New production":"Used market"],["Difficulty",diffDots(m.d)],["Best for",m.who.map(w=>WHO[w]).join(", ")],["Theme",THEME[m.th]||m.th]];
+  if(o){
+    if(o.manufacture_date)facts.push(["Released",esc(o.manufacture_date)]);
+    if(o.type)facts.push(["Type",esc(TYPE[o.type]||o.type)]);
+    if(o.display)facts.push(["Display",esc(DISPLAY[o.display]||o.display)]);
+    if(o.player_count)facts.push(["Players","Up to "+o.player_count]);
+  }
+  const feats=o&&o.features&&o.features.length?'<div class="tags">'+o.features.slice(0,10).map(f=>'<span class="tag">'+esc(f)+"</span>").join("")+"</div>":"";
+  const pinsideUrl=m.pinside?"https://pinside.com/pinball/machine/"+encodeURIComponent(m.pinside):"https://duckduckgo.com/?q="+encodeURIComponent("site:pinside.com/pinball/machine "+m.n+" "+m.mk);
+  const similar=M.filter(x=>x.id!==m.id).map(x=>({x,s:(x.th===m.th?3:0)+x.who.filter(w=>m.who.includes(w)).length+(Math.abs(x.lo-m.lo)<2000?1:0)+x.s/10})).sort((a,b)=>b.s-a.s).slice(0,3).map(v=>v.x);
+  el.innerHTML=
+   '<a class="back" href="#machines">← All machines</a>'+
+   '<div class="d-head"><div class="stack"><p class="eyebrow">'+esc(m.mk)+" · "+m.y+'</p><h2 class="d-title">'+esc(m.n)+'</h2><p class="lede">'+esc(m.note)+'</p><div class="tags"><span class="tag '+m.c+'">'+(m.c==="new"?"New":"Used")+"</span>"+m.tags.map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+'</div></div><div class="d-score"><span>ADVISOR</span><b>'+m.s.toFixed(1)+'</b><span>OUT OF 10</span></div></div>'+
+   '<div class="d-grid"><div class="stack">'+
+     '<div class="pc"><div class="pc-col"><h3>What we like</h3><ul class="pros">'+m.pros.map(p=>"<li>"+esc(p)+"</li>").join("")+'</ul></div><div class="pc-col"><h3>Watch out for</h3><ul class="cons">'+m.cons.map(p=>"<li>"+esc(p)+"</li>").join("")+"</ul></div></div>"+
+     '<div class="box"><h3>Machine facts</h3><dl class="meta facts">'+facts.map(f=>"<dt>"+f[0]+"</dt><dd>"+f[1]+"</dd>").join("")+"</dl>"+feats+(o?'<p class="note">Release, type and display details from the <a href="https://opdb.org" target="_blank" rel="noopener">Open Pinball Database</a>.</p>':"")+"</div>"+
+     '<div class="box"><h3>Where to play '+esc(m.n)+"</h3>"+nearForm("d","Near")+"</div>"+
+   '</div><aside class="stack">'+
+     '<div class="box"><h3>Owner ratings &amp; prices</h3><p>Pinside has owner reviews, ratings and marketplace listings for this game.</p><a class="btn ghost" href="'+pinsideUrl+'" target="_blank" rel="noopener">See it on Pinside</a></div>'+
+     '<div class="box"><h3>Also consider</h3><div class="sim">'+similar.map(x=>'<a href="#machine-'+x.id+'"><span><b>'+esc(x.n)+"</b><small>"+esc(x.mk)+" · "+range(x)+'</small></span><span class="score">'+x.s.toFixed(1)+"</span></a>").join("")+"</div></div>"+
+     '<a class="btn" href="#quiz">Find my match</a>'+
+   "</aside></div>";
+  wireNear("d",m.n);
+}
 
 // ---------- Service checklist ----------
 const tasks=[["Clean the playfield","Novus 2 or a pinball-safe cleaner, every 300–500 plays"],["Clean or replace the balls","Dirty or pitted balls scratch the playfield"],["Inspect rubber rings","Replace cracked or flat rubbers; a fresh set plays faster"],["Check flipper bats and sleeves","Look for play in the bat and wear on coil sleeves"],["Run switch and coil tests","From the service menu; note anything that fails"],["Level the game","Level side to side, about 6.5° front to back"],["Check for loose screws and posts","Especially ramps and lane guides"],["Look at the coin door and power cord","Interlock switch works, cord isn't pinched"]];
 const done=new Set(store.get("pa-checks",[]));
-const chk=document.getElementById("chk");
+const chk=$("chk");
 function drawChk(){chk.innerHTML=tasks.map((t,i)=>'<label><input type="checkbox" id="task-'+i+'" data-t="'+i+'"'+(done.has(i)?" checked":"")+'><span>'+t[0]+"<small>"+t[1]+"</small></span></label>").join("");prog()}
-function prog(){document.getElementById("meter").style.width=(done.size/tasks.length*100)+"%";document.getElementById("mtext").textContent=done.size+" of "+tasks.length+" done";store.set("pa-checks",[...done])}
+function prog(){$("meter").style.width=(done.size/tasks.length*100)+"%";$("mtext").textContent=done.size+" of "+tasks.length+" done";store.set("pa-checks",[...done])}
 chk.addEventListener("change",e=>{const i=+e.target.dataset.t;e.target.checked?done.add(i):done.delete(i);prog()});
-document.getElementById("reset").onclick=()=>{done.clear();drawChk()};
+$("reset").onclick=()=>{done.clear();drawChk()};
 drawChk();
 
 // ---------- Contact ----------
-document.getElementById("contact").addEventListener("submit",e=>{
-  e.preventDefault();const t=document.getElementById("toast");
-  const n=document.getElementById("cname").value.trim(),em=document.getElementById("cemail").value.trim(),msg=document.getElementById("cmsg").value.trim();
+$("contact").addEventListener("submit",e=>{
+  e.preventDefault();const t=$("toast");
+  const n=$("cname").value.trim(),em=$("cemail").value.trim(),msg=$("cmsg").value.trim();
   if(!n||!/^\S+@\S+\.\S+$/.test(em)||!msg){t.style.color="var(--accent)";t.textContent="Add your name, a valid email, and a short description of the problem.";return}
   t.style.color="";t.textContent="Thanks, "+n.split(" ")[0]+". Request received.";e.target.reset();
 });
+
+// ---------- Boot ----------
+route();
+loadData().then(ok=>{if(!ok)return;match();initGrid();if(location.hash.startsWith("#machine-"))route()});
 })();
 </script>
 </body>
