@@ -20,9 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Pull from OPDB
-        env:
-          OPDB_API_TOKEN: ${{ secrets.OPDB_API_TOKEN }}
+      - name: Pull from OPDB (Match Play export)
         run: node scripts/refresh-data.mjs
       - name: Commit changes
         run: |

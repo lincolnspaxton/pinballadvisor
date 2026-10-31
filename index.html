@@ -201,6 +201,7 @@ a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
 .pros li::before{content:"+";color:var(--good)}
 .cons li::before{content:"–";color:var(--accent)}
 .facts{font-size:.95rem;gap:8px 18px}
+.learn{display:flex;flex-direction:column;gap:8px;font-weight:600}
 .sim{display:flex;flex-direction:column;gap:8px}
 .sim a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px;border-radius:8px;background:var(--sunk);text-decoration:none;color:inherit}
 .sim a:hover{box-shadow:inset 0 0 0 2px var(--line)}
@@ -621,7 +622,11 @@ function renderDetail(id){
     if(o.type)facts.push(["Type",esc(TYPE[o.type]||o.type)]);
     if(o.display)facts.push(["Display",esc(DISPLAY[o.display]||o.display)]);
     if(o.player_count)facts.push(["Players","Up to "+o.player_count]);
+    if(o.designers&&o.designers.length)facts.push(["Designer",esc(o.designers.join(", "))]);
+    if(o.artists&&o.artists.length)facts.push(["Art",esc(o.artists.join(", "))]);
   }
+  const safeUrl=u=>/^https:\/\//.test(u||"")?u:"";
+  const learn=o?[[safeUrl(o.primer_url),"Beginner tutorial (Pinball Primer)"],[safeUrl(o.rules_url),"Full rulesheet"]].filter(x=>x[0]):[];
   const feats=o&&o.features&&o.features.length?'<div class="tags">'+o.features.slice(0,10).map(f=>'<span class="tag">'+esc(f)+"</span>").join("")+"</div>":"";
   const pinsideUrl=m.pinside?"https://pinside.com/pinball/machine/"+encodeURIComponent(m.pinside):"https://duckduckgo.com/?q="+encodeURIComponent("site:pinside.com/pinball/machine "+m.n+" "+m.mk);
   const similar=M.filter(x=>x.id!==m.id).map(x=>({x,s:(x.th===m.th?3:0)+x.who.filter(w=>m.who.includes(w)).length+(Math.abs(x.lo-m.lo)<2000?1:0)+x.s/10})).sort((a,b)=>b.s-a.s).slice(0,3).map(v=>v.x);
@@ -630,10 +635,11 @@ function renderDetail(id){
    '<div class="d-head"><div class="stack"><p class="eyebrow">'+esc(m.mk)+" · "+m.y+'</p><h2 class="d-title">'+esc(m.n)+'</h2><p class="lede">'+esc(m.note)+'</p><div class="tags"><span class="tag '+m.c+'">'+(m.c==="new"?"New":"Used")+"</span>"+m.tags.map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+'</div></div><div class="d-score"><span>ADVISOR</span><b>'+m.s.toFixed(1)+'</b><span>OUT OF 10</span></div></div>'+
    '<div class="d-grid"><div class="stack">'+
      '<div class="pc"><div class="pc-col"><h3>What we like</h3><ul class="pros">'+m.pros.map(p=>"<li>"+esc(p)+"</li>").join("")+'</ul></div><div class="pc-col"><h3>Watch out for</h3><ul class="cons">'+m.cons.map(p=>"<li>"+esc(p)+"</li>").join("")+"</ul></div></div>"+
-     '<div class="box"><h3>Machine facts</h3><dl class="meta facts">'+facts.map(f=>"<dt>"+f[0]+"</dt><dd>"+f[1]+"</dd>").join("")+"</dl>"+feats+(o?'<p class="note">Release, type and display details from the <a href="https://opdb.org" target="_blank" rel="noopener">Open Pinball Database</a>.</p>':"")+"</div>"+
+     '<div class="box"><h3>Machine facts</h3><dl class="meta facts">'+facts.map(f=>"<dt>"+f[0]+"</dt><dd>"+f[1]+"</dd>").join("")+"</dl>"+feats+(o?'<p class="note">Release, display and credits from the <a href="https://opdb.org" target="_blank" rel="noopener">Open Pinball Database</a>.</p>':"")+"</div>"+
      '<div class="box"><h3>Where to play '+esc(m.n)+"</h3>"+nearForm("d","Near")+"</div>"+
    '</div><aside class="stack">'+
      '<div class="box"><h3>Owner ratings &amp; prices</h3><p>Pinside has owner reviews, ratings and marketplace listings for this game.</p><a class="btn ghost" href="'+pinsideUrl+'" target="_blank" rel="noopener">See it on Pinside</a></div>'+
+     (learn.length?'<div class="box"><h3>Learn the game</h3><div class="learn">'+learn.map(x=>'<a href="'+esc(x[0])+'" target="_blank" rel="noopener">'+x[1]+' ↗</a>').join("")+"</div></div>":"")+
      '<div class="box"><h3>Also consider</h3><div class="sim">'+similar.map(x=>'<a href="#machine-'+x.id+'"><span><b>'+esc(x.n)+"</b><small>"+esc(x.mk)+" · "+range(x)+'</small></span><span class="score">'+x.s.toFixed(1)+"</span></a>").join("")+"</div></div>"+
      '<a class="btn" href="#quiz">Find my match</a>'+
    "</aside></div>";
