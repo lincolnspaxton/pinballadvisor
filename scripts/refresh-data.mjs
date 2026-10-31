@@ -26,10 +26,13 @@ function trimRank(e) {
 }
 
 function pick(entry, all) {
-  if (entry.opdb_id) return all.find(e => e.opdbId === entry.opdb_id) || null;
   const want = norm(entry.name), maker = norm(entry.maker);
+  const isEntry = e => e.entryType === "machine" || e.entryType === "alias";
+  if (entry.opdb_id && entry.opdb_id.includes("-")) return all.find(e => e.opdbId === entry.opdb_id) || null;
+  const pinnedGroup = entry.opdb_id || null; // a group ID like "GvBQX" picks the best entry in that group
   const candidates = all.filter(e => {
-    if (e.entryType !== "machine" || e.physicalMachine === false) return false;
+    if (!isEntry(e)) return false;
+    if (pinnedGroup) return e.opdbGroup === pinnedGroup;
     const n = norm(e.name), cn = norm(e.commonName);
     const nameOk = n === want || cn === want;
     const mk = norm(e.manufacturer && (e.manufacturer.name || e.manufacturer.fullName));
@@ -38,7 +41,8 @@ function pick(entry, all) {
   });
   if (!candidates.length) return null;
   const yearGap = e => Math.abs((+e.year || +String(e.manufactureDate || "").slice(0, 4) || 0) - entry.year);
-  candidates.sort((a, b) => yearGap(a) - yearGap(b) || trimRank(a) - trimRank(b));
+  const kind = e => (e.entryType === "machine" ? 0 : 1);
+  candidates.sort((a, b) => yearGap(a) - yearGap(b) || trimRank(a) - trimRank(b) || kind(a) - kind(b));
   return candidates[0];
 }
 
@@ -109,7 +113,7 @@ const reviewedIds = new Set(editorial.machines.map(m => m.id));
 
 const groups = new Map();
 for (const e of all) {
-  if (e.entryType !== "machine" || e.physicalMachine === false) continue;
+  if (e.entryType !== "machine" && e.entryType !== "alias") continue;
   const y = yearOf(e);
   if (y < CATALOG_FROM) continue;
   if (e.manufactureDate && e.manufactureDate > today) continue; // announced but not out yet
@@ -122,7 +126,8 @@ for (const e of all) {
 const items = [];
 const usedIds = new Set(reviewedIds);
 for (const [g, list] of groups) {
-  list.sort((a, b) => trimRank(a) - trimRank(b) || yearOf(a) - yearOf(b));
+  if (!list.some(e => e.physicalMachine !== false)) continue;
+  list.sort((a, b) => (a.entryType === "machine" ? 0 : 1) - (b.entryType === "machine" ? 0 : 1) || trimRank(a) - trimRank(b) || yearOf(a) - yearOf(b));
   const base = list[0];
   const title = baseTitle(base.commonName || base.name);
   const maker = base.manufacturer ? base.manufacturer.name : "";
@@ -133,7 +138,8 @@ for (const [g, list] of groups) {
   if (usedIds.has(id)) id = slug(g);
   usedIds.add(id);
   const people = (base.people || []).slice().sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
-  const trims = list.length > 1 ? [...new Set(list.map(e => {
+  const physical = list.filter(e => e.physicalMachine !== false);
+  const trims = physical.length > 1 ? [...new Set(physical.map(e => {
     const m = String(e.name).match(/\(([^)]+)\)\s*$/); return m ? m[1] : "Standard";
   }))] : [];
   const firstDate = list.map(e => e.manufactureDate).filter(Boolean).sort()[0] || null;
