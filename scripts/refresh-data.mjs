@@ -89,3 +89,77 @@ if (prev && JSON.stringify(prev.machines) === JSON.stringify(out.machines)) {
   await writeFile(OUT, JSON.stringify(out, null, 2) + "\n");
   console.log(`Wrote data/opdb.json (${matched}/${editorial.machines.length} matched).`);
 }
+
+// ---------------------------------------------------------------------------
+// Catalog: every physical machine from CATALOG_FROM onward, one entry per
+// title (trims grouped together). New releases appear here automatically.
+// Reviewed machines are skipped because they already have full pages.
+// ---------------------------------------------------------------------------
+const CATALOG = new URL("data/catalog.json", ROOT);
+const CATALOG_FROM = 1990;
+
+const slug = s => String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "")
+  .replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+const baseTitle = name => String(name).replace(/\s*\((pro|premium|limited edition|le|ce|collector'?s edition|standard|anniversary edition|[^)]*edition)\)\s*$/i, "").trim();
+const yearOf = e => +e.year || +String(e.manufactureDate || "").slice(0, 4) || 0;
+const today = new Date().toISOString().slice(0, 10);
+
+const reviewedGroups = new Set(Object.values(out.machines).map(m => String(m.opdb_id || "").split("-")[0]).filter(Boolean));
+const reviewedIds = new Set(editorial.machines.map(m => m.id));
+
+const groups = new Map();
+for (const e of all) {
+  if (e.entryType !== "machine" || e.physicalMachine === false) continue;
+  const y = yearOf(e);
+  if (y < CATALOG_FROM) continue;
+  if (e.manufactureDate && e.manufactureDate > today) continue; // announced but not out yet
+  const g = e.opdbGroup || String(e.opdbId).split("-")[0];
+  if (!g || reviewedGroups.has(g)) continue;
+  if (!groups.has(g)) groups.set(g, []);
+  groups.get(g).push(e);
+}
+
+const items = [];
+const usedIds = new Set(reviewedIds);
+for (const [g, list] of groups) {
+  list.sort((a, b) => trimRank(a) - trimRank(b) || yearOf(a) - yearOf(b));
+  const base = list[0];
+  const title = baseTitle(base.commonName || base.name);
+  const maker = base.manufacturer ? base.manufacturer.name : "";
+  const y = Math.min(...list.map(yearOf));
+  let id = slug(title) || slug(g);
+  if (usedIds.has(id)) id = slug(title + "-" + y);
+  if (usedIds.has(id)) id = slug(title + "-" + maker + "-" + y);
+  if (usedIds.has(id)) id = slug(g);
+  usedIds.add(id);
+  const people = (base.people || []).slice().sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
+  const trims = list.length > 1 ? [...new Set(list.map(e => {
+    const m = String(e.name).match(/\(([^)]+)\)\s*$/); return m ? m[1] : "Standard";
+  }))] : [];
+  const firstDate = list.map(e => e.manufactureDate).filter(Boolean).sort()[0] || null;
+  const item = { id, g, n: title, mk: maker, y, date: firstDate };
+  if (base.type) item.type = base.type;
+  if (base.display) item.display = base.display;
+  if (base.playerCount) item.players = base.playerCount;
+  const designers = people.filter(p => p.role === "design").map(p => p.name);
+  if (designers.length) item.design = designers;
+  if (trims.length) item.trims = trims;
+  const rules = list.map(e => e.pinballRulesUrl).find(Boolean); if (rules) item.rules = rules;
+  const primer = list.map(e => e.pinballPrimerUrl).find(Boolean); if (primer) item.primer = primer;
+  items.push(item);
+}
+items.sort((a, b) => String(b.date || b.y).localeCompare(String(a.date || a.y)) || a.n.localeCompare(b.n));
+
+const catalog = { source: "Open Pinball Database (opdb.org), via the Match Play data export", from: CATALOG_FROM, count: items.length, machines: items };
+let prevCat = null;
+try { prevCat = JSON.parse(await readFile(CATALOG, "utf8")); } catch {}
+if (prevCat && JSON.stringify(prevCat.machines) === JSON.stringify(items)) {
+  console.log(`Catalog unchanged (${items.length} titles).`);
+} else {
+  catalog.updated = new Date().toISOString();
+  await writeFile(CATALOG, JSON.stringify(catalog) + "\n");
+  const before = new Set((prevCat?.machines || []).map(m => m.g));
+  const added = items.filter(m => !before.has(m.g));
+  console.log(`Wrote data/catalog.json (${items.length} titles${prevCat ? `, ${added.length} new` : ""}).`);
+  for (const m of added.slice(0, 20)) console.log(`  new: ${m.n} (${m.mk}, ${m.y})`);
+}

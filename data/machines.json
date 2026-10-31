@@ -1,23 +1,1218 @@
 {
-  "_about": "Editorial machine list for PinballAdvisor.com. Edit by hand. 'opdb_id' is optional: set it to pin an exact OPDB match, otherwise the refresh script matches by name + maker. 'pinside' is the slug from a pinside.com/pinball/machine/<slug> URL (optional). Prices are approximate street ranges in USD.",
-  "machines": [
-    {"id":"godzilla","name":"Godzilla","maker":"Stern","year":2021,"condition":"new","price":[7800,13500],"score":9.4,"difficulty":3,"theme":"movie","bestFor":["casual","deep","family"],"tags":["Pro / Prem / LE","Building toy"],"pinside":"godzilla-premium","take":"Huge shot variety and a great mix of goofy and deep. A modern benchmark.","pros":["Tons of distinct shots and modes","Fun for beginners and experts alike","Premium building toy is a showpiece"],"cons":["Busy layout can overwhelm new players","LE pricing is steep"]},
-    {"id":"jurassic-park","name":"Jurassic Park","maker":"Stern","year":2019,"condition":"used","price":[6000,9500],"score":8.6,"difficulty":3,"theme":"movie","bestFor":["family","casual"],"tags":["Family hit","T-Rex toy"],"take":"Instantly fun for guests, with enough modes to keep owners busy.","pros":["Big T-Rex toy guests love","Easy to understand goals","Good used availability"],"cons":["Rules feel thinner after long ownership","Some shots are repetitive"]},
-    {"id":"foo-fighters","name":"Foo Fighters","maker":"Stern","year":2023,"condition":"new","price":[7800,13500],"score":8.7,"difficulty":3,"theme":"music","bestFor":["casual","family"],"tags":["Pro / Prem / LE","Fast flow"],"take":"Flowing ramps and a fun, cartoony presentation. Plays great even as a Pro.","pros":["Smooth, flowing ramp shots","Pro trim is very complete","Strong soundtrack"],"cons":["Theme appeal depends on the band","Fewer big toys than some rivals"]},
-    {"id":"jaws","name":"Jaws","maker":"Stern","year":2024,"condition":"new","price":[7800,13500],"score":8.9,"difficulty":3,"theme":"movie","bestFor":["casual","deep"],"tags":["Pro / Prem / LE","Shark mech"],"take":"Smart layout with modes that tell the story well. Premium's boat mech is the highlight.","pros":["Modes follow the film closely","Satisfying, well-placed shots","Premium boat mech adds a lot"],"cons":["Pro misses the best mech","Newer game, used prices still high"]},
-    {"id":"john-wick","name":"John Wick","maker":"Stern","year":2024,"condition":"new","price":[7800,13500],"score":8.5,"difficulty":4,"theme":"movie","bestFor":["deep","casual"],"tags":["Pro / Prem / LE","Tough shots"],"take":"Tight, aggressive shots that reward precise players. Can frustrate beginners.","pros":["Rewards accuracy","Stylish presentation","Deep scoring strategy"],"cons":["Hard on beginners and guests","Tight shots punish small misses"]},
-    {"id":"metallica-remastered","name":"Metallica Remastered","maker":"Stern","year":2024,"condition":"new","price":[7800,13500],"score":8.6,"difficulty":3,"theme":"music","bestFor":["casual","deep"],"tags":["Pro / Prem / LE","Classic layout"],"take":"Updated version of a modern classic layout. Satisfying shots and a heavy soundtrack.","pros":["Proven, well-loved layout","Great sound package","Fast, physical shots"],"cons":["Original owners may not need it","Music theme not for everyone"]},
-    {"id":"deadpool","name":"Deadpool","maker":"Stern","year":2018,"condition":"used","price":[6000,8500],"score":8.3,"difficulty":3,"theme":"movie","bestFor":["family","casual"],"tags":["Funny callouts","Used deal"],"take":"Funny, fast and approachable. Often a good used value.","pros":["Funny callouts","Good value used","Quick games for guests"],"cons":["Humor is not family-friendly for young kids","Fewer modes than newer Stern titles"]},
-    {"id":"elton-john","name":"Elton John","maker":"Jersey Jack","year":2023,"condition":"new","price":[9000,15000],"score":8.8,"difficulty":3,"theme":"music","bestFor":["casual","family","deep"],"tags":["Big lightshow","Collector"],"take":"Bright, polished presentation with a strong music package. Feels premium in every trim.","pros":["Excellent lighting and sound","High build quality","Fun for a wide range of players"],"cons":["Higher price than Stern equivalents","Large cabinet"]},
-    {"id":"the-godfather","name":"The Godfather","maker":"Jersey Jack","year":2023,"condition":"new","price":[9000,15000],"score":8.4,"difficulty":4,"theme":"movie","bestFor":["deep"],"tags":["Deep rules","Moody"],"take":"A slower, deliberate game with deep strategy. Best for players who like long-term goals.","pros":["Deep long-term goals","Strong atmosphere","Premium build"],"cons":["Slow pace for casual guests","Expensive"]},
-    {"id":"halloween","name":"Halloween","maker":"Spooky","year":2022,"condition":"new","price":[7500,9500],"score":8.0,"difficulty":4,"theme":"horror","bestFor":["deep","casual"],"tags":["Boutique","Creepy toys"],"take":"Atmospheric with great sound. Boutique build means spare parts can take longer.","pros":["Great atmosphere and sound","Unique toys","Fair boutique price"],"cons":["Parts and support can be slower","Difficult for new players"]},
-    {"id":"dune","name":"Dune","maker":"Barrels of Fun","year":2024,"condition":"new","price":[8000,11000],"score":8.1,"difficulty":3,"theme":"movie","bestFor":["casual","deep"],"tags":["Boutique","Unique art"],"take":"Distinct look and inventive shots from a newer maker. Worth playing before buying.","pros":["Inventive layout","Distinct art style","Good value for a boutique game"],"cons":["Newer maker, smaller support network","Hard to find on location"]},
-    {"id":"houdini","name":"Houdini","maker":"American Pinball","year":2017,"condition":"used","price":[5000,7000],"score":7.8,"difficulty":2,"theme":"classic","bestFor":["family","casual"],"tags":["Value pick","Good starter"],"take":"Friendly rules and a classic feel at a lower price. A solid first machine.","pros":["Affordable","Easy to learn","Classic feel"],"cons":["Less depth for experienced players","Maker support is limited"]},
-    {"id":"medieval-madness-remake","name":"Medieval Madness (Remake)","maker":"Chicago Gaming","year":2016,"condition":"used","price":[8000,10500],"score":9.1,"difficulty":2,"theme":"classic","bestFor":["family","casual"],"tags":["Remake","Crowd pleaser"],"take":"New-build version of the castle game everyone loves. Huge with guests.","pros":["Legendary crowd pleaser","Newer parts than an original","Funny callouts"],"cons":["Shallow for rules nerds","Prices stay high"]},
-    {"id":"attack-from-mars-remake","name":"Attack From Mars (Remake)","maker":"Chicago Gaming","year":2017,"condition":"used","price":[7500,10000],"score":8.9,"difficulty":2,"theme":"classic","bestFor":["family","casual"],"tags":["Remake","Easy to learn"],"take":"Simple, satisfying shots and a goofy alien invasion. Very easy to love.","pros":["Easy and satisfying","Great for parties","Newer build than an original"],"cons":["Limited depth","Can feel repetitive solo"]},
-    {"id":"twilight-zone","name":"Twilight Zone","maker":"Bally","year":1993,"condition":"used","price":[8000,12000],"score":9.2,"difficulty":5,"theme":"classic","bestFor":["deep"],"tags":["Classic","Needs a good tech"],"take":"One of the deepest rule sets ever made. Older electronics need a careful pre-purchase check.","pros":["Incredibly deep rules","Iconic toys","Holds value well"],"cons":["Complex to maintain","Hard for beginners","Older electronics"]},
-    {"id":"the-addams-family","name":"The Addams Family","maker":"Bally","year":1992,"condition":"used","price":[6500,9500],"score":9.0,"difficulty":2,"theme":"classic","bestFor":["family","casual"],"tags":["Classic","Best-selling"],"take":"The best-selling modern pinball game for a reason. Easy to play, easy to service.","pros":["Fun for everyone","Easy to service","Easy to find parts"],"cons":["Older display","Experienced players may outgrow it"]},
-    {"id":"monster-bash","name":"Monster Bash","maker":"Williams","year":1998,"condition":"used","price":[7000,10000],"score":8.8,"difficulty":2,"theme":"horror","bestFor":["family","casual"],"tags":["Classic","Fun theme"],"take":"Spooky-fun theme with great toys. A strong pick for a game room.","pros":["Great toys","Fun for guests","Good parts availability"],"cons":["Originals can be pricey","Older electronics"]},
-    {"id":"alien","name":"Alien","maker":"Pinball Brothers","year":2022,"condition":"new","price":[9500,13000],"score":8.0,"difficulty":4,"theme":"horror","bestFor":["deep"],"tags":["Boutique","Intense"],"take":"Dark and intense with big toys. Check local support before buying a boutique import.","pros":["Big, impressive toys","Intense atmosphere"],"cons":["Import support can be slow","Hard for casual players"]}
-  ]
+ "_about": "Editorial machine list for PinballAdvisor.com. Edit by hand. 'opdb_id' is optional: set it to pin an exact OPDB match, otherwise the refresh script matches by name + maker. 'pinside' is the slug from a pinside.com/pinball/machine/<slug> URL (optional). Prices are approximate street ranges in USD.",
+ "machines": [
+  {
+   "id": "godzilla",
+   "name": "Godzilla",
+   "maker": "Stern",
+   "year": 2021,
+   "condition": "new",
+   "price": [
+    7800,
+    13500
+   ],
+   "score": 9.4,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "casual",
+    "deep",
+    "family"
+   ],
+   "tags": [
+    "Pro / Prem / LE",
+    "Building toy"
+   ],
+   "pinside": "godzilla-premium",
+   "take": "Huge shot variety and a great mix of goofy and deep. A modern benchmark.",
+   "pros": [
+    "Tons of distinct shots and modes",
+    "Fun for beginners and experts alike",
+    "Premium building toy is a showpiece"
+   ],
+   "cons": [
+    "Busy layout can overwhelm new players",
+    "LE pricing is steep"
+   ]
+  },
+  {
+   "id": "jurassic-park",
+   "name": "Jurassic Park",
+   "maker": "Stern",
+   "year": 2019,
+   "condition": "used",
+   "price": [
+    6000,
+    9500
+   ],
+   "score": 8.6,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Family hit",
+    "T-Rex toy"
+   ],
+   "take": "Instantly fun for guests, with enough modes to keep owners busy.",
+   "pros": [
+    "Big T-Rex toy guests love",
+    "Easy to understand goals",
+    "Good used availability"
+   ],
+   "cons": [
+    "Rules feel thinner after long ownership",
+    "Some shots are repetitive"
+   ]
+  },
+  {
+   "id": "foo-fighters",
+   "name": "Foo Fighters",
+   "maker": "Stern",
+   "year": 2023,
+   "condition": "new",
+   "price": [
+    7800,
+    13500
+   ],
+   "score": 8.7,
+   "difficulty": 3,
+   "theme": "music",
+   "bestFor": [
+    "casual",
+    "family"
+   ],
+   "tags": [
+    "Pro / Prem / LE",
+    "Fast flow"
+   ],
+   "take": "Flowing ramps and a fun, cartoony presentation. Plays great even as a Pro.",
+   "pros": [
+    "Smooth, flowing ramp shots",
+    "Pro trim is very complete",
+    "Strong soundtrack"
+   ],
+   "cons": [
+    "Theme appeal depends on the band",
+    "Fewer big toys than some rivals"
+   ]
+  },
+  {
+   "id": "jaws",
+   "name": "Jaws",
+   "maker": "Stern",
+   "year": 2024,
+   "condition": "new",
+   "price": [
+    7800,
+    13500
+   ],
+   "score": 8.9,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Pro / Prem / LE",
+    "Shark mech"
+   ],
+   "take": "Smart layout with modes that tell the story well. Premium's boat mech is the highlight.",
+   "pros": [
+    "Modes follow the film closely",
+    "Satisfying, well-placed shots",
+    "Premium boat mech adds a lot"
+   ],
+   "cons": [
+    "Pro misses the best mech",
+    "Newer game, used prices still high"
+   ]
+  },
+  {
+   "id": "john-wick",
+   "name": "John Wick",
+   "maker": "Stern",
+   "year": 2024,
+   "condition": "new",
+   "price": [
+    7800,
+    13500
+   ],
+   "score": 8.5,
+   "difficulty": 4,
+   "theme": "movie",
+   "bestFor": [
+    "deep",
+    "casual"
+   ],
+   "tags": [
+    "Pro / Prem / LE",
+    "Tough shots"
+   ],
+   "take": "Tight, aggressive shots that reward precise players. Can frustrate beginners.",
+   "pros": [
+    "Rewards accuracy",
+    "Stylish presentation",
+    "Deep scoring strategy"
+   ],
+   "cons": [
+    "Hard on beginners and guests",
+    "Tight shots punish small misses"
+   ]
+  },
+  {
+   "id": "metallica-remastered",
+   "name": "Metallica Remastered",
+   "maker": "Stern",
+   "year": 2024,
+   "condition": "new",
+   "price": [
+    7800,
+    13500
+   ],
+   "score": 8.6,
+   "difficulty": 3,
+   "theme": "music",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Pro / Prem / LE",
+    "Classic layout"
+   ],
+   "take": "Updated version of a modern classic layout. Satisfying shots and a heavy soundtrack.",
+   "pros": [
+    "Proven, well-loved layout",
+    "Great sound package",
+    "Fast, physical shots"
+   ],
+   "cons": [
+    "Original owners may not need it",
+    "Music theme not for everyone"
+   ]
+  },
+  {
+   "id": "deadpool",
+   "name": "Deadpool",
+   "maker": "Stern",
+   "year": 2018,
+   "condition": "used",
+   "price": [
+    6000,
+    8500
+   ],
+   "score": 8.3,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Funny callouts",
+    "Used deal"
+   ],
+   "take": "Funny, fast and approachable. Often a good used value.",
+   "pros": [
+    "Funny callouts",
+    "Good value used",
+    "Quick games for guests"
+   ],
+   "cons": [
+    "Humor is not family-friendly for young kids",
+    "Fewer modes than newer Stern titles"
+   ]
+  },
+  {
+   "id": "elton-john",
+   "name": "Elton John",
+   "maker": "Jersey Jack",
+   "year": 2023,
+   "condition": "new",
+   "price": [
+    9000,
+    15000
+   ],
+   "score": 8.8,
+   "difficulty": 3,
+   "theme": "music",
+   "bestFor": [
+    "casual",
+    "family",
+    "deep"
+   ],
+   "tags": [
+    "Big lightshow",
+    "Collector"
+   ],
+   "take": "Bright, polished presentation with a strong music package. Feels premium in every trim.",
+   "pros": [
+    "Excellent lighting and sound",
+    "High build quality",
+    "Fun for a wide range of players"
+   ],
+   "cons": [
+    "Higher price than Stern equivalents",
+    "Large cabinet"
+   ]
+  },
+  {
+   "id": "the-godfather",
+   "name": "The Godfather",
+   "maker": "Jersey Jack",
+   "year": 2023,
+   "condition": "new",
+   "price": [
+    9000,
+    15000
+   ],
+   "score": 8.4,
+   "difficulty": 4,
+   "theme": "movie",
+   "bestFor": [
+    "deep"
+   ],
+   "tags": [
+    "Deep rules",
+    "Moody"
+   ],
+   "take": "A slower, deliberate game with deep strategy. Best for players who like long-term goals.",
+   "pros": [
+    "Deep long-term goals",
+    "Strong atmosphere",
+    "Premium build"
+   ],
+   "cons": [
+    "Slow pace for casual guests",
+    "Expensive"
+   ]
+  },
+  {
+   "id": "halloween",
+   "name": "Halloween",
+   "maker": "Spooky",
+   "year": 2022,
+   "condition": "new",
+   "price": [
+    7500,
+    9500
+   ],
+   "score": 8.0,
+   "difficulty": 4,
+   "theme": "horror",
+   "bestFor": [
+    "deep",
+    "casual"
+   ],
+   "tags": [
+    "Boutique",
+    "Creepy toys"
+   ],
+   "take": "Atmospheric with great sound. Boutique build means spare parts can take longer.",
+   "pros": [
+    "Great atmosphere and sound",
+    "Unique toys",
+    "Fair boutique price"
+   ],
+   "cons": [
+    "Parts and support can be slower",
+    "Difficult for new players"
+   ]
+  },
+  {
+   "id": "dune",
+   "name": "Dune",
+   "maker": "Barrels of Fun",
+   "year": 2024,
+   "condition": "new",
+   "price": [
+    8000,
+    11000
+   ],
+   "score": 8.1,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Boutique",
+    "Unique art"
+   ],
+   "take": "Distinct look and inventive shots from a newer maker. Worth playing before buying.",
+   "pros": [
+    "Inventive layout",
+    "Distinct art style",
+    "Good value for a boutique game"
+   ],
+   "cons": [
+    "Newer maker, smaller support network",
+    "Hard to find on location"
+   ]
+  },
+  {
+   "id": "houdini",
+   "name": "Houdini",
+   "maker": "American Pinball",
+   "year": 2017,
+   "condition": "used",
+   "price": [
+    5000,
+    7000
+   ],
+   "score": 7.8,
+   "difficulty": 2,
+   "theme": "classic",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Value pick",
+    "Good starter"
+   ],
+   "take": "Friendly rules and a classic feel at a lower price. A solid first machine.",
+   "pros": [
+    "Affordable",
+    "Easy to learn",
+    "Classic feel"
+   ],
+   "cons": [
+    "Less depth for experienced players",
+    "Maker support is limited"
+   ]
+  },
+  {
+   "id": "medieval-madness-remake",
+   "name": "Medieval Madness (Remake)",
+   "maker": "Chicago Gaming",
+   "year": 2016,
+   "condition": "used",
+   "price": [
+    8000,
+    10500
+   ],
+   "score": 9.1,
+   "difficulty": 2,
+   "theme": "classic",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Remake",
+    "Crowd pleaser"
+   ],
+   "take": "New-build version of the castle game everyone loves. Huge with guests.",
+   "pros": [
+    "Legendary crowd pleaser",
+    "Newer parts than an original",
+    "Funny callouts"
+   ],
+   "cons": [
+    "Shallow for rules nerds",
+    "Prices stay high"
+   ]
+  },
+  {
+   "id": "attack-from-mars-remake",
+   "name": "Attack From Mars (Remake)",
+   "maker": "Chicago Gaming",
+   "year": 2017,
+   "condition": "used",
+   "price": [
+    7500,
+    10000
+   ],
+   "score": 8.9,
+   "difficulty": 2,
+   "theme": "classic",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Remake",
+    "Easy to learn"
+   ],
+   "take": "Simple, satisfying shots and a goofy alien invasion. Very easy to love.",
+   "pros": [
+    "Easy and satisfying",
+    "Great for parties",
+    "Newer build than an original"
+   ],
+   "cons": [
+    "Limited depth",
+    "Can feel repetitive solo"
+   ]
+  },
+  {
+   "id": "twilight-zone",
+   "name": "Twilight Zone",
+   "maker": "Bally",
+   "year": 1993,
+   "condition": "used",
+   "price": [
+    8000,
+    12000
+   ],
+   "score": 9.2,
+   "difficulty": 5,
+   "theme": "classic",
+   "bestFor": [
+    "deep"
+   ],
+   "tags": [
+    "Classic",
+    "Needs a good tech"
+   ],
+   "take": "One of the deepest rule sets ever made. Older electronics need a careful pre-purchase check.",
+   "pros": [
+    "Incredibly deep rules",
+    "Iconic toys",
+    "Holds value well"
+   ],
+   "cons": [
+    "Complex to maintain",
+    "Hard for beginners",
+    "Older electronics"
+   ]
+  },
+  {
+   "id": "the-addams-family",
+   "name": "The Addams Family",
+   "maker": "Bally",
+   "year": 1992,
+   "condition": "used",
+   "price": [
+    6500,
+    9500
+   ],
+   "score": 9.0,
+   "difficulty": 2,
+   "theme": "classic",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Classic",
+    "Best-selling"
+   ],
+   "take": "The best-selling modern pinball game for a reason. Easy to play, easy to service.",
+   "pros": [
+    "Fun for everyone",
+    "Easy to service",
+    "Easy to find parts"
+   ],
+   "cons": [
+    "Older display",
+    "Experienced players may outgrow it"
+   ]
+  },
+  {
+   "id": "monster-bash",
+   "name": "Monster Bash",
+   "maker": "Williams",
+   "year": 1998,
+   "condition": "used",
+   "price": [
+    7000,
+    10000
+   ],
+   "score": 8.8,
+   "difficulty": 2,
+   "theme": "horror",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Classic",
+    "Fun theme"
+   ],
+   "take": "Spooky-fun theme with great toys. A strong pick for a game room.",
+   "pros": [
+    "Great toys",
+    "Fun for guests",
+    "Good parts availability"
+   ],
+   "cons": [
+    "Originals can be pricey",
+    "Older electronics"
+   ]
+  },
+  {
+   "id": "alien",
+   "name": "Alien",
+   "maker": "Pinball Brothers",
+   "year": 2022,
+   "condition": "new",
+   "price": [
+    9500,
+    13000
+   ],
+   "score": 8.0,
+   "difficulty": 4,
+   "theme": "horror",
+   "bestFor": [
+    "deep"
+   ],
+   "tags": [
+    "Boutique",
+    "Intense"
+   ],
+   "take": "Dark and intense with big toys. Check local support before buying a boutique import.",
+   "pros": [
+    "Big, impressive toys",
+    "Intense atmosphere"
+   ],
+   "cons": [
+    "Import support can be slow",
+    "Hard for casual players"
+   ]
+  },
+  {
+   "id": "stranger-things",
+   "name": "Stranger Things",
+   "maker": "Stern",
+   "year": 2019,
+   "condition": "used",
+   "price": [
+    6500,
+    10000
+   ],
+   "score": 8.4,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "casual",
+    "family"
+   ],
+   "tags": [
+    "TV theme",
+    "Moody"
+   ],
+   "take": "A spooky 1980s vibe with approachable shots. Fans of the show love the presentation.",
+   "pros": [
+    "Strong atmosphere and music",
+    "Friendly for newer players",
+    "Good used availability"
+   ],
+   "cons": [
+    "Theme appeal depends on the show",
+    "Some owners find the rules thin over time"
+   ]
+  },
+  {
+   "id": "the-mandalorian",
+   "name": "The Mandalorian",
+   "maker": "Stern",
+   "year": 2021,
+   "condition": "used",
+   "price": [
+    7000,
+    11000
+   ],
+   "score": 8.5,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "casual",
+    "family"
+   ],
+   "tags": [
+    "TV theme",
+    "Smooth flow"
+   ],
+   "take": "Polished and fun, with modes built around the show's episodes. Easy to enjoy right away.",
+   "pros": [
+    "Satisfying, flowing shots",
+    "Clear goals for casual players",
+    "Great sound and callouts"
+   ],
+   "cons": [
+    "Deeper players may want more challenge",
+    "Premium adds a lot over the Pro"
+   ]
+  },
+  {
+   "id": "iron-maiden",
+   "name": "Iron Maiden: Legacy of the Beast",
+   "maker": "Stern",
+   "year": 2018,
+   "condition": "used",
+   "price": [
+    6500,
+    9500
+   ],
+   "score": 8.6,
+   "difficulty": 4,
+   "theme": "music",
+   "bestFor": [
+    "deep",
+    "casual"
+   ],
+   "tags": [
+    "Deep rules",
+    "Heavy metal"
+   ],
+   "take": "Fast and punishing, with surprisingly deep rules. A favorite among competitive players.",
+   "pros": [
+    "Deep, rewarding rules",
+    "Fast, physical shots",
+    "Big soundtrack"
+   ],
+   "cons": [
+    "Tough on beginners",
+    "Theme isn't for everyone"
+   ]
+  },
+  {
+   "id": "led-zeppelin",
+   "name": "Led Zeppelin",
+   "maker": "Stern",
+   "year": 2020,
+   "condition": "used",
+   "price": [
+    6500,
+    10000
+   ],
+   "score": 8.0,
+   "difficulty": 3,
+   "theme": "music",
+   "bestFor": [
+    "casual"
+   ],
+   "tags": [
+    "Music theme",
+    "Classic rock"
+   ],
+   "take": "A music game built around the band's catalog. Plays smoothly and looks great.",
+   "pros": [
+    "Great music package",
+    "Smooth ramps",
+    "Attractive art and lighting"
+   ],
+   "cons": [
+    "Fewer standout toys",
+    "Rules feel lighter than some rivals"
+   ]
+  },
+  {
+   "id": "rush",
+   "name": "Rush",
+   "maker": "Stern",
+   "year": 2022,
+   "condition": "new",
+   "price": [
+    7800,
+    13500
+   ],
+   "score": 8.6,
+   "difficulty": 3,
+   "theme": "music",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Pro / Prem / LE",
+    "Music theme"
+   ],
+   "take": "A well-designed layout with modes tied to the band's albums. Plays great even if you're not a fan.",
+   "pros": [
+    "Well-loved layout",
+    "Rewarding progression",
+    "Strong for both casual and serious players"
+   ],
+   "cons": [
+    "Theme is niche",
+    "Premium needed for the full toy set"
+   ]
+  },
+  {
+   "id": "black-knight-sword-of-rage",
+   "name": "Black Knight: Sword of Rage",
+   "maker": "Stern",
+   "year": 2019,
+   "condition": "used",
+   "price": [
+    6500,
+    10000
+   ],
+   "score": 8.7,
+   "difficulty": 4,
+   "theme": "classic",
+   "bestFor": [
+    "deep"
+   ],
+   "tags": [
+    "Upper playfield",
+    "Fast"
+   ],
+   "take": "A modern take on a classic series, with an upper playfield and aggressive, high-speed play.",
+   "pros": [
+    "Thrilling two-level layout",
+    "Huge combo potential",
+    "Great for competitive players"
+   ],
+   "cons": [
+    "Overwhelming for new players",
+    "Loud, intense theme"
+   ]
+  },
+  {
+   "id": "tmnt",
+   "name": "Teenage Mutant Ninja Turtles",
+   "maker": "Stern",
+   "year": 2020,
+   "condition": "used",
+   "price": [
+    6000,
+    9000
+   ],
+   "score": 8.3,
+   "difficulty": 2,
+   "theme": "movie",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Family hit",
+    "Easy to learn"
+   ],
+   "take": "A fun, family-friendly game that's easy to understand and quick to pick up.",
+   "pros": [
+    "Great with kids and guests",
+    "Approachable rules",
+    "Fun callouts"
+   ],
+   "cons": [
+    "Experts may outgrow it",
+    "Fewer deep goals"
+   ]
+  },
+  {
+   "id": "james-bond-007",
+   "name": "James Bond 007",
+   "maker": "Stern",
+   "year": 2022,
+   "condition": "new",
+   "price": [
+    7800,
+    13500
+   ],
+   "score": 8.4,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Pro / Prem / LE",
+    "Film modes"
+   ],
+   "take": "Spans decades of Bond films with a mode for each era. Plenty to chase for long-term owners.",
+   "pros": [
+    "Lots of content to unlock",
+    "Varied modes",
+    "Good mix of fast and precise shots"
+   ],
+   "cons": [
+    "Takes time to learn the rules",
+    "Pro layout is simpler"
+   ]
+  },
+  {
+   "id": "venom",
+   "name": "Venom",
+   "maker": "Stern",
+   "year": 2023,
+   "condition": "new",
+   "price": [
+    7800,
+    13500
+   ],
+   "score": 8.3,
+   "difficulty": 3,
+   "theme": "horror",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Pro / Prem / LE",
+    "Comic theme"
+   ],
+   "take": "A dark comic-book theme with fast flow and plenty of modes.",
+   "pros": [
+    "Fast, satisfying flow",
+    "Good variety of modes",
+    "Strong presentation"
+   ],
+   "cons": [
+    "Theme is darker than some families like",
+    "Premium adds key features"
+   ]
+  },
+  {
+   "id": "wizard-of-oz",
+   "name": "Wizard of Oz",
+   "maker": "Jersey Jack",
+   "year": 2013,
+   "condition": "used",
+   "price": [
+    7000,
+    10500
+   ],
+   "score": 8.3,
+   "difficulty": 2,
+   "theme": "movie",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Collector",
+    "Big screen"
+   ],
+   "take": "Jersey Jack's first game and a big, bright crowd pleaser with lots to see.",
+   "pros": [
+    "Huge visual appeal",
+    "Family friendly",
+    "Lots of toys and modes"
+   ],
+   "cons": [
+    "Older JJP builds can need more service",
+    "Some shots are slow"
+   ]
+  },
+  {
+   "id": "pirates-of-the-caribbean",
+   "name": "Pirates of the Caribbean",
+   "maker": "Jersey Jack",
+   "year": 2018,
+   "condition": "used",
+   "price": [
+    8000,
+    11500
+   ],
+   "score": 8.5,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Collector",
+    "Deep rules"
+   ],
+   "take": "A big, ambitious game with lots of toys and a long list of goals.",
+   "pros": [
+    "Packed with toys",
+    "Lots of long-term goals",
+    "Polished presentation"
+   ],
+   "cons": [
+    "Complex for guests",
+    "Higher price for a used game"
+   ]
+  },
+  {
+   "id": "toy-story-4",
+   "name": "Toy Story 4",
+   "maker": "Jersey Jack",
+   "year": 2021,
+   "condition": "used",
+   "price": [
+    8000,
+    11000
+   ],
+   "score": 8.2,
+   "difficulty": 2,
+   "theme": "movie",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Family hit",
+    "Collector"
+   ],
+   "take": "A bright, cheerful game that's easy to love for kids and adults alike.",
+   "pros": [
+    "Very family friendly",
+    "Bright, fun presentation",
+    "Approachable rules"
+   ],
+   "cons": [
+    "Experts may want more challenge",
+    "Pricier than similar family games"
+   ]
+  },
+  {
+   "id": "guns-n-roses",
+   "name": "Guns N' Roses",
+   "maker": "Jersey Jack",
+   "year": 2020,
+   "condition": "used",
+   "price": [
+    9000,
+    12500
+   ],
+   "score": 8.5,
+   "difficulty": 4,
+   "theme": "music",
+   "bestFor": [
+    "deep",
+    "casual"
+   ],
+   "tags": [
+    "Deep rules",
+    "Music theme"
+   ],
+   "take": "A loud, packed game with deep rules and a huge soundtrack.",
+   "pros": [
+    "Great music package",
+    "Lots of features",
+    "Deep scoring"
+   ],
+   "cons": [
+    "Busy layout",
+    "Expensive"
+   ]
+  },
+  {
+   "id": "indiana-jones",
+   "name": "Indiana Jones: The Pinball Adventure",
+   "maker": "Williams",
+   "year": 1993,
+   "condition": "used",
+   "price": [
+    6500,
+    10000
+   ],
+   "score": 8.7,
+   "difficulty": 3,
+   "theme": "movie",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Classic",
+    "Mini-playfield"
+   ],
+   "take": "A 1990s classic with a mini-playfield and modes that follow the films.",
+   "pros": [
+    "Varied modes",
+    "Fun mini-playfield",
+    "Strong replay value"
+   ],
+   "cons": [
+    "Older electronics",
+    "Shopped examples cost more"
+   ]
+  },
+  {
+   "id": "star-trek-tng",
+   "name": "Star Trek: The Next Generation",
+   "maker": "Williams",
+   "year": 1993,
+   "condition": "used",
+   "price": [
+    7000,
+    10500
+   ],
+   "score": 8.8,
+   "difficulty": 4,
+   "theme": "movie",
+   "bestFor": [
+    "deep",
+    "casual"
+   ],
+   "tags": [
+    "Classic",
+    "Side cannons"
+   ],
+   "take": "A deep, much-loved 1990s game with ship cannons and a long mission list.",
+   "pros": [
+    "Deep mission structure",
+    "Memorable toys",
+    "Holds value well"
+   ],
+   "cons": [
+    "Complex for beginners",
+    "Older game needs regular care"
+   ]
+  },
+  {
+   "id": "funhouse",
+   "name": "Funhouse",
+   "maker": "Williams",
+   "year": 1990,
+   "condition": "used",
+   "price": [
+    4500,
+    7000
+   ],
+   "score": 8.4,
+   "difficulty": 2,
+   "theme": "classic",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Classic",
+    "Talking head"
+   ],
+   "take": "Rudy the talking head makes this one of the most charming games ever made.",
+   "pros": [
+    "Huge personality",
+    "Easy to learn",
+    "Affordable classic"
+   ],
+   "cons": [
+    "Alphanumeric display",
+    "Shallower rules"
+   ]
+  },
+  {
+   "id": "theatre-of-magic",
+   "name": "Theatre of Magic",
+   "maker": "Bally",
+   "year": 1995,
+   "condition": "used",
+   "price": [
+    6500,
+    9500
+   ],
+   "score": 8.9,
+   "difficulty": 2,
+   "theme": "classic",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Classic",
+    "Magic trunk"
+   ],
+   "take": "Elegant and smooth, with a spinning magic trunk at its center. A great all-rounder.",
+   "pros": [
+    "Smooth, flowing shots",
+    "Great for everyone",
+    "Beautiful art"
+   ],
+   "cons": [
+    "Prices have climbed",
+    "Older electronics"
+   ]
+  },
+  {
+   "id": "scared-stiff",
+   "name": "Scared Stiff",
+   "maker": "Bally",
+   "year": 1996,
+   "condition": "used",
+   "price": [
+    7000,
+    10000
+   ],
+   "score": 8.6,
+   "difficulty": 3,
+   "theme": "horror",
+   "bestFor": [
+    "casual",
+    "deep"
+   ],
+   "tags": [
+    "Classic",
+    "Spider wheel"
+   ],
+   "take": "A spooky-funny game with a spinning spider wheel in the backbox and lots of humor.",
+   "pros": [
+    "Funny and memorable",
+    "Unique backbox toy",
+    "Good depth"
+   ],
+   "cons": [
+    "Humor isn't for young kids",
+    "Older electronics"
+   ]
+  },
+  {
+   "id": "rob-zombie",
+   "name": "Rob Zombie's Spookshow International",
+   "maker": "Spooky",
+   "year": 2018,
+   "condition": "used",
+   "price": [
+    6000,
+    8500
+   ],
+   "score": 7.9,
+   "difficulty": 3,
+   "theme": "horror",
+   "bestFor": [
+    "casual"
+   ],
+   "tags": [
+    "Boutique",
+    "Music and horror"
+   ],
+   "take": "A gritty horror-music game with a lot of character from a small maker.",
+   "pros": [
+    "Strong atmosphere",
+    "Fair used prices",
+    "Unique style"
+   ],
+   "cons": [
+    "Boutique support is smaller",
+    "Theme is niche"
+   ]
+  },
+  {
+   "id": "oktoberfest",
+   "name": "Oktoberfest",
+   "maker": "American Pinball",
+   "year": 2019,
+   "condition": "used",
+   "price": [
+    5000,
+    7500
+   ],
+   "score": 7.7,
+   "difficulty": 2,
+   "theme": "classic",
+   "bestFor": [
+    "family",
+    "casual"
+   ],
+   "tags": [
+    "Original theme",
+    "Value pick"
+   ],
+   "take": "A lighthearted original theme with friendly rules and a party feel.",
+   "pros": [
+    "Fun for groups",
+    "Easy to learn",
+    "Reasonable price"
+   ],
+   "cons": [
+    "Less depth",
+    "Smaller maker support"
+   ]
+  }
+ ]
 }

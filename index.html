@@ -288,6 +288,33 @@ footer a{color:#fff}
 @media (max-width:960px){.art{grid-template-columns:minmax(0,1fr)}.toc{position:static;flex-direction:row;flex-wrap:wrap;gap:6px}.toc b{width:100%}.toc button{border:1px solid var(--line);border-radius:999px;padding:5px 12px}}
 @media (max-width:620px){.pn{grid-template-columns:minmax(0,1fr)}.pn a.next{grid-column:1;text-align:left}.g-link{grid-template-columns:minmax(0,1fr)}.g-link .mins{grid-row:auto;grid-column:1}}
 
+/* Catalog */
+.tabs{display:flex;gap:6px;margin-bottom:18px;border-bottom:2px solid var(--line)}
+.tabs button{all:unset;cursor:pointer;padding:10px 16px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-color:var(--red)}
+.tabs button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.tabs span{font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+.clist{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.crow{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1.2fr) 64px minmax(0,1fr);gap:14px;align-items:center;padding:13px 18px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.crow:last-child{border-bottom:0}
+.crow:hover{background:var(--sunk)}
+.crow b{min-width:0}
+.crow span{color:var(--muted);font-size:.93rem;min-width:0;overflow-wrap:anywhere}
+.crow .yr{font-variant-numeric:tabular-nums}
+.clist .empty{border:0;border-radius:0}
+.fresh{margin-top:48px;display:flex;flex-direction:column;gap:14px}
+.fresh-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.fresh-head a{font-weight:700}
+.fresh-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.fresh-row a{display:flex;flex-direction:column;gap:4px;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);text-decoration:none;color:inherit}
+.fresh-row a:hover{border-color:var(--ink)}
+.fresh-row small{color:var(--muted)}
+.fresh-row .when{font-family:var(--f-dmd);color:var(--dmd-on);background:var(--dmd);align-self:flex-start;border-radius:6px;padding:2px 8px;font-size:.85rem;margin-bottom:4px}
+.unrev{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:var(--r-sm);background:color-mix(in srgb,var(--amber) 10%,var(--card));border:1px solid var(--line)}
+.unrev .ins{--c:var(--amber);margin-top:.4em}
+@media (max-width:960px){.fresh-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.fresh-row{grid-template-columns:minmax(0,1fr)}.crow{grid-template-columns:minmax(0,1fr) auto;gap:2px 12px}.crow b{grid-column:1}.crow .yr{grid-column:2;grid-row:1}.crow span:not(.yr){grid-column:1/-1}}
+
 @media (max-width:960px){
   .hero .wrap,.quiz,.guide,.svc,.d-grid{grid-template-columns:minmax(0,1fr)}
   .hero .wrap{gap:32px;padding-block:40px 48px}
@@ -349,6 +376,12 @@ footer a{color:#fff}
       <a href="#service" data-theme-c="classic"><h3><span class="ins"></span>Service</h3><p>A maintenance routine, common fixes, and a way to book a tech.</p></a>
     </nav>
 
+    <section class="fresh" id="fresh" hidden aria-labelledby="fresh-h">
+      <div class="fresh-head"><h2 id="fresh-h">Just released</h2><a href="#machines" id="fresh-all">See every game</a></div>
+      <div class="fresh-row" id="fresh-row"></div>
+      <p class="note">Added automatically as new games appear in the Open Pinball Database.</p>
+    </section>
+
     <form class="quiz" id="quiz" aria-labelledby="quiz-h">
       <div class="quiz-q">
         <div class="stack" style="gap:8px">
@@ -367,7 +400,7 @@ footer a{color:#fff}
           <label class="chip"><input type="radio" name="who" id="w3" value="deep"><span>Deep-rules player</span></label>
         </div></fieldset>
         <fieldset><legend>Theme</legend><div class="chips">
-          <label class="chip"><input type="radio" name="theme" id="t1" value="movie" checked><span>Movies</span></label>
+          <label class="chip"><input type="radio" name="theme" id="t1" value="movie" checked><span>Movies and TV</span></label>
           <label class="chip"><input type="radio" name="theme" id="t2" value="music"><span>Music</span></label>
           <label class="chip"><input type="radio" name="theme" id="t3" value="horror"><span>Horror</span></label>
           <label class="chip"><input type="radio" name="theme" id="t4" value="classic"><span>Classic and original</span></label>
@@ -393,6 +426,11 @@ footer a{color:#fff}
       <h2>Machine reviews</h2>
       <p class="lede">Scores are out of 10 and weigh shots, rules depth, reliability, and how the game holds up after 500 plays. The colored light shows the theme.</p>
     </div>
+    <div class="tabs" role="tablist" aria-label="Machine lists">
+      <button type="button" role="tab" id="tab-rev" aria-selected="true" aria-controls="panel-rev">Reviewed <span id="n-rev"></span></button>
+      <button type="button" role="tab" id="tab-all" aria-selected="false" aria-controls="panel-all">All games <span id="n-all"></span></button>
+    </div>
+    <div id="panel-rev" role="tabpanel" aria-labelledby="tab-rev">
     <div class="toolbar">
       <label class="field">Search<input type="search" id="q" placeholder="Title or maker"></label>
       <label class="field">Maker<select id="fmaker"><option value="">All makers</option></select></label>
@@ -408,6 +446,18 @@ footer a{color:#fff}
       <button class="btn line" type="button" id="cmpclear">Clear</button>
     </div>
     <div id="cmpout"></div>
+    </div>
+    <div id="panel-all" role="tabpanel" aria-labelledby="tab-all" hidden>
+      <div class="toolbar">
+        <label class="field">Search<input type="search" id="cq" placeholder="Title, maker or designer"></label>
+        <label class="field">Maker<select id="cmaker"><option value="">All makers</option></select></label>
+        <label class="field">Decade<select id="cdec"><option value="">Any</option><option value="2020">2020s</option><option value="2010">2010s</option><option value="2000">2000s</option><option value="1990">1990s</option></select></label>
+        <span class="count" id="ccount"></span>
+      </div>
+      <p class="note" style="margin:-8px 0 14px">Every game since 1990 from the Open Pinball Database, updated daily. New releases appear here on their own. We haven't reviewed these yet, so they don't have scores or prices.</p>
+      <div class="clist" id="clist"><div class="empty">Loading the full catalog…</div></div>
+      <div class="btns" style="justify-content:center;margin-top:18px"><button class="btn line" type="button" id="cmore" hidden>Show more games</button></div>
+    </div>
   </div>
 </section>
 
@@ -519,12 +569,12 @@ const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",
 const diffDots=d=>'<span class="diff" role="img" aria-label="Difficulty '+d+' of 5">'+[1,2,3,4,5].map(i=>'<i class="'+(i<=d?"on":"")+'"></i>').join("")+"</span>";
 const store={get(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const WHO={family:"Family & guests",casual:"Casual players",deep:"Deep-rules players"};
-const THEME={movie:"Movie",music:"Music",horror:"Horror",classic:"Classic"};
+const THEME={movie:"Movies and TV",music:"Music",horror:"Horror",classic:"Classic"};
 const DISPLAY={dmd:"Dot-matrix (DMD)",lcd:"LCD screen",alpha:"Alphanumeric",cga:"CGA monitor",reels:"Score reels",lights:"Backglass lights"};
 const TYPE={ss:"Solid state",em:"Electro-mechanical",me:"Purely mechanical"};
 const simple=s=>String(s).toLowerCase().replace(/\(.*?\)/g," ").replace(/^the\s+/,"").replace(/[^a-z0-9]+/g," ").trim();
 
-let M=[],OPDB={machines:{},updated:null},G={categories:[],guides:[]};
+let M=[],OPDB={machines:{},updated:null},G={categories:[],guides:[]},CAT=null,catPromise=null;
 
 // ---------- Data ----------
 async function loadData(){
@@ -657,12 +707,88 @@ function wireNear(prefix,filterName){
 }
 $("play-near").innerHTML=nearForm("play","Find pinball near you");wireNear("play","");
 
+
+// ---------- Catalog (automatic, from OPDB) ----------
+function loadCatalog(){
+  if(!catPromise)catPromise=fetch("data/catalog.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).then(c=>{CAT=c&&Array.isArray(c.machines)?c:{machines:[]};return CAT}).catch(()=>{CAT={machines:[]};return CAT});
+  return catPromise;
+}
+const catById=id=>CAT&&CAT.machines.find(m=>m.id===id);
+let cShown=60,catReady=false;
+function initCatalog(){
+  if(catReady)return;catReady=true;
+  const list=CAT.machines;
+  $("n-all").textContent=list.length?"("+list.length.toLocaleString("en-US")+")":"";
+  const makers=[...new Set(list.map(m=>m.mk).filter(Boolean))].sort();
+  $("cmaker").insertAdjacentHTML("beforeend",makers.map(m=>"<option>"+esc(m)+"</option>").join(""));
+  ["cq","cmaker","cdec"].forEach(id=>$(id).addEventListener("input",()=>{cShown=60;renderCatalog()}));
+  $("cmore").addEventListener("click",()=>{cShown+=60;renderCatalog()});
+  renderCatalog();renderFresh();
+}
+function renderCatalog(){
+  const q=$("cq").value.trim().toLowerCase(),mk=$("cmaker").value,dec=+$("cdec").value;
+  const list=CAT.machines.filter(m=>(!q||(m.n+" "+m.mk+" "+(m.design||[]).join(" ")).toLowerCase().includes(q))&&(!mk||m.mk===mk)&&(!dec||(m.y>=dec&&m.y<dec+10)));
+  $("ccount").textContent=list.length.toLocaleString("en-US")+" games";
+  if(!CAT.machines.length){$("clist").innerHTML='<div class="empty">The full catalog hasn\'t been built yet. It appears after the daily data refresh runs.</div>';$("cmore").hidden=true;return}
+  $("clist").innerHTML=list.length?list.slice(0,cShown).map(m=>'<a class="crow" href="#machine-'+m.id+'"><b>'+esc(m.n)+"</b><span>"+esc(m.mk)+'</span><span class="yr">'+m.y+"</span><span>"+esc(m.display?(DISPLAY[m.display]||m.display):"")+"</span></a>").join(""):'<div class="empty">No games match. Try a different search or clear the filters.</div>';
+  $("cmore").hidden=list.length<=cShown;
+}
+function renderFresh(){
+  if(!CAT||!CAT.machines.length)return;
+  const cutoff=new Date();cutoff.setMonth(cutoff.getMonth()-18);const c=cutoff.toISOString().slice(0,10);
+  const fresh=CAT.machines.filter(m=>m.date&&m.date>=c).slice(0,6);
+  if(!fresh.length)return;
+  const mon=d=>{const [y,mo]=d.split("-");return new Date(+y,+mo-1,1).toLocaleDateString("en-US",{month:"short",year:"numeric"})};
+  $("fresh-row").innerHTML=fresh.map(m=>'<a href="#machine-'+m.id+'"><span class="when">'+esc(mon(m.date))+"</span><b>"+esc(m.n)+"</b><small>"+esc(m.mk)+(m.trims?", "+m.trims.length+" trims":"")+"</small></a>").join("");
+  $("fresh").hidden=false;
+}
+function setTab(all){
+  $("tab-rev").setAttribute("aria-selected",String(!all));$("tab-all").setAttribute("aria-selected",String(all));
+  $("panel-rev").hidden=all;$("panel-all").hidden=!all;store.set("pa-tab",all?"all":"rev");
+  if(all&&!CAT)loadCatalog().then(initCatalog);
+}
+$("tab-rev").addEventListener("click",()=>setTab(false));
+$("tab-all").addEventListener("click",()=>setTab(true));
+$("fresh-all").addEventListener("click",()=>setTab(true));
+function renderCatalogDetail(m){
+  const el=$("detail");
+  document.title=m.n+" | Pinball Advisor";
+  const rel=m.date?new Date(+m.date.slice(0,4),+m.date.slice(5,7)-1,1).toLocaleDateString("en-US",{month:"long",year:"numeric"}):String(m.y);
+  const facts=[["Maker",esc(m.mk)],["Released",esc(rel)]];
+  if(m.type)facts.push(["Type",esc(TYPE[m.type]||m.type)]);
+  if(m.display)facts.push(["Display",esc(DISPLAY[m.display]||m.display)]);
+  if(m.players)facts.push(["Players","Up to "+m.players]);
+  if(m.design)facts.push(["Designer",esc(m.design.join(", "))]);
+  if(m.trims)facts.push(["Trims",esc(m.trims.join(", "))]);
+  const safeUrl=u=>/^https:\/\//.test(u||"")?u:"";
+  const learn=[[safeUrl(m.primer),"Beginner tutorial (Pinball Primer)"],[safeUrl(m.rules),"Full rulesheet"]].filter(x=>x[0]);
+  const pinsideUrl="https://duckduckgo.com/?q="+encodeURIComponent("site:pinside.com/pinball/machine "+m.n+" "+m.mk);
+  const similar=M.slice().sort((a,b)=>Math.abs(a.y-m.y)-Math.abs(b.y-m.y)||b.s-a.s).slice(0,3);
+  el.innerHTML='<a class="back" href="#machines">Back to all machines</a>'+
+   '<div class="d-head"><div class="stack"><p class="maker">'+esc(m.mk)+", "+m.y+'</p><h2 class="d-title">'+esc(m.n)+'</h2></div></div>'+
+   '<div class="d-grid"><div class="stack">'+
+    '<div class="unrev"><span class="ins"></span><p>We haven\'t reviewed '+esc(m.n)+' yet, so there\'s no score or price here. The facts below come straight from the Open Pinball Database and update automatically.</p></div>'+
+    '<div class="box"><h3>Machine facts</h3><dl class="meta facts">'+facts.map(f=>"<dt>"+f[0]+"</dt><dd>"+f[1]+"</dd>").join("")+'</dl><p class="note">From the <a href="https://opdb.org" target="_blank" rel="noopener">Open Pinball Database</a>.</p></div>'+
+    '<div class="box"><h3>Where to play '+esc(m.n)+"</h3>"+nearForm("d","Near")+"</div>"+
+   '</div><aside class="stack">'+
+    '<div class="box"><h3>Owner ratings and prices</h3><p>Pinside has owner reviews, ratings and marketplace listings.</p><a class="btn line" href="'+pinsideUrl+'" target="_blank" rel="noopener">Find it on Pinside</a></div>'+
+    '<div class="box"><h3>Learn the game</h3><div class="learn">'+learn.map(x=>'<a href="'+esc(x[0])+'" target="_blank" rel="noopener">'+x[1]+"</a>").join("")+'<a href="#guide-play-better">Our flipper skills guide</a></div></div>'+
+    (similar.length?'<div class="box"><h3>Reviewed games from around then</h3><div class="sim">'+similar.map(x=>'<a href="#machine-'+x.id+'"><span><b>'+esc(x.n)+"</b><small>"+esc(x.mk)+", "+x.y+'</small></span><span class="score">'+x.s.toFixed(1)+"</span></a>").join("")+"</div></div>":"")+
+   "</aside></div>";
+  wireNear("d",m.n);
+}
+
 // ---------- Machine detail ----------
 function renderDetail(id){
   const el=$("detail");
   if(!M.length){el.innerHTML='<p class="note">Loading…</p>';return}
   const m=byId(id);
-  if(!m){el.innerHTML='<div class="empty">We don\'t have a review for that machine yet. <a href="#machines">Browse all machines</a>.</div>';return}
+  if(!m){
+    const show=()=>{const c=catById(id);if(c)return renderCatalogDetail(c);el.innerHTML='<div class="empty" style="margin-top:32px">We couldn\'t find that machine. <a href="#machines">Browse all machines</a>.</div>'};
+    if(CAT)return show();
+    el.innerHTML='<p class="note" style="padding-top:32px">Loading…</p>';
+    loadCatalog().then(()=>{if(location.hash==="#machine-"+id)show()});return;
+  }
   document.title=m.n+" review | Pinball Advisor";
   const o=OPDB.machines[m.id];
   const facts=[["Price range",range(m)],["Condition",m.c==="new"?"New production":"Used market"],["Difficulty",diffDots(m.d)],["Best for",m.who.map(w=>WHO[w]).join(", ")],["Theme",THEME[m.th]||m.th]];
@@ -746,7 +872,7 @@ $("contact").addEventListener("submit",e=>{
 
 // ---------- Boot ----------
 route();
-loadData().then(ok=>{if(!ok)return;match();initGrid();if(/^#(machine-|guide)/.test(location.hash))route()});
+loadData().then(ok=>{if(!ok)return;match();initGrid();$("n-rev").textContent="("+M.length+")";loadCatalog().then(initCatalog);if(store.get("pa-tab","rev")==="all")setTab(true);if(/^#(machine-|guide)/.test(location.hash))route()});
 })();
 </script>
 </body>

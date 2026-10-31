@@ -10,7 +10,8 @@ Source for pinballadvisor.com: machine reviews, buying guide, where to play, and
 | `data/machines.json` | Hand-written reviews: scores, prices, pros/cons, Pinside slug. **Edit this to add or change machines.** |
 | `data/guides.json` | The guides and advice articles (routes like `#guide-moving`). Each section is made of blocks: `p`, `ul`, `ol`, `tip`, `warn`, `table`. |
 | `data/opdb.json` | Release date, display type, player count and features from the Open Pinball Database. Written by the daily refresh; don't edit by hand. |
-| `scripts/refresh-data.mjs` | Downloads the daily OPDB export and matches each machine in `machines.json`. |
+| `data/catalog.json` | Every game since 1990 from OPDB, one entry per title. Built automatically by the daily refresh, so new releases appear on their own ("All games" tab and "Just released" on the home page). Don't edit by hand. |
+| `scripts/refresh-data.mjs` | Downloads the daily OPDB export, matches each reviewed machine, and rebuilds the catalog. |
 | `.github/workflows/refresh-data.yml` | Runs the refresh every day and commits any changes. |
 
 The "Where to play" search calls the Pinball Map API live from the visitor's browser, so it's always current.
@@ -24,7 +25,7 @@ If the refresh log says "No OPDB match" for a machine, add its `"opdb_id"` to th
 
 ## Adding a machine
 
-Copy an entry in `data/machines.json`, give it a new `id` (lowercase, hyphens; it becomes the page link `#machine-<id>`), and fill in the fields. The `pinside` field is the end of the game's Pinside URL, e.g. `godzilla-premium` from `pinside.com/pinball/machine/godzilla-premium`.
+Any game already appears automatically in the catalog. To give it a full review with a score and price, copy an entry in `data/machines.json`, give it a new `id` (lowercase, hyphens; it becomes the page link `#machine-<id>`), and fill in the fields. The `pinside` field is the end of the game's Pinside URL, e.g. `godzilla-premium` from `pinside.com/pinball/machine/godzilla-premium`.
 
 ## Adding a guide
 
