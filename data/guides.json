@@ -1,0 +1,715 @@
+{
+ "_about": "Guides for PinballAdvisor.com. Each guide has sections; each section has blocks. Block types: p (paragraph), ul (bullet list), ol (numbered steps, only for real sequences), tip, warn, table (head + rows).",
+ "categories": [
+  {
+   "id": "buying",
+   "name": "Buying",
+   "theme": "movie"
+  },
+  {
+   "id": "owning",
+   "name": "Owning",
+   "theme": "music"
+  },
+  {
+   "id": "repair",
+   "name": "Care and repair",
+   "theme": "horror"
+  },
+  {
+   "id": "playing",
+   "name": "Playing better",
+   "theme": "classic"
+  }
+ ],
+ "guides": [
+  {
+   "id": "first-machine",
+   "category": "buying",
+   "title": "Buying your first pinball machine",
+   "summary": "What it really costs, which questions to answer first, and the mistakes most first-time owners make.",
+   "minutes": 7,
+   "sections": [
+    {
+     "h": "Start with who will play it",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "The best first machine is the one that matches the people in your house, not the one with the highest rating online. A game with deep rules and brutal shots can be a masterpiece and still sit unplayed if your family gives up after two balls."
+      },
+      {
+       "t": "ul",
+       "x": [
+        "Mostly guests and kids: pick a game that's easy to understand, with big toys and quick, satisfying shots.",
+        "Mostly you: pick something with depth you can grow into, because you'll play it hundreds of times.",
+        "Both: look for games that are fun at the surface and deep underneath. Many modern titles fit here."
+       ]
+      },
+      {
+       "t": "tip",
+       "x": "Before you shop, play at least ten different machines on location. You'll quickly learn whether you like fast, flowing ramp games or slower games built around toys and modes."
+      }
+     ]
+    },
+    {
+     "h": "The real cost is more than the sticker",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Budget for the whole job, not just the machine. These extras are typical, though they vary by region and seller."
+      },
+      {
+       "t": "table",
+       "head": [
+        "Item",
+        "Typical range",
+        "Notes"
+       ],
+       "rows": [
+        [
+         "Delivery",
+         "$150 to $600+",
+         "More for stairs or long distances. Often worth it."
+        ],
+        [
+         "Sales tax",
+         "Varies",
+         "Applies to new games and some dealer sales."
+        ],
+        [
+         "Starter parts kit",
+         "$75 to $200",
+         "Rubber rings, fuses, bulbs or LEDs, flipper parts."
+        ],
+        [
+         "Playfield protector or wax",
+         "$20 to $60",
+         "Protects the finish and keeps it fast."
+        ],
+        [
+         "Shop or tune-up (used games)",
+         "$200 to $1,000+",
+         "Depends heavily on condition."
+        ]
+       ]
+      },
+      {
+       "t": "p",
+       "x": "A good rule of thumb is to keep 5 to 10 percent of the purchase price aside for the first year. A healthy game might not need it, but it keeps one surprise from turning into a problem."
+      }
+     ]
+    },
+    {
+     "h": "New, used, or remake",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "New: warranty, a distributor to call, and fresh parts. You take the biggest depreciation, and popular titles can have waitlists.",
+        "Used modern: someone else took the early drop in value. Check the hours of play and how it was stored.",
+        "Used classic (1990s and older): great games that often hold value well, but they need someone comfortable with basic repair or a local tech.",
+        "Remakes: new builds of classic designs with modern parts. They cost more than many originals but are easier to live with."
+       ]
+      }
+     ]
+    },
+    {
+     "h": "Mistakes first-time buyers make",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Buying the theme, not the game. A license you love won't fix shots you don't enjoy.",
+        "Skipping the measuring tape. Check every doorway, turn and staircase on the path to the room.",
+        "Assuming 'works great' means fully working. Test every switch and coil, or pay a tech to.",
+        "Paying a stranger before seeing the game. See the scam warning in our used-buying guide."
+       ]
+      },
+      {
+       "t": "warn",
+       "x": "Never send a deposit by wire, gift card or a payment app's friends-and-family option to someone you haven't met. That's how most pinball scams work."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trims",
+   "category": "buying",
+   "title": "Pro, Premium and LE explained",
+   "summary": "What actually changes between trim levels, and how to decide which one is worth it for you.",
+   "minutes": 5,
+   "sections": [
+    {
+     "h": "Same game, different hardware",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Most new games from major makers ship in several trims. The theme, artwork style and core rules are usually shared. The differences are in the physical toys, the playfield layout, lighting and finish."
+      },
+      {
+       "t": "table",
+       "head": [
+        "Trim",
+        "What you get",
+        "Who it suits"
+       ],
+       "rows": [
+        [
+         "Pro",
+         "Core layout, simpler toys, standard cabinet",
+         "Families, budget buyers, people who'll sell later"
+        ],
+        [
+         "Premium",
+         "Extra mechs, ramps or a different playfield, upgraded lighting",
+         "Owners who'll play it for years"
+        ],
+        [
+         "Limited Edition (LE)",
+         "Premium hardware plus a numbered run, special art and trim",
+         "Collectors"
+        ]
+       ]
+      },
+      {
+       "t": "p",
+       "x": "Some makers use different names, such as Collector's Edition or Standard, but the idea is the same."
+      }
+     ]
+    },
+    {
+     "h": "How to choose",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Play both if you can. On some titles the Pro is the better-flowing game; on others the Premium's extra toy is the heart of it.",
+        "Look at what the Premium adds. A mech that changes how you play is worth more than a cosmetic upgrade.",
+        "Think about resale. Pros are easier to sell; LEs can hold value if the game becomes a classic, but there's no guarantee.",
+        "Ask about upgrade paths. A few games can be upgraded later, but most cannot be turned into a Premium."
+       ]
+      },
+      {
+       "t": "tip",
+       "x": "If you'll be the only regular player and you can afford it, a Premium is usually the sweet spot. Pay for an LE only if the rarity matters to you."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "used-inspection",
+   "category": "buying",
+   "title": "How to inspect a used machine",
+   "summary": "A step-by-step checklist for seeing a used game in person, plus red flags and how to avoid scams.",
+   "minutes": 9,
+   "sections": [
+    {
+     "h": "Before you go",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Ask for photos of the playfield, under the playfield, the backbox interior and the cabinet sides.",
+        "Ask how long they've owned it, where it was stored, and what's been repaired or replaced.",
+        "Research recent sold prices for that title and condition, not just asking prices.",
+        "Bring a flashlight, your phone camera, and ideally someone who has owned a machine."
+       ]
+      }
+     ]
+    },
+    {
+     "h": "Inspection, in order",
+     "blocks": [
+      {
+       "t": "ol",
+       "x": [
+        "Look at the cabinet and backbox from the outside. Note scuffs, swelling at the bottom (water damage), and whether the legs are solid.",
+        "Turn it on and watch the boot-up. Note any error messages on the display.",
+        "Play several full games. Every flipper should feel strong and equal on both sides. Pop bumpers and slingshots should kick hard.",
+        "Enter the service menu and run the switch test. Roll the ball across every lane and hit every target.",
+        "Run the coil or solenoid test and watch each one fire.",
+        "With the seller's permission and the power off, lift the playfield glass and look for wear in front of the flippers, around scoops and under the ball's path.",
+        "Look under the playfield for burnt boards, melted connectors, loose wires and signs of messy repairs.",
+        "Open the backbox and check the boards for burn marks, corrosion near batteries, and hacked wiring."
+       ]
+      },
+      {
+       "t": "warn",
+       "x": "Only lift the playfield or open the backbox with the owner's OK and with the game powered off. Older machines carry high voltage in the display circuits."
+      }
+     ]
+    },
+    {
+     "h": "Red flags",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Leaking or corroded batteries on older boards. Alkaline leaks can eat traces and are expensive to repair.",
+        "Bare wood showing through the playfield finish, especially in high-traffic areas.",
+        "Wires twisted together or taped instead of soldered or connected properly.",
+        "A seller who won't let you play it or run tests.",
+        "A price far below market with a story about needing to sell today."
+       ]
+      }
+     ]
+    },
+    {
+     "h": "Avoiding scams",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Most pinball scams follow the same pattern: an attractive price, a seller who can't meet in person, and a request for a deposit to 'hold' the game."
+      },
+      {
+       "t": "ul",
+       "x": [
+        "See the machine in person or have someone you trust see it for you.",
+        "Pay in person on pickup, or use a payment method with buyer protection.",
+        "Be wary of photos that look like they came from a listing elsewhere. A reverse image search takes seconds.",
+        "Check the seller's history in local pinball groups and forums."
+       ]
+      },
+      {
+       "t": "tip",
+       "x": "Ask the seller to take a photo of the game with your name written on a piece of paper on the glass. A real seller can do it in two minutes."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eras",
+   "category": "buying",
+   "title": "Pinball eras and what they mean for owners",
+   "summary": "From electro-mechanical games to modern LCD machines, how age affects repair, parts and play.",
+   "minutes": 6,
+   "sections": [
+    {
+     "h": "The big eras",
+     "blocks": [
+      {
+       "t": "table",
+       "head": [
+        "Era",
+        "Roughly",
+        "What to expect"
+       ],
+       "rows": [
+        [
+         "Electro-mechanical (EM)",
+         "Before the late 1970s",
+         "Relays and score reels. Simple rules, lovely sounds, lots of mechanical adjustment."
+        ],
+        [
+         "Early solid state",
+         "Late 1970s to mid 1980s",
+         "First computer boards and number displays. Battery leaks and connector wear are common."
+        ],
+        [
+         "Alphanumeric",
+         "Mid to late 1980s",
+         "Letter displays, more complex rules, speech."
+        ],
+        [
+         "Dot-matrix (DMD)",
+         "1990s to mid 2010s",
+         "Animated orange displays and deep rules. Many of the most-loved games come from here."
+        ],
+        [
+         "Modern LCD",
+         "Mid 2010s to today",
+         "Video screens, code updates over the internet, LED lighting throughout."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "h": "How age changes ownership",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Older games need more hands-on care, but parts for popular titles are widely reproduced.",
+        "Electro-mechanical games are great for learning repair because you can see how everything works.",
+        "1990s games often need a 'shop job': cleaning, new rubbers, rebuilt flippers and connector repairs.",
+        "Modern games are the most reliable day to day but rely on proprietary boards, so you'll lean on the maker for some repairs."
+       ]
+      },
+      {
+       "t": "tip",
+       "x": "If you don't want to repair anything, buy a newer game or a remake and find a local tech before you need one."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moving",
+   "category": "owning",
+   "title": "Moving a pinball machine safely",
+   "summary": "How to prepare, fold, roll and reassemble a machine without hurting it or yourself.",
+   "minutes": 7,
+   "sections": [
+    {
+     "h": "Plan the route",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Measure every doorway, hallway turn and stairway. A folded standard-body game on its side typically needs about 30 inches of door width.",
+        "Remove door stops or take doors off their hinges if it's tight.",
+        "Line up at least two strong helpers for flat ground and three for stairs.",
+        "Have a pinball dolly or sturdy appliance dolly, moving blankets and a ratchet strap."
+       ]
+      }
+     ]
+    },
+    {
+     "h": "Preparing the machine",
+     "blocks": [
+      {
+       "t": "ol",
+       "x": [
+        "Unplug the game and remove the balls through the playfield or trough so they can't roll around.",
+        "Remove the playfield glass or make sure it's locked in place, depending on the game and how far you're going.",
+        "Unlock the backbox and fold the head down if your game is designed to fold. Otherwise follow the maker's steps to remove the head.",
+        "Lock or bolt the head down so it can't swing up. Never move a game with the head loose.",
+        "With helpers lifting the cabinet, remove the back legs, then the front legs. Keep the leg bolts in a bag taped to the cabinet.",
+        "Tip the cabinet onto its side onto the dolly with blankets in between."
+       ]
+      },
+      {
+       "t": "warn",
+       "x": "Never lift or carry a machine by the backbox or the lockdown bar. Lift from the cabinet body."
+      }
+     ]
+    },
+    {
+     "h": "On the road and at home",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Strap the game down in the truck or trailer so it can't slide or tip.",
+        "Keep it out of rain. Water swells cabinet wood and damages boards.",
+        "In cold weather, let the game warm up to room temperature for several hours before powering it on, so condensation can dry."
+       ]
+      },
+      {
+       "t": "p",
+       "x": "Reassemble in reverse: legs on, stand it up, raise and lock the head, check that cables in the backbox are seated, then set the level and pitch before you play."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "setup",
+   "category": "owning",
+   "title": "Setting up your game at home",
+   "summary": "Leveling, pitch, power, and choosing the right spot so the game plays well and lasts.",
+   "minutes": 5,
+   "sections": [
+    {
+     "h": "Pick the right spot",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Leave about 3 feet in front for the player and enough room at the back to open the backbox.",
+        "Keep it out of direct sunlight, which fades artwork and plastics quickly.",
+        "Avoid damp basements or use a dehumidifier. Humidity causes rust and sticky parts.",
+        "Put furniture pads or leg protectors under the levelers if you have nice floors."
+       ]
+      }
+     ]
+    },
+    {
+     "h": "Level and pitch",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Most modern games play best around 6.5 degrees of pitch, with some players preferring up to about 7. Side to side should be level so the ball doesn't favor one flipper."
+      },
+      {
+       "t": "ol",
+       "x": [
+        "Place a phone level app or a digital level on the playfield glass or the lockdown bar.",
+        "Adjust the front leg levelers until side to side reads zero.",
+        "Raise the back levelers, or lower the front ones, to set the pitch.",
+        "Tighten the leveler lock nuts so the setting doesn't drift.",
+        "Play a few games and fine-tune. More pitch makes the game faster and harder."
+       ]
+      },
+      {
+       "t": "tip",
+       "x": "Measure pitch on the playfield itself if you can. The glass and cabinet aren't always parallel to it."
+      }
+     ]
+    },
+    {
+     "h": "Power",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Use a grounded outlet. Never cut off the ground pin.",
+        "A quality surge protector is cheap insurance, especially for modern games with expensive boards.",
+        "Avoid sharing a circuit with large appliances like freezers or space heaters if you can."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "settings",
+   "category": "owning",
+   "title": "Adjusting difficulty and game settings",
+   "summary": "Use the operator menu to make a game friendlier for guests or tougher for experts.",
+   "minutes": 4,
+   "sections": [
+    {
+     "h": "Finding the menu",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Every machine has service buttons inside the coin door. The menus differ by maker and era, so keep the manual handy. Most let you change settings without tools."
+      }
+     ]
+    },
+    {
+     "h": "Settings worth knowing",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Free play: turns off coin requirements. Almost every home owner uses this.",
+        "Ball save: gives the ball back if it drains quickly. Longer ball save is friendlier for guests.",
+        "Balls per game: three is standard; five makes games longer and more forgiving.",
+        "Tilt sensitivity: controls how much nudging the game allows.",
+        "Install presets: many modern games have 'easy', 'medium' and 'hard' packages that change many settings at once."
+       ]
+      },
+      {
+       "t": "p",
+       "x": "Some games also have physical adjustments, such as movable outlane posts. Moving a post to the easier position makes it less likely the ball drains down the side."
+      },
+      {
+       "t": "tip",
+       "x": "Write down the original settings before changing anything, or take a photo of each menu screen."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "maintenance",
+   "category": "repair",
+   "title": "A maintenance schedule that keeps games running",
+   "summary": "What to clean and check, and how often, so small issues never turn into big repairs.",
+   "minutes": 8,
+   "sections": [
+    {
+     "h": "How often",
+     "blocks": [
+      {
+       "t": "table",
+       "head": [
+        "When",
+        "What to do"
+       ],
+       "rows": [
+        [
+         "Every few weeks",
+         "Wipe the glass, check flippers feel strong, listen for new rattles."
+        ],
+        [
+         "Every 300 to 500 plays",
+         "Clean the playfield, clean or replace the balls, check rubbers."
+        ],
+        [
+         "Every year or so",
+         "Replace rubber rings, check flipper parts, reseat connectors, check coil stops."
+        ],
+        [
+         "As needed",
+         "Wax the playfield, replace burnt-out lights, tighten loose posts and ramps."
+        ]
+       ]
+      },
+      {
+       "t": "p",
+       "x": "A busy home game with lots of guests might need the 300-play routine monthly. A game played a few times a week can go much longer."
+      }
+     ]
+    },
+    {
+     "h": "Cleaning the playfield",
+     "blocks": [
+      {
+       "t": "ol",
+       "x": [
+        "Power off and remove the balls.",
+        "Remove the glass and set it somewhere safe and flat.",
+        "Wipe the playfield with a cleaner made for pinball playfields, such as Novus 1, using a clean microfiber cloth. Many owners use Novus 2 sparingly for light haze.",
+        "Clean around posts and under rubbers with a cotton swab.",
+        "Optionally apply a thin coat of pinball-safe carnauba wax and buff it off.",
+        "Clean both sides of the glass with a streak-free glass cleaner before reinstalling."
+       ]
+      },
+      {
+       "t": "warn",
+       "x": "Don't use ammonia-based household cleaners or harsh abrasives on the playfield. They can damage the clear coat and older artwork."
+      }
+     ]
+    },
+    {
+     "h": "Balls and rubbers",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Dirty or pitted balls scratch the playfield and leave black streaks. Wipe them with a cloth during cleaning and replace any with rough spots."
+      },
+      {
+       "t": "p",
+       "x": "Rubber rings harden and lose bounce over time. A full fresh set makes a game play noticeably faster and livelier. Kits are sold for most popular titles."
+      },
+      {
+       "t": "tip",
+       "x": "Buy balls and rubber kits from a reputable pinball parts supplier. Cheap balls can be softer and wear your playfield faster."
+      }
+     ]
+    },
+    {
+     "h": "Flippers",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Flippers do most of the work and wear the fastest. If one feels weak, sticks or has side-to-side play, it's time to check the coil sleeve, plunger, link and bushing. A flipper rebuild kit replaces all the wear parts at once."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "safety",
+   "category": "repair",
+   "title": "Working safely inside a machine",
+   "summary": "The essential safety rules before you lift a playfield or open the backbox.",
+   "minutes": 4,
+   "sections": [
+    {
+     "h": "Rules to follow every time",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Unplug the game, not just switch it off, before working on boards or power wiring.",
+        "Wait a few minutes after unplugging. Some circuits hold a charge.",
+        "Take jewelry and watches off when working near live circuits.",
+        "Lift the playfield carefully and make sure it rests securely before letting go.",
+        "Keep a fire extinguisher rated for electrical fires nearby."
+       ]
+      },
+      {
+       "t": "warn",
+       "x": "Older games, especially from the 1970s and 1980s, use high voltage for their displays. If you aren't sure what a circuit does, don't touch it with the power on."
+      }
+     ]
+    },
+    {
+     "h": "Fuses",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Always replace a blown fuse with the exact same rating and type. A slow-blow fuse and a fast-blow fuse are not interchangeable. If a fuse blows again right away, something is wrong; a bigger fuse just lets it burn."
+      }
+     ]
+    },
+    {
+     "h": "Know when to call a tech",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Burning smells or smoke.",
+        "A board with burn marks or melted connectors.",
+        "Repeated resets or fuses that blow over and over.",
+        "Anything involving the power supply if you're not experienced."
+       ]
+      },
+      {
+       "t": "tip",
+       "x": "Find a local tech before you need one. Ask in local pinball groups or at your favorite arcade."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "play-better",
+   "category": "playing",
+   "title": "Flipper skills that make you better fast",
+   "summary": "The core techniques that turn random flailing into controlled, high-scoring games.",
+   "minutes": 7,
+   "sections": [
+    {
+     "h": "Stop flailing",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "The biggest jump in skill comes from not flipping at everything. Every time you flip at a ball you can't aim, you give the game a chance to send it somewhere bad. The goal is control: stop the ball, aim, then shoot."
+      }
+     ]
+    },
+    {
+     "h": "Five skills to learn, in this order",
+     "blocks": [
+      {
+       "t": "ol",
+       "x": [
+        "Cradle (trap): hold a flipper up so the ball rolls down and stops in the corner between the flipper and the inlane. This is home base for every other skill.",
+        "Post pass: with the ball cradled on one flipper, drop it briefly so the ball rolls off and bounces off the post toward the other flipper, then catch it there.",
+        "Tap pass: with the ball cradled, give the flipper a quick, small tap to roll the ball across to the other flipper.",
+        "Live catch: as a fast ball comes down the inlane, flip just as it reaches the flipper to kill its speed and trap it.",
+        "Drop catch: when a ball is coming straight down at a raised flipper, drop the flipper at the right moment to soften the ball and catch it."
+       ]
+      },
+      {
+       "t": "tip",
+       "x": "Practice cradling on every ball until it's automatic. Most good players spend a lot of their game with the ball trapped while they decide what to shoot."
+      }
+     ]
+    },
+    {
+     "h": "Nudging without tilting",
+     "blocks": [
+      {
+       "t": "p",
+       "x": "Gentle bumps to the cabinet can save balls heading for an outlane or a straight-down-the-middle drain. Push the cabinet slightly forward or to one side with your hips or palms, not with big shoves. Every game has a tilt warning, so learn how sensitive each machine is."
+      }
+     ]
+    },
+    {
+     "h": "Learn the rules",
+     "blocks": [
+      {
+       "t": "ul",
+       "x": [
+        "Read the instruction cards on the apron. They list the main modes and the big scoring goal.",
+        "Watch the display. Modern games tell you exactly which shots are lit.",
+        "Look up the game's rulesheet. Our machine pages link to one when it exists.",
+        "Focus on one goal per game, like starting multiball, instead of hitting everything."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -244,6 +244,50 @@ footer{background:var(--field-deep);color:rgba(255,255,255,.75);font-size:.88rem
 footer .wrap{display:flex;gap:14px;justify-content:space-between;flex-wrap:wrap;padding-block:28px calc(28px + env(safe-area-inset-bottom,0px))}
 footer a{color:#fff}
 
+/* Guides */
+.hub{display:flex;flex-direction:column;gap:36px}
+.hub-cat{display:flex;flex-direction:column;gap:6px}
+.hub-cat > h3{display:flex;align-items:center;gap:10px;font-size:1.3rem;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.g-link{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 18px;padding:16px 2px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.g-link b{font-size:1.1rem}
+.g-link:hover b{text-decoration:underline;text-decoration-color:var(--c);text-decoration-thickness:2px;text-underline-offset:4px}
+.g-link p{color:var(--muted);grid-column:1;font-size:.96rem}
+.g-link .mins{grid-row:1/span 2;grid-column:2;align-self:center;font-size:.86rem;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.art-head{display:flex;flex-direction:column;gap:12px;padding-block:18px 30px;max-width:46rem}
+.art-head h2{font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.05}
+.art{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px;align-items:start}
+.toc{position:sticky;top:84px;display:flex;flex-direction:column;gap:2px;font-size:.93rem}
+.toc b{font-size:.86rem;color:var(--muted);margin-bottom:6px}
+.toc button{all:unset;cursor:pointer;padding:6px 10px;border-left:2px solid var(--line);color:var(--muted);font-weight:600}
+.toc button:hover{color:var(--ink);border-color:var(--ink)}
+.toc button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.art-body{display:flex;flex-direction:column;gap:18px;max-width:42rem;font-size:1.06rem;line-height:1.7}
+.art-body h3{font-family:var(--f-display);font-weight:400;font-size:1.65rem;margin-top:26px;scroll-margin-top:90px}
+.art-body h3:first-child{margin-top:0}
+.art-body ul,.art-body ol{margin:0;padding-left:0;display:flex;flex-direction:column;gap:10px}
+.art-body ul{list-style:none}
+.art-body ul li{padding-left:26px;position:relative}
+.art-body ul li::before{content:"";position:absolute;left:3px;top:.62em;width:10px;height:10px;border-radius:50%;background:var(--c,var(--blue))}
+.art-body ol{list-style:none;counter-reset:step}
+.art-body ol li{counter-increment:step;padding-left:42px;position:relative}
+.art-body ol li::before{content:counter(step);position:absolute;left:0;top:.05em;font-family:var(--f-dmd);background:var(--dmd);color:var(--dmd-on);border-radius:6px;width:28px;text-align:center;line-height:1.7;font-size:.95rem}
+.callout{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;padding:16px 18px;border-radius:var(--r-sm);background:var(--card);border:1px solid var(--line)}
+.callout .ins{margin-top:.45em;grid-row:1/span 2}
+.callout b{font-size:.95rem}
+.callout p{color:var(--ink)}
+.callout.tip{--c:var(--amber);background:color-mix(in srgb,var(--amber) 10%,var(--card))}
+.callout.warn{--c:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--card))}
+.art-body .table-wrap{margin-top:0}
+.art-body table{min-width:520px;font-size:.95rem}
+.art-body thead th{font-family:var(--f-body);font-weight:700;font-size:.92rem}
+.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:36px}
+.pn a{display:flex;flex-direction:column;gap:4px;padding:16px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--card);text-decoration:none;color:inherit}
+.pn a:hover{border-color:var(--ink)}
+.pn a span{font-size:.86rem;color:var(--muted)}
+.pn a.next{text-align:right;grid-column:2}
+@media (max-width:960px){.art{grid-template-columns:minmax(0,1fr)}.toc{position:static;flex-direction:row;flex-wrap:wrap;gap:6px}.toc b{width:100%}.toc button{border:1px solid var(--line);border-radius:999px;padding:5px 12px}}
+@media (max-width:620px){.pn{grid-template-columns:minmax(0,1fr)}.pn a.next{grid-column:1;text-align:left}.g-link{grid-template-columns:minmax(0,1fr)}.g-link .mins{grid-row:auto;grid-column:1}}
+
 @media (max-width:960px){
   .hero .wrap,.quiz,.guide,.svc,.d-grid{grid-template-columns:minmax(0,1fr)}
   .hero .wrap{gap:32px;padding-block:40px 48px}
@@ -270,7 +314,7 @@ footer a{color:#fff}
     <a class="brand" href="#home"><span class="ball" aria-hidden="true"></span>Pinball Advisor</a>
     <nav class="main" aria-label="Main">
       <a href="#machines">Machines</a>
-      <a href="#guide">Buying guide</a>
+      <a href="#guide">Guides</a>
       <a href="#play">Where to play</a>
       <a href="#service">Service</a>
     </nav>
@@ -300,7 +344,7 @@ footer a{color:#fff}
   <div class="wrap">
     <nav class="starts" aria-label="Start here">
       <a href="#machines" data-theme-c="movie"><h3><span class="ins"></span>Machine reviews</h3><p>Current games and the classics people still hunt for, scored and compared.</p></a>
-      <a href="#guide" data-theme-c="music"><h3><span class="ins"></span>Buying guide</h3><p>Pro vs. Premium vs. LE, used-game checks, and getting it through the door.</p></a>
+      <a href="#guide" data-theme-c="music"><h3><span class="ins"></span>Guides</h3><p>Buying, moving, setup, maintenance, and flipper skills, step by step.</p></a>
       <a href="#play" data-theme-c="horror"><h3><span class="ins"></span>Where to play</h3><p>Search real locations near you and try a game before you own one.</p></a>
       <a href="#service" data-theme-c="classic"><h3><span class="ins"></span>Service</h3><p>A maintenance routine, common fixes, and a way to book a tech.</p></a>
     </nav>
@@ -367,37 +411,15 @@ footer a{color:#fff}
   </div>
 </section>
 
-<!-- GUIDE -->
+<!-- GUIDES HUB -->
 <section class="view" id="v-guide" data-view="guide" hidden>
   <div class="wrap">
     <div class="page-head">
-      <h2>Before you buy</h2>
-      <p class="lede">The things owners wish someone had told them before the delivery truck showed up.</p>
+      <h2>Guides and advice</h2>
+      <p class="lede">Practical, owner-tested advice for every stage, from picking your first game to keeping it running and getting better at it.</p>
     </div>
     <div class="guide">
-      <div class="prose">
-        <h3 style="margin-top:0">Pro, Premium, LE: what you actually get</h3>
-        <p>Most new games ship in three trims. The rules and theme stay the same; the toys and finish change. For a home game that guests will play, a Pro is usually enough. If you'll be the main player for years, the extra mechs on a Premium are where the price jump tends to pay off.</p>
-        <div class="trims">
-          <div class="trim" data-theme-c="classic"><b><span class="ins"></span>Pro</b><span>Base toys, standard cabinet art, often a simpler playfield.</span><span>Lowest price and easiest to resell.</span></div>
-          <div class="trim" data-theme-c="music"><b><span class="ins"></span>Premium</b><span>Extra mechs and ramps, upgraded lighting, sometimes extra modes.</span><span>The usual sweet spot for owners.</span></div>
-          <div class="trim" data-theme-c="movie"><b><span class="ins"></span>LE</b><span>Premium playfield plus a numbered run, special art and trim.</span><span>You pay for rarity, not gameplay.</span></div>
-        </div>
-        <h3>New vs. used</h3>
-        <p>New games come with a warranty and a distributor to call. Used games cost less up front but need a careful look. A clean, shopped classic from the 1990s can hold its value better than a new game that loses a chunk the day it's delivered.</p>
-        <h3>What to check on a used game</h3>
-        <ul class="checks">
-          <li>Play several full games. Every flipper, pop bumper and slingshot should fire strong on both sides.</li>
-          <li>Run the switch and coil tests from the service menu and note anything that fails.</li>
-          <li>Look under the playfield for burnt boards, melted connectors, or hacked wiring.</li>
-          <li>Check playfield wear in front of the flippers and around scoops. Clear-coated is good; bare wood is a cost.</li>
-          <li>Ask for the serial number and whether manuals, keys and the original backglass come with it.</li>
-        </ul>
-        <h3>Getting it home</h3>
-        <p>With the legs off and the head folded down, most modern games fit through a standard 30-inch doorway on their side using a pinball dolly. Never carry it by the backbox. Stairs are a two-to-three-person job; many sellers and techs offer delivery for a fee, and it's usually worth it.</p>
-        <h3>Setting it up</h3>
-        <p>Use a level app on the lockdown bar: side to side should read level, front to back around 6.5 degrees of pitch. Put it on its own outlet if you can, and keep it out of direct sunlight, which fades art fast.</p>
-      </div>
+      <div class="hub" id="hub" data-needs-data></div>
       <aside class="spec">
         <h3>Will it fit?</h3>
         <dl class="meta">
@@ -413,6 +435,11 @@ footer a{color:#fff}
       </aside>
     </div>
   </div>
+</section>
+
+<!-- SINGLE GUIDE -->
+<section class="view" id="v-article" data-view="article" hidden>
+  <div class="wrap" id="article"></div>
 </section>
 
 <!-- PLAY -->
@@ -497,15 +524,17 @@ const DISPLAY={dmd:"Dot-matrix (DMD)",lcd:"LCD screen",alpha:"Alphanumeric",cga:
 const TYPE={ss:"Solid state",em:"Electro-mechanical",me:"Purely mechanical"};
 const simple=s=>String(s).toLowerCase().replace(/\(.*?\)/g," ").replace(/^the\s+/,"").replace(/[^a-z0-9]+/g," ").trim();
 
-let M=[],OPDB={machines:{},updated:null};
+let M=[],OPDB={machines:{},updated:null},G={categories:[],guides:[]};
 
 // ---------- Data ----------
 async function loadData(){
   try{
-    const [a,b]=await Promise.all([
+    const [a,b,c]=await Promise.all([
       fetch("data/machines.json",{cache:"no-cache"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}),
-      fetch("data/opdb.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null)
+      fetch("data/opdb.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null),
+      fetch("data/guides.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null)
     ]);
+    if(c&&c.guides)G=c;
     M=a.machines.map(x=>({id:x.id,n:x.name,mk:x.maker,y:x.year,c:x.condition,lo:x.price[0],hi:x.price[1],s:x.score,d:x.difficulty,th:x.theme,who:x.bestFor,tags:x.tags||[],note:x.take,pros:x.pros||[],cons:x.cons||[],pinside:x.pinside||""}));
     if(b&&b.machines)OPDB=b;
     return true;
@@ -522,10 +551,12 @@ function route(){
   const h=location.hash.slice(1);
   let target=views.includes(h)?h:"home";
   if(h.startsWith("machine-"))target="detail";
+  if(h.startsWith("guide-"))target="article";
   document.querySelectorAll(".view").forEach(v=>v.hidden=v.dataset.view!==target);
-  const navTarget=target==="detail"?"machines":target;
+  const navTarget=target==="detail"?"machines":target==="article"?"guide":target;
   document.querySelectorAll("nav.main a").forEach(a=>{if(a.getAttribute("href")==="#"+navTarget)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
-  if(target==="detail")renderDetail(h.slice(8));else document.title="Pinball Advisor";
+  if(target==="detail")renderDetail(h.slice(8));else if(target==="article")renderArticle(h.slice(6));else document.title="Pinball Advisor";
+  if(target==="guide")renderHub();
   if(h==="quiz"){const q=$("quiz");q&&q.scrollIntoView()}else window.scrollTo(0,0);
 }
 addEventListener("hashchange",route);
@@ -657,11 +688,42 @@ function renderDetail(id){
      '<div class="box"><h3>Where to play '+esc(m.n)+"</h3>"+nearForm("d","Near")+"</div>"+
    '</div><aside class="stack">'+
      '<div class="box"><h3>Owner ratings &amp; prices</h3><p>Pinside has owner reviews, ratings and marketplace listings for this game.</p><a class="btn ghost" href="'+pinsideUrl+'" target="_blank" rel="noopener">See it on Pinside</a></div>'+
-     (learn.length?'<div class="box"><h3>Learn the game</h3><div class="learn">'+learn.map(x=>'<a href="'+esc(x[0])+'" target="_blank" rel="noopener">'+x[1]+'</a>').join("")+"</div></div>":"")+
+     '<div class="box"><h3>Learn the game</h3><div class="learn">'+learn.map(x=>'<a href="'+esc(x[0])+'" target="_blank" rel="noopener">'+x[1]+'</a>').join("")+'<a href="#guide-play-better">Our flipper skills guide</a>'+(m.c==="used"?'<a href="#guide-used-inspection">How to inspect a used machine</a>':"")+"</div></div>"+
      '<div class="box"><h3>Also consider</h3><div class="sim">'+similar.map(x=>'<a href="#machine-'+x.id+'"><span><b>'+esc(x.n)+"</b><small>"+esc(x.mk)+", "+range(x)+'</small></span><span class="score">'+x.s.toFixed(1)+"</span></a>").join("")+"</div></div>"+
      '<a class="btn" href="#quiz">Find my match</a>'+
    "</aside></div>";
   wireNear("d",m.n);
+}
+
+
+// ---------- Guides ----------
+const catOf=id=>G.categories.find(c=>c.id===id)||{name:"",theme:"classic"};
+function renderHub(){
+  const el=$("hub");if(!G.guides.length)return;
+  el.innerHTML=G.categories.map(c=>{const gs=G.guides.filter(g=>g.category===c.id);if(!gs.length)return"";return '<section class="hub-cat" data-theme-c="'+c.theme+'"><h3><span class="ins"></span>'+esc(c.name)+"</h3>"+gs.map(g=>'<a class="g-link" href="#guide-'+g.id+'"><b>'+esc(g.title)+"</b><p>"+esc(g.summary)+'</p><span class="mins">'+g.minutes+" min read</span></a>").join("")+"</section>"}).join("");
+}
+function block(b){
+  if(b.t==="p")return "<p>"+esc(b.x)+"</p>";
+  if(b.t==="ul")return "<ul>"+b.x.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>";
+  if(b.t==="ol")return "<ol>"+b.x.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ol>";
+  if(b.t==="tip")return '<div class="callout tip"><span class="ins"></span><b>Tip</b><p>'+esc(b.x)+"</p></div>";
+  if(b.t==="warn")return '<div class="callout warn"><span class="ins"></span><b>Be careful</b><p>'+esc(b.x)+"</p></div>";
+  if(b.t==="table")return '<div class="table-wrap"><table><thead><tr>'+b.head.map(h=>"<th>"+esc(h)+"</th>").join("")+"</tr></thead><tbody>"+b.rows.map(r=>"<tr>"+r.map((c,i)=>i===0?"<th>"+esc(c)+"</th>":"<td>"+esc(c)+"</td>").join("")+"</tr>").join("")+"</tbody></table></div>";
+  return "";
+}
+function renderArticle(id){
+  const el=$("article");
+  if(!G.guides.length){el.innerHTML='<p class="note" style="padding-top:32px">Loading…</p>';return}
+  const idx=G.guides.findIndex(g=>g.id===id),g=G.guides[idx];
+  if(!g){el.innerHTML='<div class="empty" style="margin-top:32px">We couldn\'t find that guide. <a href="#guide">See all guides</a>.</div>';return}
+  document.title=g.title+" | Pinball Advisor";
+  const c=catOf(g.category),prev=G.guides[idx-1],next=G.guides[idx+1];
+  el.innerHTML='<a class="back" href="#guide">Back to all guides</a>'+
+   '<div class="art-head"><p class="maker" data-theme-c="'+c.theme+'"><span class="ins"></span>'+esc(c.name)+", "+g.minutes+' min read</p><h2>'+esc(g.title)+'</h2><p class="lede">'+esc(g.summary)+"</p></div>"+
+   '<div class="art"><nav class="toc" aria-label="In this guide"><b>In this guide</b>'+g.sections.map((s,i)=>'<button type="button" data-go="sec-'+i+'">'+esc(s.h)+"</button>").join("")+"</nav>"+
+   '<article class="art-body" data-theme-c="'+c.theme+'">'+g.sections.map((s,i)=>'<h3 id="sec-'+i+'">'+esc(s.h)+"</h3>"+s.blocks.map(block).join("")).join("")+
+   '<div class="pn">'+(prev?'<a href="#guide-'+prev.id+'"><span>Previous</span><b>'+esc(prev.title)+"</b></a>":"")+(next?'<a class="next" href="#guide-'+next.id+'"><span>Next</span><b>'+esc(next.title)+"</b></a>":"")+"</div></article></div>";
+  el.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{const t=$(b.dataset.go);t&&t.scrollIntoView({block:"start"})}));
 }
 
 // ---------- Service checklist ----------
@@ -684,7 +746,7 @@ $("contact").addEventListener("submit",e=>{
 
 // ---------- Boot ----------
 route();
-loadData().then(ok=>{if(!ok)return;match();initGrid();if(location.hash.startsWith("#machine-"))route()});
+loadData().then(ok=>{if(!ok)return;match();initGrid();if(/^#(machine-|guide)/.test(location.hash))route()});
 })();
 </script>
 </body>
