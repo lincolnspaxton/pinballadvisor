@@ -104,7 +104,9 @@ const CATALOG_FROM = 1990;
 
 const slug = s => String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "")
   .replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
-const baseTitle = name => String(name).replace(/\s*\((pro|premium|limited edition|le|ce|collector'?s edition|standard|anniversary edition|[^)]*edition)\)\s*$/i, "").trim();
+const TRIM_WORD = "(?:pro|premium|le|se|pe|ce|ge|standard|limited edition|collector'?s edition|special edition|platinum edition|[a-z0-9' ]*edition)";
+const TRIM_PARENS = new RegExp("\\s*\\(\\s*" + TRIM_WORD + "(?:\\s*[/,&+]\\s*" + TRIM_WORD + ")*\\s*\\)\\s*$", "i");
+const baseTitle = name => String(name).replace(TRIM_PARENS, "").trim();
 const yearOf = e => +e.year || +String(e.manufactureDate || "").slice(0, 4) || 0;
 const today = new Date().toISOString().slice(0, 10);
 

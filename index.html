@@ -570,7 +570,7 @@ const diffDots=d=>'<span class="diff" role="img" aria-label="Difficulty '+d+' of
 const store={get(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const WHO={family:"Family & guests",casual:"Casual players",deep:"Deep-rules players"};
 const THEME={movie:"Movies and TV",music:"Music",horror:"Horror",classic:"Classic"};
-const DISPLAY={dmd:"Dot-matrix (DMD)",lcd:"LCD screen",alpha:"Alphanumeric",cga:"CGA monitor",reels:"Score reels",lights:"Backglass lights"};
+const DISPLAY={dmd:"Dot-matrix (DMD)",lcd:"LCD screen",alpha:"Alphanumeric",alphanumeric:"Alphanumeric",cga:"CGA monitor",reels:"Score reels",lights:"Backglass lights"};
 const TYPE={ss:"Solid state",em:"Electro-mechanical",me:"Purely mechanical"};
 const simple=s=>String(s).toLowerCase().replace(/\(.*?\)/g," ").replace(/^the\s+/,"").replace(/[^a-z0-9]+/g," ").trim();
 
