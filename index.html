@@ -5,237 +5,264 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pinball Advisor</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Pinball Advisor: machine reviews, buying advice, where to play, and service help.">
+<meta name="description" content="Pinball Advisor: honest machine reviews, buying advice, where to play, and service help.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DotGothic16&family=Archivo:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=DotGothic16&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
 <style>
-/* Layout: sticky "apron" nav, DMD-screen hero, then routed views (home / machines / guide / play / service) on a playfield-blue ground */
+/* Layout: a playfield-blue "backbox" hero holds the one loud moment (the DMD + start button);
+   everything below is a calm, white "apron card" world. Theme colors = insert lights. */
 :root{
-  --bg:#EDF0F6; --surface:#FFFFFF; --sunk:#E3E8F1; --ink:#101A33; --muted:#56617B; --line:#D2D9E6;
-  --accent:#D9302A; --accent-ink:#FFFFFF; --blue:#1D4ED1; --amber:#FF9A1F; --dmd-bg:#140D06; --dmd-off:#2A1A0B;
-  --good:#1C8A4E; --warn:#B7790F;
-  --f-display:"Bungee","Arial Black",Impact,sans-serif;
+  --paper:#F4F6FB; --card:#FFFFFF; --sunk:#EAEEF7; --ink:#131733; --muted:#5B6283; --line:#D8DDEC;
+  --field:#1534A6; --field-deep:#0E2378; --on-field:#FFFFFF;
+  --red:#E1332D; --amber:#FFA51C; --green:#1E9A55; --blue:#2D63F0;
+  --link:#1E46C9; --dmd:#120B05; --dmd-off:#2B1A0A; --dmd-on:#FF9E1F;
+  --chrome:linear-gradient(180deg,#F4F6FA,#9BA3B4 45%,#E6E9F0 55%,#7E8698);
+  --f-display:"Shrikhand","Cooper Black",Georgia,serif;
   --f-dmd:"DotGothic16","Courier New",monospace;
-  --f-body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --r:10px;
+  --f-body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r-sm:8px; --r:14px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0A0E19; --surface:#131A2B; --sunk:#0F1524; --ink:#E7EBF5; --muted:#97A1B9; --line:#25304A;
-  --accent:#FF4D45; --accent-ink:#1A0605; --blue:#7298FF; --good:#46C383; --warn:#E3A93A; color-scheme:dark}}
+  --paper:#0C0F1F; --card:#141932; --sunk:#1B2140; --ink:#ECEEF8; --muted:#9CA3C2; --line:#283050;
+  --field:#13308F; --field-deep:#0A1A5C; --link:#86A5FF; --green:#3FC07A; --blue:#6E95FF; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0A0E19; --surface:#131A2B; --sunk:#0F1524; --ink:#E7EBF5; --muted:#97A1B9; --line:#25304A;
-  --accent:#FF4D45; --accent-ink:#1A0605; --blue:#7298FF; --good:#46C383; --warn:#E3A93A; color-scheme:dark}
+  --paper:#0C0F1F; --card:#141932; --sunk:#1B2140; --ink:#ECEEF8; --muted:#9CA3C2; --line:#283050;
+  --field:#13308F; --field-deep:#0A1A5C; --link:#86A5FF; --green:#3FC07A; --blue:#6E95FF; color-scheme:dark}
 
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 *,*::before,*::after{box-sizing:border-box}
 img{max-width:100%}
 [hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ink)}
-a{color:var(--blue)}
-:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:4px}
-h1,h2,h3{text-wrap:balance;line-height:1.15;margin:0}
-h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:.01em}
-h3{font-size:1.1rem;font-weight:700}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--field-deep)}
+a{color:var(--link);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+h1,h2,h3{margin:0;text-wrap:balance;line-height:1.1}
+h1,h2{font-family:var(--f-display);font-weight:400;letter-spacing:.005em}
+h2{font-size:clamp(1.9rem,4.4vw,2.6rem)}
+h3{font-size:1.12rem;font-weight:700;line-height:1.3}
 p{margin:0}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.lede{color:var(--muted);max-width:62ch;font-size:1.05rem}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.lede{color:var(--muted);max-width:60ch;font-size:1.08rem}
 .stack{display:flex;flex-direction:column;gap:14px}
+.note{font-size:.86rem;color:var(--muted)}
 
-/* Nav */
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--ink);color:var(--bg)}
-header.top .wrap{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--f-display);font-size:1.1rem;letter-spacing:.02em}
-.ball{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 12%,#c9d1de 30%,#7b8597 70%,#3d4452 100%);flex:none}
-nav.main{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
-nav.main a{color:inherit;text-decoration:none;font-weight:600;font-size:.92rem;padding:6px 10px;border-radius:999px;opacity:.8}
-nav.main a:hover{opacity:1}
-nav.main a[aria-current="page"]{background:var(--accent);color:var(--accent-ink);opacity:1}
+/* Insert lights: theme color system */
+.ins{width:12px;height:12px;border-radius:50%;flex:none;display:inline-block;background:var(--c,var(--blue));box-shadow:0 0 0 2px color-mix(in srgb,var(--c,var(--blue)) 25%,transparent)}
+[data-theme-c="movie"]{--c:var(--red)} [data-theme-c="music"]{--c:var(--amber)} [data-theme-c="horror"]{--c:var(--green)} [data-theme-c="classic"]{--c:var(--blue)}
 
-/* Hero DMD */
-.hero{padding-block:36px 28px}
-.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center}
-.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:.01em}
-.hero h1 span{color:var(--accent)}
-.dmd{background:var(--dmd-bg);border-radius:14px;padding:14px;box-shadow:inset 0 0 0 3px #2b2116, 0 12px 30px -12px rgba(0,0,0,.45)}
-.dmd canvas{display:block;width:100%;height:auto;image-rendering:pixelated}
-.dmd-cap{font-family:var(--f-dmd);color:var(--amber);font-size:.85rem;display:flex;justify-content:space-between;padding-top:8px;opacity:.85}
-.btns{display:flex;gap:10px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:600 .95rem var(--f-body);padding:11px 18px;border-radius:999px;text-decoration:none;background:var(--accent);color:var(--accent-ink)}
-.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
-.btn.ghost:hover{box-shadow:inset 0 0 0 2px var(--ink)}
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--field-deep);color:var(--on-field)}
+header.top .wrap{display:flex;align-items:center;gap:18px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--f-display);font-size:1.3rem;line-height:1}
+.ball{width:24px;height:24px;border-radius:50%;flex:none;background:radial-gradient(circle at 34% 30%,#fff 0 10%,#dfe4ec 22%,#8d96a8 62%,#3b4252 100%)}
+nav.main{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+nav.main a{white-space:nowrap;color:inherit;text-decoration:none;font-weight:600;font-size:.95rem;padding:7px 12px;border-radius:999px;opacity:.78}
+nav.main a:hover{opacity:1;background:rgba(255,255,255,.08)}
+nav.main a[aria-current="page"]{opacity:1;background:rgba(255,255,255,.14);box-shadow:inset 0 -2px 0 var(--amber)}
+
+/* Hero: the backbox */
+.hero{background:radial-gradient(circle at 12% 30%,rgba(255,255,255,.07) 0 2px,transparent 3px) 0 0/44px 44px, radial-gradient(ellipse at 70% 0%,rgba(255,255,255,.14),transparent 60%), var(--field);color:var(--on-field);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:44px;align-items:center;padding-block:56px 64px}
+.hero h1{font-size:clamp(2.5rem,6.4vw,4.4rem);line-height:1.02;text-shadow:0 3px 0 var(--field-deep)}
+.hero p{color:rgba(255,255,255,.82);font-size:1.12rem;max-width:44ch}
+.hero .stack{gap:22px}
+.backbox{padding:10px;border-radius:18px;background:var(--chrome);box-shadow:0 30px 60px -24px rgba(0,0,0,.6)}
+.backbox-in{background:#07080F;border-radius:12px;padding:16px 16px 12px}
+.dmd canvas{display:block;width:100%;height:auto;border-radius:4px}
+.dmd-cap{display:flex;justify-content:space-between;font-family:var(--f-dmd);color:var(--dmd-on);font-size:.85rem;padding-top:10px;opacity:.85}
+.btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:700 1rem var(--f-body);padding:12px 22px;border-radius:999px;text-decoration:none;background:var(--ink);color:var(--paper);transition:transform .12s}
+.btn:active{transform:translateY(1px)}
+.btn.start{background:radial-gradient(circle at 50% 35%,#FF6A5E,var(--red) 60%,#A81E1A);color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.18),0 0 24px rgba(255,80,60,.55),inset 0 -3px 0 rgba(0,0,0,.25);text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.btn.line{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px currentColor}
+.btn.line:hover{background:color-mix(in srgb,currentColor 8%,transparent)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 
-section.view{padding-block:28px 56px}
-section.view[hidden]{display:none}
-.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+section.view{padding-block:0 72px}
+.page-head{padding-block:48px 28px;display:flex;flex-direction:column;gap:12px}
 
-/* Home tiles */
-.paths{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.path{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:transform .15s,border-color .15s}
-.path:hover{transform:translateY(-2px);border-color:var(--ink)}
-.path .insert{width:30px;height:16px;border-radius:50% / 100% 100% 0 0;background:var(--accent);transform:rotate(180deg)}
-.path:nth-child(2) .insert{background:var(--blue)}
-.path:nth-child(3) .insert{background:var(--amber)}
-.path:nth-child(4) .insert{background:var(--good)}
-.path p{color:var(--muted);font-size:.93rem}
+/* Home: start-here links */
+.starts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;padding-block:44px 8px}
+.starts a{color:inherit;text-decoration:none;display:flex;flex-direction:column;gap:6px}
+.starts a h3{display:flex;align-items:center;gap:10px}
+.starts a:hover h3{text-decoration:underline;text-decoration-color:var(--c);text-decoration-thickness:2px;text-underline-offset:4px}
+.starts p{color:var(--muted);font-size:.95rem}
 
 /* Quiz */
-.quiz{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-top:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
-fieldset{border:0;padding:0;margin:0 0 14px}
-legend{font-weight:700;margin-bottom:8px}
+.quiz{margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);overflow:hidden}
+.quiz-q{padding:30px;display:flex;flex-direction:column;gap:20px}
+.quiz-a{padding:30px;background:var(--sunk);display:flex;flex-direction:column;gap:14px}
+fieldset{border:0;padding:0;margin:0}
+legend{font-weight:700;margin-bottom:10px}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip input{position:absolute;opacity:0;pointer-events:none}
-.chip span{display:inline-block;padding:7px 13px;border-radius:999px;border:1.5px solid var(--line);font-size:.9rem;cursor:pointer;font-weight:500}
-.chip input:checked+span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip span{display:inline-block;padding:8px 15px;border-radius:999px;border:1.5px solid var(--line);font-size:.94rem;cursor:pointer;font-weight:600;background:var(--card);transition:background .12s,border-color .12s}
+.chip span:hover{border-color:var(--muted)}
+.chip input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .chip input:focus-visible+span{outline:3px solid var(--amber);outline-offset:2px}
 .picks{display:flex;flex-direction:column;gap:10px}
-.pick{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;border-radius:8px;background:var(--sunk)}
-.pick .rank{font-family:var(--f-dmd);color:var(--amber);background:var(--dmd-bg);border-radius:6px;padding:4px 8px;font-size:1rem}
-.pick small{color:var(--muted);display:block}
-.pick .price{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pick{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px;border-radius:var(--r-sm);background:var(--card);color:inherit;text-decoration:none;border:1px solid var(--line)}
+.pick:hover{border-color:var(--ink)}
+.pick b{display:block}
+.pick small{color:var(--muted);display:block;font-size:.86rem}
+.pick .price{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.92rem}
+.rank{font-family:var(--f-dmd);color:var(--dmd-on);background:var(--dmd);border-radius:6px;padding:5px 9px;font-size:1.05rem;line-height:1}
+
+/* DMD score chip */
+.score{font-family:var(--f-dmd);background:var(--dmd);color:var(--dmd-on);border-radius:7px;padding:5px 9px;font-size:1.15rem;line-height:1;flex:none;text-shadow:0 0 8px rgba(255,158,31,.5)}
 
 /* Machines */
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin-bottom:18px}
-.field{display:flex;flex-direction:column;gap:4px;font-size:.8rem;font-weight:600;color:var(--muted)}
-select,input[type=search],input[type=text],input[type=email],textarea{font:500 .95rem var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;min-width:0}
-textarea{resize:vertical;min-height:110px}
-.count{margin-left:auto;color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px}
-.card-top{display:flex;justify-content:space-between;gap:10px;align-items:start}
-.card .maker{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.score{font-family:var(--f-dmd);background:var(--dmd-bg);color:var(--amber);border-radius:6px;padding:4px 8px;font-size:1.05rem;flex:none}
-.card p{color:var(--muted);font-size:.93rem}
-.meta{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.86rem;margin:0}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:end;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:22px}
+.field{display:flex;flex-direction:column;gap:5px;font-size:.84rem;font-weight:600;color:var(--muted)}
+select,input[type=search],input[type=text],input[type=email],textarea{font:500 1rem var(--f-body);color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;min-width:0}
+select:focus,input:focus,textarea:focus{border-color:var(--link);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--link) 25%,transparent)}
+textarea{resize:vertical;min-height:120px}
+.count{margin-left:auto;color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums;align-self:center}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:12px}
+.card-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.card h3{font-size:1.22rem}
+.maker{font-size:.88rem;color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.card p{color:var(--muted);font-size:.95rem}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:.9rem;margin:0}
 .meta dt{color:var(--muted)}
 .meta dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
-.tag{font-size:.74rem;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--sunk);color:var(--ink)}
-.tag.used{background:color-mix(in srgb,var(--warn) 18%,transparent)}
-.tag.new{background:color-mix(in srgb,var(--good) 18%,transparent)}
-.diff{display:inline-flex;gap:3px;vertical-align:middle}
-.diff i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.diff i.on{background:var(--accent)}
-.cmp{display:flex;align-items:center;gap:8px;font-size:.88rem;font-weight:600;margin-top:auto;cursor:pointer}
-.cmp input{width:17px;height:17px;accent-color:var(--accent)}
-.empty{padding:30px;text-align:center;color:var(--muted);border:1.5px dashed var(--line);border-radius:var(--r);grid-column:1/-1}
-.cmpbar{position:sticky;bottom:0;z-index:15;background:var(--ink);color:var(--bg);border-radius:12px 12px 0 0;margin-top:18px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.cmpbar .btn.ghost{color:var(--bg);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--bg) 40%,transparent)}
-.table-wrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
-th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-thead th{font-family:var(--f-display);font-weight:400;font-size:.95rem}
+.tag{font-size:.8rem;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--sunk)}
+.tag.new{background:color-mix(in srgb,var(--green) 16%,var(--card));color:var(--ink)}
+.tag.used{background:color-mix(in srgb,var(--amber) 22%,var(--card));color:var(--ink)}
+.diff{display:inline-flex;gap:4px;vertical-align:middle}
+.diff i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.diff i.on{background:var(--red);box-shadow:0 0 6px color-mix(in srgb,var(--red) 60%,transparent)}
+.cardlink{color:inherit;text-decoration:none}
+.cardlink:hover{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.cmp{display:flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;cursor:pointer}
+.cmp input{width:18px;height:18px;accent-color:var(--red)}
+.more{font-weight:700;font-size:.92rem}
+.empty{padding:36px;text-align:center;color:var(--muted);border:1.5px dashed var(--line);border-radius:var(--r);grid-column:1/-1}
+.cmpbar{position:sticky;bottom:0;z-index:15;background:var(--field-deep);color:#fff;border-radius:14px 14px 0 0;margin-top:22px;padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cmpbar .btn{background:#fff;color:var(--field-deep)}
+.cmpbar .btn.line{background:transparent;color:#fff}
+.table-wrap{overflow-x:auto;margin-top:20px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.94rem}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--f-display);font-weight:400;font-size:1.1rem}
+thead th a{color:inherit}
 tbody th{color:var(--muted);font-weight:600;white-space:nowrap}
 td{font-variant-numeric:tabular-nums}
 tr:last-child>*{border-bottom:0}
 
 /* Guide */
-.guide{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:28px}
-.prose{display:flex;flex-direction:column;gap:14px;max-width:68ch}
-.prose h3{margin-top:12px}
-.trims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.trim{border-top:4px solid var(--blue);background:var(--surface);border-radius:0 0 var(--r) var(--r);padding:14px;display:flex;flex-direction:column;gap:6px;font-size:.92rem}
-.trim:nth-child(2){border-color:var(--amber)}
-.trim:nth-child(3){border-color:var(--accent)}
-.trim b{font-family:var(--f-display);font-weight:400;font-size:1rem}
+.guide{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:48px;align-items:start}
+.prose{display:flex;flex-direction:column;gap:16px;max-width:66ch}
+.prose h3{font-size:1.35rem;margin-top:18px}
+.trims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-block:4px}
+.trim{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px;display:flex;flex-direction:column;gap:6px;font-size:.93rem}
+.trim b{font-family:var(--f-display);font-weight:400;font-size:1.3rem;display:flex;align-items:center;gap:10px}
 .trim span{color:var(--muted)}
-aside.spec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;align-self:start;position:sticky;top:76px;display:flex;flex-direction:column;gap:12px}
-aside.spec h3{font-family:var(--f-display);font-weight:400}
-.spec .meta{font-size:.92rem}
-.note{font-size:.82rem;color:var(--muted)}
-ul.checks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-ul.checks li{padding-left:22px;position:relative}
-ul.checks li::before{content:"";position:absolute;left:2px;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+ul.checks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+ul.checks li{padding-left:26px;position:relative}
+ul.checks li::before{content:"";position:absolute;left:3px;top:.5em;width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:0 0 0 2px color-mix(in srgb,var(--red) 22%,transparent)}
+aside.spec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;position:sticky;top:80px;display:flex;flex-direction:column;gap:14px}
+aside.spec h3{font-family:var(--f-display);font-weight:400;font-size:1.35rem}
 
 /* Play */
-.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px}
-.box p{color:var(--muted)}
+.near-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin-bottom:36px}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px}
+.split > div{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.split p{color:var(--muted)}
+.split .btn{margin-top:6px}
 
 /* Service */
-.svc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
-.chk{display:flex;flex-direction:column;gap:2px}
-.chk label{display:flex;gap:10px;align-items:start;padding:9px 6px;border-bottom:1px solid var(--line);cursor:pointer}
-.chk input{margin-top:4px;width:17px;height:17px;accent-color:var(--good);flex:none}
-.chk label small{display:block;color:var(--muted)}
-.chk input:checked+span{text-decoration:line-through;color:var(--muted)}
-.meter{height:8px;border-radius:999px;background:var(--sunk);overflow:hidden}
-.meter i{display:block;height:100%;background:var(--good);width:0;transition:width .25s}
-details{border-bottom:1px solid var(--line);padding:10px 0}
-summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.svc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px}
+.chk{display:flex;flex-direction:column}
+.chk label{display:flex;gap:12px;align-items:start;padding:11px 2px;border-bottom:1px solid var(--line);cursor:pointer}
+.chk label:last-child{border-bottom:0}
+.chk input{margin-top:5px;width:18px;height:18px;accent-color:var(--green);flex:none}
+.chk label small{display:block;color:var(--muted);font-size:.88rem}
+.chk input:checked+span{color:var(--muted)}
+.chk input:checked+span b{text-decoration:line-through}
+.meter{height:10px;border-radius:999px;background:var(--sunk);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--green);width:0;transition:width .25s;box-shadow:0 0 10px color-mix(in srgb,var(--green) 60%,transparent)}
+details{border-bottom:1px solid var(--line);padding:12px 0}
+details:last-child{border-bottom:0}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-family:var(--f-display);color:var(--accent)}
-details[open] summary::after{content:"–"}
-details p{color:var(--muted);padding-top:8px;font-size:.94rem}
-form.contact{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+summary::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--line);flex:none;transition:background .15s,box-shadow .15s}
+details[open] summary::after{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+details p{color:var(--muted);padding-top:8px;font-size:.96rem}
+form.contact{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 form.contact .full{grid-column:1/-1}
-.toast{font-weight:600;color:var(--good)}
+.toast{font-weight:600;color:var(--green)}
 
-footer{border-top:1px solid var(--line);padding-block:22px;color:var(--muted);font-size:.85rem}
-footer .wrap{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
-
-/* Detail pages + live search */
-.cardlink{color:inherit;text-decoration:none}
-.cardlink:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
-.card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto}
-.card-foot .cmp{margin-top:0}
-.more{font-weight:600;font-size:.88rem;text-decoration:none}
-a.pick{color:inherit;text-decoration:none}
-a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
-.back{display:inline-block;font-weight:600;text-decoration:none;margin-bottom:16px}
-.d-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:start;margin-bottom:24px}
-.d-title{font-size:clamp(2rem,6vw,3rem)}
-.d-score{background:var(--dmd-bg);color:var(--amber);font-family:var(--f-dmd);border-radius:12px;padding:12px 18px;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:inset 0 0 0 3px #2b2116}
-.d-score b{font-weight:400;font-size:2.6rem;line-height:1}
-.d-score span{font-size:.72rem;letter-spacing:.12em;opacity:.8}
-.d-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:20px;align-items:start}
-.pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.pc-col{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px}
-.pros,.cons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.pros li,.cons li{padding-left:24px;position:relative}
-.pros li::before,.cons li::before{position:absolute;left:0;top:0;font-weight:800}
-.pros li::before{content:"+";color:var(--good)}
-.cons li::before{content:"–";color:var(--accent)}
-.facts{font-size:.95rem;gap:8px 18px}
-.learn{display:flex;flex-direction:column;gap:8px;font-weight:600}
-.sim{display:flex;flex-direction:column;gap:8px}
-.sim a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px;border-radius:8px;background:var(--sunk);text-decoration:none;color:inherit}
-.sim a:hover{box-shadow:inset 0 0 0 2px var(--line)}
+/* Detail */
+.back{display:inline-block;font-weight:700;text-decoration:none;margin-top:32px}
+.back:hover{text-decoration:underline}
+.d-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;padding-block:18px 30px}
+.d-title{font-size:clamp(2.4rem,7vw,4rem);line-height:1.02}
+.d-score{background:var(--chrome);padding:7px;border-radius:14px}
+.d-score div{background:var(--dmd);color:var(--dmd-on);font-family:var(--f-dmd);border-radius:9px;padding:12px 20px;display:flex;flex-direction:column;align-items:center;gap:4px;text-shadow:0 0 10px rgba(255,158,31,.55)}
+.d-score b{font-weight:400;font-size:3rem;line-height:1}
+.d-score span{font-size:.8rem;opacity:.8}
+.d-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:24px;align-items:start}
+.pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.pc-col{display:flex;flex-direction:column;gap:12px}
+.pros,.cons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.pros li,.cons li{padding-left:26px;position:relative}
+.pros li::before,.cons li::before{content:"";position:absolute;left:2px;top:.45em;width:12px;height:12px;border-radius:50%}
+.pros li::before{background:var(--green);box-shadow:0 0 8px color-mix(in srgb,var(--green) 55%,transparent)}
+.cons li::before{background:var(--red);box-shadow:0 0 8px color-mix(in srgb,var(--red) 55%,transparent)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px}
+.box > p{color:var(--muted)}
+.facts{font-size:.97rem;gap:8px 20px}
+.learn{display:flex;flex-direction:column;gap:8px;font-weight:700}
+.sim{display:flex;flex-direction:column}
+.sim a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.sim a:last-child{border-bottom:0}
+.sim a:hover b{text-decoration:underline}
 .sim small{display:block;color:var(--muted);font-variant-numeric:tabular-nums}
-.near{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
-.near-q{flex:1 1 220px}
-.near-out{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+
+/* Live location search */
+.near{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.near-q{flex:1 1 240px}
+.near-out{display:flex;flex-direction:column;gap:12px;margin-top:6px}
 .near-out:empty{display:none}
 .locs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
-.locs li{display:flex;justify-content:space-between;gap:14px;padding:12px 2px;border-bottom:1px solid var(--line)}
+.locs li{display:flex;justify-content:space-between;gap:16px;padding:14px 2px;border-bottom:1px solid var(--line)}
 .locs li>div:first-child{min-width:0}
 .locs small{display:block;color:var(--muted)}
-.locs .games{font-size:.8rem;margin-top:2px}
-.loc-r{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none;font-size:.88rem;font-weight:600}
-.count-pill{font-family:var(--f-dmd);background:var(--dmd-bg);color:var(--amber);border-radius:6px;padding:2px 8px;white-space:nowrap}
-.near-box{margin-bottom:14px}
-@media (max-width:900px){.d-grid{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:600px){.pc{grid-template-columns:minmax(0,1fr)}.d-head{grid-template-columns:minmax(0,1fr)}.d-score{flex-direction:row;align-self:start;gap:10px}}
+.locs .games{font-size:.84rem;margin-top:3px}
+.loc-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none;font-size:.9rem;font-weight:700}
+.count-pill{font-family:var(--f-dmd);background:var(--dmd);color:var(--dmd-on);border-radius:6px;padding:3px 9px;white-space:nowrap;font-weight:400}
 
-@media (max-width:900px){
-  .hero-grid,.quiz,.guide,.svc{grid-template-columns:minmax(0,1fr)}
-  .paths{grid-template-columns:repeat(2,minmax(0,1fr))}
+footer{background:var(--field-deep);color:rgba(255,255,255,.75);font-size:.88rem}
+footer .wrap{display:flex;gap:14px;justify-content:space-between;flex-wrap:wrap;padding-block:28px calc(28px + env(safe-area-inset-bottom,0px))}
+footer a{color:#fff}
+
+@media (max-width:960px){
+  .hero .wrap,.quiz,.guide,.svc,.d-grid{grid-template-columns:minmax(0,1fr)}
+  .hero .wrap{gap:32px;padding-block:40px 48px}
+  .starts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   aside.spec{position:static}
 }
-@media (max-width:600px){
-  .paths,.grid,.trims,.split{grid-template-columns:minmax(0,1fr)}
+@media (max-width:620px){
+  body{font-size:16px}
+  .starts,.grid,.trims,.split,.pc{grid-template-columns:minmax(0,1fr)}
   form.contact{grid-template-columns:minmax(0,1fr)}
-  nav.main{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
+  nav.main{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
   .count{margin-left:0;width:100%}
+  .quiz-q,.quiz-a{padding:22px}
+  .d-head{grid-template-columns:minmax(0,1fr);align-items:start}
+  .d-score{justify-self:start}
 }
-@media (prefers-reduced-motion: reduce){.path,.meter i{transition:none}}
+@media (prefers-reduced-motion: reduce){.btn,.chip span,.meter i,summary::after{transition:none}}
 </style>
-
 </head>
 <body>
 <header class="top">
@@ -253,60 +280,63 @@ a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
 <main>
 <!-- HOME -->
 <section class="view" id="v-home" data-view="home">
-  <div class="wrap">
-    <div class="hero hero-grid">
+  <div class="hero">
+    <div class="wrap">
       <div class="stack">
-        <p class="eyebrow">Reviews · Buying advice · Repair</p>
-        <h1>Find the right <span>pinball machine</span> before you spend $8,000.</h1>
-        <p class="lede">Straight answers on which games are worth it, what Pro, Premium and LE really mean, where to play before you buy, and how to keep a machine running once it's home.</p>
+        <h1>Know the game before you buy the game.</h1>
+        <p>Honest reviews of the machines people actually buy, plain advice on trims and used games, and help finding one to play before you spend thousands.</p>
         <div class="btns">
-          <a class="btn" href="#quiz">Take the 30-second match</a>
-          <a class="btn ghost" href="#machines">Browse machines</a>
+          <a class="btn start" href="#quiz">Press start</a>
+          <a class="btn line" href="#machines">Browse machines</a>
         </div>
       </div>
-      <div class="dmd" aria-label="Dot-matrix display reading: Pinball Advisor, replay awarded">
+      <div class="backbox"><div class="backbox-in dmd" role="img" aria-label="Dot-matrix display scrolling: Pinball Advisor, replay awarded, find your game">
         <canvas id="dmd" width="512" height="128"></canvas>
-        <div class="dmd-cap"><span>BALL 1</span><span>CREDITS 3</span></div>
-      </div>
+        <div class="dmd-cap" aria-hidden="true"><span>BALL 1</span><span>CREDITS 3</span></div>
+      </div></div>
     </div>
+  </div>
 
-    <div class="paths">
-      <a class="path" href="#machines"><span class="insert"></span><h3>Machine reviews</h3><p>Every current-production game plus the classics people still hunt for.</p></a>
-      <a class="path" href="#guide"><span class="insert"></span><h3>Buying guide</h3><p>Trims, new vs. used, space, weight, and getting it through the door.</p></a>
-      <a class="path" href="#play"><span class="insert"></span><h3>Where to play</h3><p>Try a game on location before you buy one for the basement.</p></a>
-      <a class="path" href="#service"><span class="insert"></span><h3>Service &amp; repair</h3><p>Maintenance checklist, common fixes, and booking a tech.</p></a>
-    </div>
+  <div class="wrap">
+    <nav class="starts" aria-label="Start here">
+      <a href="#machines" data-theme-c="movie"><h3><span class="ins"></span>Machine reviews</h3><p>Current games and the classics people still hunt for, scored and compared.</p></a>
+      <a href="#guide" data-theme-c="music"><h3><span class="ins"></span>Buying guide</h3><p>Pro vs. Premium vs. LE, used-game checks, and getting it through the door.</p></a>
+      <a href="#play" data-theme-c="horror"><h3><span class="ins"></span>Where to play</h3><p>Search real locations near you and try a game before you own one.</p></a>
+      <a href="#service" data-theme-c="classic"><h3><span class="ins"></span>Service</h3><p>A maintenance routine, common fixes, and a way to book a tech.</p></a>
+    </nav>
 
     <form class="quiz" id="quiz" aria-labelledby="quiz-h">
-      <div>
-        <p class="eyebrow">Machine match</p>
-        <h2 id="quiz-h" style="margin:6px 0 16px">Which game fits you?</h2>
+      <div class="quiz-q">
+        <div class="stack" style="gap:8px">
+          <h2 id="quiz-h">Which game fits you?</h2>
+          <p class="lede">Four quick answers. Your top three update as you go.</p>
+        </div>
         <fieldset><legend>Budget</legend><div class="chips">
           <label class="chip"><input type="radio" name="budget" id="b1" value="7000"><span>Under $7k</span></label>
-          <label class="chip"><input type="radio" name="budget" id="b2" value="9500" checked><span>$7k–$9.5k</span></label>
-          <label class="chip"><input type="radio" name="budget" id="b3" value="13000"><span>$9.5k–$13k</span></label>
+          <label class="chip"><input type="radio" name="budget" id="b2" value="9500" checked><span>$7k to $9.5k</span></label>
+          <label class="chip"><input type="radio" name="budget" id="b3" value="13000"><span>$9.5k to $13k</span></label>
           <label class="chip"><input type="radio" name="budget" id="b4" value="99999"><span>No limit</span></label>
         </div></fieldset>
         <fieldset><legend>Who's playing?</legend><div class="chips">
-          <label class="chip"><input type="radio" name="who" id="w1" value="family" checked><span>Family &amp; guests</span></label>
+          <label class="chip"><input type="radio" name="who" id="w1" value="family" checked><span>Family and guests</span></label>
           <label class="chip"><input type="radio" name="who" id="w2" value="casual"><span>Casual player</span></label>
-          <label class="chip"><input type="radio" name="who" id="w3" value="deep"><span>Deep-rules nerd</span></label>
+          <label class="chip"><input type="radio" name="who" id="w3" value="deep"><span>Deep-rules player</span></label>
         </div></fieldset>
-        <fieldset><legend>Theme you're into</legend><div class="chips">
+        <fieldset><legend>Theme</legend><div class="chips">
           <label class="chip"><input type="radio" name="theme" id="t1" value="movie" checked><span>Movies</span></label>
           <label class="chip"><input type="radio" name="theme" id="t2" value="music"><span>Music</span></label>
           <label class="chip"><input type="radio" name="theme" id="t3" value="horror"><span>Horror</span></label>
-          <label class="chip"><input type="radio" name="theme" id="t4" value="classic"><span>Classic / original</span></label>
+          <label class="chip"><input type="radio" name="theme" id="t4" value="classic"><span>Classic and original</span></label>
         </div></fieldset>
-        <fieldset style="margin:0"><legend>New or used?</legend><div class="chips">
-          <label class="chip"><input type="radio" name="cond" id="c1" value="any" checked><span>Either</span></label>
+        <fieldset><legend>New or used?</legend><div class="chips">
+          <label class="chip"><input type="radio" name="cond" id="c1" value="any" checked><span>Either is fine</span></label>
           <label class="chip"><input type="radio" name="cond" id="c2" value="new"><span>New only</span></label>
         </div></fieldset>
       </div>
-      <div class="stack">
+      <div class="quiz-a">
         <h3>Your top three</h3>
         <div class="picks" id="picks" aria-live="polite" data-needs-data></div>
-        <p class="note">Prices are approximate street ranges. Always confirm with a distributor before buying.</p>
+        <p class="note">Prices are approximate street ranges. Confirm with a distributor before you buy.</p>
       </div>
     </form>
   </div>
@@ -315,24 +345,23 @@ a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
 <!-- MACHINES -->
 <section class="view" id="v-machines" data-view="machines" hidden>
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Machine reviews</p>
-      <h2>The games worth knowing</h2>
-      <p class="lede">Advisor scores are out of 10 and weigh shots, rules depth, reliability and how well the game holds up after 500 plays.</p>
+    <div class="page-head">
+      <h2>Machine reviews</h2>
+      <p class="lede">Scores are out of 10 and weigh shots, rules depth, reliability, and how the game holds up after 500 plays. The colored light shows the theme.</p>
     </div>
     <div class="toolbar">
       <label class="field">Search<input type="search" id="q" placeholder="Title or maker"></label>
       <label class="field">Maker<select id="fmaker"><option value="">All makers</option></select></label>
-      <label class="field">Condition<select id="fcond"><option value="">New &amp; used</option><option value="new">New production</option><option value="used">Used market</option></select></label>
+      <label class="field">Condition<select id="fcond"><option value="">New and used</option><option value="new">New production</option><option value="used">Used market</option></select></label>
       <label class="field">Max price<select id="fprice"><option value="">Any</option><option value="7000">$7,000</option><option value="9500">$9,500</option><option value="13000">$13,000</option></select></label>
-      <label class="field">Sort<select id="fsort"><option value="score">Advisor score</option><option value="price">Price, low first</option><option value="year">Newest</option><option value="diff">Easiest first</option></select></label>
+      <label class="field">Sort<select id="fsort"><option value="score">Highest score</option><option value="price">Lowest price</option><option value="year">Newest</option><option value="diff">Easiest first</option></select></label>
       <span class="count" id="count"></span>
     </div>
     <div class="grid" id="grid" data-needs-data></div>
     <div class="cmpbar" id="cmpbar" hidden>
       <span id="cmptext"></span>
       <button class="btn" type="button" id="cmpgo">Compare</button>
-      <button class="btn ghost" type="button" id="cmpclear">Clear</button>
+      <button class="btn line" type="button" id="cmpclear">Clear</button>
     </div>
     <div id="cmpout"></div>
   </div>
@@ -341,18 +370,18 @@ a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
 <!-- GUIDE -->
 <section class="view" id="v-guide" data-view="guide" hidden>
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Buying guide</p>
-      <h2>Before you buy a pinball machine</h2>
+    <div class="page-head">
+      <h2>Before you buy</h2>
+      <p class="lede">The things owners wish someone had told them before the delivery truck showed up.</p>
     </div>
     <div class="guide">
       <div class="prose">
-        <h3>Pro, Premium, LE: what you actually get</h3>
+        <h3 style="margin-top:0">Pro, Premium, LE: what you actually get</h3>
         <p>Most new games ship in three trims. The rules and theme stay the same; the toys and finish change. For a home game that guests will play, a Pro is usually enough. If you'll be the main player for years, the extra mechs on a Premium are where the price jump tends to pay off.</p>
         <div class="trims">
-          <div class="trim"><b>Pro</b><span>Base toys, standard cabinet art, often a simpler playfield.</span><span>Lowest price. Easiest to resell.</span></div>
-          <div class="trim"><b>Premium</b><span>Extra mechs and ramps, upgraded lighting, sometimes extra modes.</span><span>The usual sweet spot for owners.</span></div>
-          <div class="trim"><b>LE</b><span>Premium playfield plus numbered run, special art and trim.</span><span>Collector pricing. Pay for rarity, not gameplay.</span></div>
+          <div class="trim" data-theme-c="classic"><b><span class="ins"></span>Pro</b><span>Base toys, standard cabinet art, often a simpler playfield.</span><span>Lowest price and easiest to resell.</span></div>
+          <div class="trim" data-theme-c="music"><b><span class="ins"></span>Premium</b><span>Extra mechs and ramps, upgraded lighting, sometimes extra modes.</span><span>The usual sweet spot for owners.</span></div>
+          <div class="trim" data-theme-c="movie"><b><span class="ins"></span>LE</b><span>Premium playfield plus a numbered run, special art and trim.</span><span>You pay for rarity, not gameplay.</span></div>
         </div>
         <h3>New vs. used</h3>
         <p>New games come with a warranty and a distributor to call. Used games cost less up front but need a careful look. A clean, shopped classic from the 1990s can hold its value better than a new game that loses a chunk the day it's delivered.</p>
@@ -365,22 +394,22 @@ a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
           <li>Ask for the serial number and whether manuals, keys and the original backglass come with it.</li>
         </ul>
         <h3>Getting it home</h3>
-        <p>With the legs off and the head folded down, most modern games fit through a standard 30-inch doorway on their side using a pinball dolly. Never carry it by the backbox. Stairs are a two-to-three-person job; many sellers and techs offer delivery for a fee and it's usually worth it.</p>
+        <p>With the legs off and the head folded down, most modern games fit through a standard 30-inch doorway on their side using a pinball dolly. Never carry it by the backbox. Stairs are a two-to-three-person job; many sellers and techs offer delivery for a fee, and it's usually worth it.</p>
         <h3>Setting it up</h3>
         <p>Use a level app on the lockdown bar: side to side should read level, front to back around 6.5 degrees of pitch. Put it on its own outlet if you can, and keep it out of direct sunlight, which fades art fast.</p>
       </div>
       <aside class="spec">
-        <h3>Typical modern game</h3>
+        <h3>Will it fit?</h3>
         <dl class="meta">
           <dt>Width</dt><dd>about 29 in</dd>
           <dt>Depth</dt><dd>about 56 in</dd>
           <dt>Height</dt><dd>about 76 in</dd>
-          <dt>Weight</dt><dd>250–300 lb</dd>
-          <dt>Pitch</dt><dd>6–7°</dd>
-          <dt>Play space</dt><dd>+3 ft in front</dd>
+          <dt>Weight</dt><dd>250 to 300 lb</dd>
+          <dt>Pitch</dt><dd>6 to 7°</dd>
+          <dt>Play space</dt><dd>3 ft in front</dd>
         </dl>
-        <p class="note">Figures are typical for standard-body games. Wide-body and some boutique cabinets run larger; check the maker's spec sheet.</p>
-        <a class="btn" href="#quiz">Find my match</a>
+        <p class="note">Typical for a standard-body game. Wide-body and some boutique cabinets run larger, so check the maker's spec sheet.</p>
+        <a class="btn start" href="#quiz">Find my match</a>
       </aside>
     </div>
   </div>
@@ -389,31 +418,16 @@ a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
 <!-- PLAY -->
 <section class="view" id="v-play" data-view="play" hidden>
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Where to play</p>
+    <div class="page-head">
       <h2>Play it before you buy it</h2>
-      <p class="lede">Ten games on location will tell you more than a hundred gameplay videos. These are the best places to find machines near you.</p>
+      <p class="lede">Ten games on location will tell you more than a hundred gameplay videos.</p>
     </div>
-    <div class="box near-box" id="play-near"></div>
+    <div class="near-box" id="play-near"></div>
     <div class="split">
-      <div class="box">
-        <h3>Pinball Map</h3>
-        <p>A crowd-sourced map of bars, arcades and laundromats with pinball, including which titles are on site right now.</p>
-        <a class="btn ghost" href="https://pinballmap.com" target="_blank" rel="noopener">Open Pinball Map</a>
-      </div>
-      <div class="box">
-        <h3>IFPA tournaments &amp; leagues</h3>
-        <p>The International Flipper Pinball Association lists sanctioned events. Leagues are a cheap way to play a lot of different games each week.</p>
-        <a class="btn ghost" href="https://www.ifpapinball.com" target="_blank" rel="noopener">Find events</a>
-      </div>
-      <div class="box">
-        <h3>Pinball shows</h3>
-        <p>Regional expos put hundreds of games on free play under one roof, often with collectors selling games on the floor.</p>
-      </div>
-      <div class="box">
-        <h3>Collector meetups</h3>
-        <p>Local Facebook groups and Discord servers are where home owners trade games, parts and repair favors. Many will let you try a game you're considering.</p>
-      </div>
+      <div><h3>IFPA tournaments and leagues</h3><p>The International Flipper Pinball Association lists sanctioned events. A league is a cheap way to play a lot of different games every week.</p><a class="btn line" href="https://www.ifpapinball.com" target="_blank" rel="noopener">Find events</a></div>
+      <div><h3>Pinball Map</h3><p>The crowd-sourced map behind our search. Add a location or update a lineup when you spot something new.</p><a class="btn line" href="https://pinballmap.com" target="_blank" rel="noopener">Open Pinball Map</a></div>
+      <div><h3>Pinball shows</h3><p>Regional expos put hundreds of games on free play under one roof, often with collectors selling games on the floor.</p></div>
+      <div><h3>Collector meetups</h3><p>Local groups and Discord servers are where owners trade games, parts and repair favors. Many will let you try a game you're considering.</p></div>
     </div>
   </div>
 </section>
@@ -421,47 +435,51 @@ a.pick:hover{box-shadow:inset 0 0 0 2px var(--line)}
 <!-- SERVICE -->
 <section class="view" id="v-service" data-view="service" hidden>
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Service &amp; repair</p>
+    <div class="page-head">
       <h2>Keep it flipping</h2>
       <p class="lede">Most home games need a little attention every few hundred plays. Here's the routine, the usual problems, and a way to book help.</p>
     </div>
     <div class="svc">
-      <div class="stack">
+      <div class="panel">
         <h3>Routine maintenance</h3>
         <div class="meter" aria-hidden="true"><i id="meter"></i></div>
         <p class="note" id="mtext"></p>
         <div class="chk" id="chk"></div>
-        <button class="btn ghost" type="button" id="reset" style="align-self:start">Reset checklist</button>
+        <button class="btn line" type="button" id="reset" style="align-self:start">Reset checklist</button>
       </div>
-      <div class="stack">
-        <h3>Common problems</h3>
-        <div>
-          <details><summary>A flipper feels weak</summary><p>Check the end-of-stroke switch or flipper board, then look at the coil sleeve and plunger for wear. A worn sleeve is a cheap part and the most common cause.</p></details>
-          <details><summary>The ball gets stuck</summary><p>Usually a ramp that has shifted, a sticky scoop, or a lane guide that came loose. Note exactly where it stops; that location is the fix.</p></details>
-          <details><summary>A switch doesn't register</summary><p>Run switch test from the service menu. If the switch never shows, check for a broken wire or diode. If it shows intermittently, the rollover or opto may need adjusting.</p></details>
-          <details><summary>Lights or display are out</summary><p>Check fuses first, then connectors on the light board. On older games, burnt header pins on power connectors are a classic failure.</p></details>
-          <details><summary>The game reboots during play</summary><p>Often low voltage from a tired power supply or a bad ground. Stop playing and have it checked; repeated resets can damage boards.</p></details>
+      <div class="stack" style="gap:24px">
+        <div class="panel">
+          <h3>Common problems</h3>
+          <div>
+            <details><summary>A flipper feels weak</summary><p>Check the end-of-stroke switch or flipper board, then look at the coil sleeve and plunger for wear. A worn sleeve is a cheap part and the most common cause.</p></details>
+            <details><summary>The ball gets stuck</summary><p>Usually a ramp that has shifted, a sticky scoop, or a lane guide that came loose. Note exactly where it stops; that location is the fix.</p></details>
+            <details><summary>A switch doesn't register</summary><p>Run switch test from the service menu. If the switch never shows, check for a broken wire or diode. If it shows intermittently, the rollover or opto may need adjusting.</p></details>
+            <details><summary>Lights or display are out</summary><p>Check fuses first, then connectors on the light board. On older games, burnt header pins on power connectors are a classic failure.</p></details>
+            <details><summary>The game reboots during play</summary><p>Often low voltage from a tired power supply or a bad ground. Stop playing and have it checked; repeated resets can damage boards.</p></details>
+          </div>
         </div>
-        <h3 style="margin-top:10px">Book a service visit</h3>
-        <form class="contact" id="contact" novalidate>
-          <label class="field">Name<input type="text" id="cname" required autocomplete="name"></label>
-          <label class="field">Email<input type="email" id="cemail" required autocomplete="email"></label>
-          <label class="field full">Game and year<input type="text" id="cgame" placeholder="e.g. Addams Family, 1992"></label>
-          <label class="field full">What's going on?<textarea id="cmsg" required></textarea></label>
-          <div class="full btns" style="align-items:center"><button class="btn" type="submit">Request service</button><span class="toast" id="toast" role="status"></span></div>
-        </form>
+        <div class="panel">
+          <h3>Book a service visit</h3>
+          <form class="contact" id="contact" novalidate>
+            <label class="field">Name<input type="text" id="cname" required autocomplete="name"></label>
+            <label class="field">Email<input type="email" id="cemail" required autocomplete="email"></label>
+            <label class="field full">Game and year<input type="text" id="cgame" placeholder="For example, Addams Family, 1992"></label>
+            <label class="field full">What's going on?<textarea id="cmsg" required></textarea></label>
+            <div class="full btns"><button class="btn" type="submit">Request service</button><span class="toast" id="toast" role="status"></span></div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 <!-- MACHINE DETAIL -->
 <section class="view" id="v-detail" data-view="detail" hidden>
   <div class="wrap" id="detail"></div>
 </section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 PinballAdvisor.com</span><span>Scores are editorial opinions. Prices are estimates and change often.</span></div></footer>
+<footer><div class="wrap"><span>© 2026 PinballAdvisor.com</span><span>Scores are our opinions. Prices are estimates and change often. Location data from <a href="https://pinballmap.com" target="_blank" rel="noopener">Pinball Map</a>; machine details from <a href="https://opdb.org" target="_blank" rel="noopener">OPDB</a>.</span></div></footer>
 
 <script>
 (function(){
@@ -474,7 +492,7 @@ const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",
 const diffDots=d=>'<span class="diff" role="img" aria-label="Difficulty '+d+' of 5">'+[1,2,3,4,5].map(i=>'<i class="'+(i<=d?"on":"")+'"></i>').join("")+"</span>";
 const store={get(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const WHO={family:"Family & guests",casual:"Casual players",deep:"Deep-rules players"};
-const THEME={movie:"Movie",music:"Music",horror:"Horror",classic:"Classic / original"};
+const THEME={movie:"Movie",music:"Music",horror:"Horror",classic:"Classic"};
 const DISPLAY={dmd:"Dot-matrix (DMD)",lcd:"LCD screen",alpha:"Alphanumeric",cga:"CGA monitor",reels:"Score reels",lights:"Backglass lights"};
 const TYPE={ss:"Solid state",em:"Electro-mechanical",me:"Purely mechanical"};
 const simple=s=>String(s).toLowerCase().replace(/\(.*?\)/g," ").replace(/^the\s+/,"").replace(/[^a-z0-9]+/g," ").trim();
@@ -518,11 +536,11 @@ addEventListener("hashchange",route);
   const W=128,H=32,P=4;const off=document.createElement("canvas");off.width=2000;off.height=H;const o=off.getContext("2d",{willReadFrequently:true});
   const msgs=["PINBALL ADVISOR","REPLAY AWARDED","FIND YOUR GAME","SHOOT AGAIN"];
   let text="  "+msgs.join("   *   ")+"   *   ",tw=0,mask=null;
-  function build(){o.clearRect(0,0,off.width,H);o.fillStyle="#fff";o.font='22px "DotGothic16", monospace';o.textBaseline="middle";tw=Math.ceil(o.measureText(text).width);o.fillText(text,0,H/2+1);const d=o.getImageData(0,0,tw,H).data;mask=new Uint8Array(tw*H);for(let i=0;i<tw*H;i++)mask[i]=d[i*4+3]>110?1:0}
+  let fs=22;function build(){o.clearRect(0,0,off.width,H);o.fillStyle="#fff";o.font=fs+'px "DotGothic16", monospace';o.textBaseline="middle";tw=Math.ceil(o.measureText(text).width);o.fillText(text,0,H/2+1);const d=o.getImageData(0,0,tw,H).data;mask=new Uint8Array(tw*H);for(let i=0;i<tw*H;i++)mask[i]=d[i*4+3]>110?1:0}
   function draw(x){ctx.fillStyle="#140D06";ctx.fillRect(0,0,cv.width,cv.height);for(let yy=0;yy<H;yy++)for(let xx=0;xx<W;xx++){const sx=((xx+x)%tw+tw)%tw;const on=mask&&mask[yy*tw+sx];ctx.fillStyle=on?"#FF9A1F":"#2A1A0B";ctx.beginPath();ctx.arc(xx*P+2,yy*P+2,1.55,0,6.283);ctx.fill()}}
   const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let x=0;function tick(){x+=1;draw(x);setTimeout(()=>requestAnimationFrame(tick),45)}
-  const go=()=>{build();if(still){text="PINBALL ADVISOR";build();draw(-8)}else tick()};
+  const go=()=>{if(still){text="PINBALL ADVISOR";fs=22;build();while(tw>W-4&&fs>9){fs--;build()}const pad=Math.floor((W-tw)/2);const t2=tw;tw=W;const m2=new Uint8Array(W*H);for(let yy=0;yy<H;yy++)for(let xx=0;xx<t2;xx++)if(xx+pad>=0&&xx+pad<W)m2[yy*W+xx+pad]=mask[yy*t2+xx];mask=m2;draw(0)}else{build();tick()}};
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(go,go);
 })();
 
@@ -540,7 +558,7 @@ function match(){
     if(w==="deep")s+=m.d;
     return {m,s};
   }).sort((a,b2)=>b2.s-a.s).slice(0,3);
-  $("picks").innerHTML=scored.map((x,i)=>'<a class="pick" href="#machine-'+x.m.id+'"><span class="rank">#'+(i+1)+'</span><div><b>'+esc(x.m.n)+'</b><small>'+esc(x.m.mk)+" · "+x.m.y+" · "+(x.m.c==="new"?"New production":"Used market")+'</small></div><span class="price">'+range(x.m)+"</span></a>").join("");
+  $("picks").innerHTML=scored.map((x,i)=>'<a class="pick" href="#machine-'+x.m.id+'"><span class="rank">#'+(i+1)+'</span><div><b>'+esc(x.m.n)+'</b><small>'+esc(x.m.mk)+", "+x.m.y+(x.m.c==="new"?", new":", used")+'</small></div><span class="price">'+range(x.m)+"</span></a>").join("");
 }
 quiz.addEventListener("change",match);quiz.addEventListener("submit",e=>e.preventDefault());
 
@@ -561,7 +579,7 @@ function render(){
   const by={score:(a,b)=>b.s-a.s,price:(a,b)=>a.lo-b.lo,year:(a,b)=>b.y-a.y,diff:(a,b)=>a.d-b.d||b.s-a.s};
   list.sort(by[sort]);
   $("count").textContent=list.length+" of "+M.length+" machines";
-  grid.innerHTML=list.length?list.map(m=>{const i=M.indexOf(m);return '<article class="card"><div class="card-top"><div><div class="maker">'+esc(m.mk)+" · "+m.y+'</div><h3><a class="cardlink" href="#machine-'+m.id+'">'+esc(m.n)+'</a></h3></div><span class="score" title="Advisor score">'+m.s.toFixed(1)+'</span></div><p>'+esc(m.note)+'</p><dl class="meta"><dt>Price</dt><dd>'+range(m)+'</dd><dt>Difficulty</dt><dd>'+diffDots(m.d)+'</dd></dl><div class="tags"><span class="tag '+m.c+'">'+(m.c==="new"?"New":"Used")+"</span>"+m.tags.map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+'</div><div class="card-foot"><label class="cmp"><input type="checkbox" id="cmp-'+i+'" data-i="'+i+'"'+(sel.has(i)?" checked":"")+'> Compare</label><a class="more" href="#machine-'+m.id+'">Full review →</a></div></article>'}).join(""):'<div class="empty">No machines match those filters. Try raising the max price or clearing the search.</div>';
+  grid.innerHTML=list.length?list.map(m=>{const i=M.indexOf(m);return '<article class="card"><div class="card-top"><div><div class="maker" data-theme-c="'+m.th+'"><span class="ins" title="'+esc(THEME[m.th]||m.th)+' theme"></span>'+esc(m.mk)+", "+m.y+'</div><h3><a class="cardlink" href="#machine-'+m.id+'">'+esc(m.n)+'</a></h3></div><span class="score" title="Advisor score">'+m.s.toFixed(1)+'</span></div><p>'+esc(m.note)+'</p><dl class="meta"><dt>Price</dt><dd>'+range(m)+'</dd><dt>Difficulty</dt><dd>'+diffDots(m.d)+'</dd></dl><div class="tags"><span class="tag '+m.c+'">'+(m.c==="new"?"New":"Used")+"</span>"+m.tags.map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+'</div><div class="card-foot"><label class="cmp"><input type="checkbox" id="cmp-'+i+'" data-i="'+i+'"'+(sel.has(i)?" checked":"")+'> Compare</label><a class="more" href="#machine-'+m.id+'">Read review</a></div></article>'}).join(""):'<div class="empty">No machines match those filters. Try raising the max price or clearing the search.</div>';
 }
 grid.addEventListener("change",e=>{const cb=e.target.closest("input[data-i]");if(!cb)return;const i=+cb.dataset.i;if(cb.checked){if(sel.size>=3){cb.checked=false;flash();return}sel.add(i)}else sel.delete(i);bar()});
 function flash(){$("cmptext").textContent="You can compare up to 3 machines.";setTimeout(bar,1600)}
@@ -578,7 +596,7 @@ $("cmpgo").onclick=()=>{
 // ---------- Pinball Map (live) ----------
 const PBM="https://pinballmap.com/api/v1/locations/";
 function nearForm(prefix,label){
-  return '<form class="near" id="'+prefix+'-form" novalidate><label class="field near-q">'+label+'<input type="text" id="'+prefix+'-q" placeholder="City, address or ZIP" autocomplete="postal-code"></label><div class="btns"><button class="btn" type="submit">Search</button><button class="btn ghost" type="button" id="'+prefix+'-geo">Use my location</button></div></form><div class="near-out" id="'+prefix+'-out" aria-live="polite"></div>';
+  return '<form class="near" id="'+prefix+'-form" novalidate><label class="field near-q">'+label+'<input type="text" id="'+prefix+'-q" placeholder="City, address or ZIP" autocomplete="postal-code"></label><div class="btns"><button class="btn" type="submit">Search</button><button class="btn line" type="button" id="'+prefix+'-geo">Use my location</button></div></form><div class="near-out" id="'+prefix+'-out" aria-live="polite"></div>';
 }
 function wireNear(prefix,filterName){
   const form=$(prefix+"-form"),out=$(prefix+"-out"),q=$(prefix+"-q");
@@ -594,7 +612,7 @@ function wireNear(prefix,filterName){
       let total=locs.length;
       if(filterName){const want=simple(filterName);locs=locs.filter(l=>(l.machine_names||[]).some(n=>simple(n).includes(want)))}
       const head=filterName?'<p class="note">'+locs.length+" of "+total+" nearby locations list "+esc(filterName)+".</p>":'<p class="note">'+total+" locations within 30 miles.</p>";
-      out.innerHTML=head+(locs.length?'<ul class="locs">'+locs.slice(0,12).map(l=>{const addr=[l.street,l.city,l.state].filter(Boolean).join(", ");const n=l.num_machines||(l.machine_names||[]).length;const names=(l.machine_names||[]).slice(0,6);return '<li><div><b>'+esc(l.name)+'</b><small>'+esc(addr)+'</small>'+(names.length?'<small class="games">'+names.map(esc).join(" · ")+((l.machine_names||[]).length>6?" · …":"")+"</small>":"")+'</div><div class="loc-r"><span class="count-pill">'+n+(n===1?" game":" games")+'</span><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(l.name+" "+addr)+'" target="_blank" rel="noopener">Directions</a></div></li>'}).join("")+"</ul>":"")+'<p class="note">Location data from <a href="https://pinballmap.com" target="_blank" rel="noopener">Pinball Map</a>. Spot something out of date? Update it there.</p>';
+      out.innerHTML=head+(locs.length?'<ul class="locs">'+locs.slice(0,12).map(l=>{const addr=[l.street,l.city,l.state].filter(Boolean).join(", ");const n=l.num_machines||(l.machine_names||[]).length;const names=(l.machine_names||[]).slice(0,6);return '<li><div><b>'+esc(l.name)+'</b><small>'+esc(addr)+'</small>'+(names.length?'<small class="games">'+names.map(esc).join(", ")+((l.machine_names||[]).length>6?", and more":"")+"</small>":"")+'</div><div class="loc-r"><span class="count-pill">'+n+(n===1?" game":" games")+'</span><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(l.name+" "+addr)+'" target="_blank" rel="noopener">Directions</a></div></li>'}).join("")+"</ul>":"")+'<p class="note">Location data from <a href="https://pinballmap.com" target="_blank" rel="noopener">Pinball Map</a>. Spot something out of date? Update it there.</p>';
     }catch(e){
       out.innerHTML='<p class="note">Couldn\'t reach Pinball Map right now. You can <a href="https://pinballmap.com" target="_blank" rel="noopener">search on pinballmap.com</a> instead.</p>';
     }
@@ -614,7 +632,7 @@ function renderDetail(id){
   if(!M.length){el.innerHTML='<p class="note">Loading…</p>';return}
   const m=byId(id);
   if(!m){el.innerHTML='<div class="empty">We don\'t have a review for that machine yet. <a href="#machines">Browse all machines</a>.</div>';return}
-  document.title=m.n+" review · Pinball Advisor";
+  document.title=m.n+" review | Pinball Advisor";
   const o=OPDB.machines[m.id];
   const facts=[["Price range",range(m)],["Condition",m.c==="new"?"New production":"Used market"],["Difficulty",diffDots(m.d)],["Best for",m.who.map(w=>WHO[w]).join(", ")],["Theme",THEME[m.th]||m.th]];
   if(o){
@@ -631,16 +649,16 @@ function renderDetail(id){
   const pinsideUrl=m.pinside?"https://pinside.com/pinball/machine/"+encodeURIComponent(m.pinside):"https://duckduckgo.com/?q="+encodeURIComponent("site:pinside.com/pinball/machine "+m.n+" "+m.mk);
   const similar=M.filter(x=>x.id!==m.id).map(x=>({x,s:(x.th===m.th?3:0)+x.who.filter(w=>m.who.includes(w)).length+(Math.abs(x.lo-m.lo)<2000?1:0)+x.s/10})).sort((a,b)=>b.s-a.s).slice(0,3).map(v=>v.x);
   el.innerHTML=
-   '<a class="back" href="#machines">← All machines</a>'+
-   '<div class="d-head"><div class="stack"><p class="eyebrow">'+esc(m.mk)+" · "+m.y+'</p><h2 class="d-title">'+esc(m.n)+'</h2><p class="lede">'+esc(m.note)+'</p><div class="tags"><span class="tag '+m.c+'">'+(m.c==="new"?"New":"Used")+"</span>"+m.tags.map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+'</div></div><div class="d-score"><span>ADVISOR</span><b>'+m.s.toFixed(1)+'</b><span>OUT OF 10</span></div></div>'+
+   '<a class="back" href="#machines">Back to all machines</a>'+
+   '<div class="d-head"><div class="stack"><p class="maker" data-theme-c="'+m.th+'"><span class="ins"></span>'+esc(m.mk)+", "+m.y+", "+esc((THEME[m.th]||m.th).toLowerCase())+" theme"+'</p><h2 class="d-title">'+esc(m.n)+'</h2><p class="lede">'+esc(m.note)+'</p><div class="tags"><span class="tag '+m.c+'">'+(m.c==="new"?"New":"Used")+"</span>"+m.tags.map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+'</div></div><div class="d-score" role="img" aria-label="Score '+m.s.toFixed(1)+' out of 10"><div><span>SCORE</span><b>'+m.s.toFixed(1)+'</b><span>OF 10</span></div></div></div>'+
    '<div class="d-grid"><div class="stack">'+
      '<div class="pc"><div class="pc-col"><h3>What we like</h3><ul class="pros">'+m.pros.map(p=>"<li>"+esc(p)+"</li>").join("")+'</ul></div><div class="pc-col"><h3>Watch out for</h3><ul class="cons">'+m.cons.map(p=>"<li>"+esc(p)+"</li>").join("")+"</ul></div></div>"+
      '<div class="box"><h3>Machine facts</h3><dl class="meta facts">'+facts.map(f=>"<dt>"+f[0]+"</dt><dd>"+f[1]+"</dd>").join("")+"</dl>"+feats+(o?'<p class="note">Release, display and credits from the <a href="https://opdb.org" target="_blank" rel="noopener">Open Pinball Database</a>.</p>':"")+"</div>"+
      '<div class="box"><h3>Where to play '+esc(m.n)+"</h3>"+nearForm("d","Near")+"</div>"+
    '</div><aside class="stack">'+
      '<div class="box"><h3>Owner ratings &amp; prices</h3><p>Pinside has owner reviews, ratings and marketplace listings for this game.</p><a class="btn ghost" href="'+pinsideUrl+'" target="_blank" rel="noopener">See it on Pinside</a></div>'+
-     (learn.length?'<div class="box"><h3>Learn the game</h3><div class="learn">'+learn.map(x=>'<a href="'+esc(x[0])+'" target="_blank" rel="noopener">'+x[1]+' ↗</a>').join("")+"</div></div>":"")+
-     '<div class="box"><h3>Also consider</h3><div class="sim">'+similar.map(x=>'<a href="#machine-'+x.id+'"><span><b>'+esc(x.n)+"</b><small>"+esc(x.mk)+" · "+range(x)+'</small></span><span class="score">'+x.s.toFixed(1)+"</span></a>").join("")+"</div></div>"+
+     (learn.length?'<div class="box"><h3>Learn the game</h3><div class="learn">'+learn.map(x=>'<a href="'+esc(x[0])+'" target="_blank" rel="noopener">'+x[1]+'</a>').join("")+"</div></div>":"")+
+     '<div class="box"><h3>Also consider</h3><div class="sim">'+similar.map(x=>'<a href="#machine-'+x.id+'"><span><b>'+esc(x.n)+"</b><small>"+esc(x.mk)+", "+range(x)+'</small></span><span class="score">'+x.s.toFixed(1)+"</span></a>").join("")+"</div></div>"+
      '<a class="btn" href="#quiz">Find my match</a>'+
    "</aside></div>";
   wireNear("d",m.n);
@@ -650,7 +668,7 @@ function renderDetail(id){
 const tasks=[["Clean the playfield","Novus 2 or a pinball-safe cleaner, every 300–500 plays"],["Clean or replace the balls","Dirty or pitted balls scratch the playfield"],["Inspect rubber rings","Replace cracked or flat rubbers; a fresh set plays faster"],["Check flipper bats and sleeves","Look for play in the bat and wear on coil sleeves"],["Run switch and coil tests","From the service menu; note anything that fails"],["Level the game","Level side to side, about 6.5° front to back"],["Check for loose screws and posts","Especially ramps and lane guides"],["Look at the coin door and power cord","Interlock switch works, cord isn't pinched"]];
 const done=new Set(store.get("pa-checks",[]));
 const chk=$("chk");
-function drawChk(){chk.innerHTML=tasks.map((t,i)=>'<label><input type="checkbox" id="task-'+i+'" data-t="'+i+'"'+(done.has(i)?" checked":"")+'><span>'+t[0]+"<small>"+t[1]+"</small></span></label>").join("");prog()}
+function drawChk(){chk.innerHTML=tasks.map((t,i)=>'<label><input type="checkbox" id="task-'+i+'" data-t="'+i+'"'+(done.has(i)?" checked":"")+'><span><b>'+t[0]+"</b><small>"+t[1]+"</small></span></label>").join("");prog()}
 function prog(){$("meter").style.width=(done.size/tasks.length*100)+"%";$("mtext").textContent=done.size+" of "+tasks.length+" done";store.set("pa-checks",[...done])}
 chk.addEventListener("change",e=>{const i=+e.target.dataset.t;e.target.checked?done.add(i):done.delete(i);prog()});
 $("reset").onclick=()=>{done.clear();drawChk()};
