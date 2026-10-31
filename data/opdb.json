@@ -85,21 +85,19 @@
       "primer_url": null
     },
     "metallica-remastered": {
-      "opdb_id": "GRBE4-MQK1Z-A9Yn1",
-      "name": "Metallica (Pro LED)",
+      "opdb_id": "GO0q3-MOEy8",
+      "name": "Metallica Remastered (Premium/LE)",
       "manufacturer": "Stern",
-      "manufacture_date": "2014-08-01",
-      "ipdb_id": 6178,
+      "manufacture_date": "2024-10-01",
+      "ipdb_id": null,
       "type": "ss",
-      "display": "dmd",
+      "display": "lcd",
       "player_count": 4,
-      "designers": [
-        "John Borg"
-      ],
+      "designers": [],
       "artists": [],
       "features": [],
-      "rules_url": "https://pinballrulesheets.com/stern/metallica-rulesheet",
-      "primer_url": "https://pinballprimer.github.io/metallica_GRBE4.html"
+      "rules_url": "https://pinballrulesheets.com/stern/metallica-remastered-rulesheet",
+      "primer_url": null
     },
     "deadpool": {
       "opdb_id": "G6lnq-Mq1kv",
@@ -706,5 +704,5 @@
       "primer_url": null
     }
   },
-  "updated": "2026-10-31T01:44:04.620Z"
+  "updated": "2026-10-31T01:44:53.061Z"
 }
