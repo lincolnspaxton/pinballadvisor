@@ -84,6 +84,23 @@
       "rules_url": "https://pinballrulesheets.com/stern/john-wick-rulesheet",
       "primer_url": null
     },
+    "metallica-remastered": {
+      "opdb_id": "GRBE4-MQK1Z-A9Yn1",
+      "name": "Metallica (Pro LED)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2014-08-01",
+      "ipdb_id": 6178,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [
+        "John Borg"
+      ],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/metallica-rulesheet",
+      "primer_url": "https://pinballprimer.github.io/metallica_GRBE4.html"
+    },
     "deadpool": {
       "opdb_id": "G6lnq-Mq1kv",
       "name": "Deadpool (Pro)",
@@ -103,6 +120,36 @@
       ],
       "features": [],
       "rules_url": "https://pinballrulesheets.com/stern/deadpool-rulesheet",
+      "primer_url": null
+    },
+    "elton-john": {
+      "opdb_id": "G2LWd-M4o3Y",
+      "name": "Elton John",
+      "manufacturer": "Jersey Jack Pinball",
+      "manufacture_date": "2023-10-01",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/jersey-jack/elton-john-rulesheet",
+      "primer_url": null
+    },
+    "the-godfather": {
+      "opdb_id": "Gd2ox-MW9qj",
+      "name": "The Godfather",
+      "manufacturer": "Jersey Jack Pinball",
+      "manufacture_date": "2023-03-01",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/jersey-jack/the-godfather-rulesheet",
       "primer_url": null
     },
     "halloween": {
@@ -133,6 +180,23 @@
       "artists": [],
       "features": [],
       "rules_url": "https://pinballrulesheets.com/barrels-of-fun/dune-rulesheet",
+      "primer_url": null
+    },
+    "houdini": {
+      "opdb_id": "GvBQX-M0ody",
+      "name": "Houdini: Master of Mystery",
+      "manufacturer": "American Pinball",
+      "manufacture_date": "2017-10-01",
+      "ipdb_id": 6470,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Joe Balcer"
+      ],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/american-pinball/houdini-rulesheet",
       "primer_url": null
     },
     "medieval-madness-remake": {
@@ -457,6 +521,21 @@
       "rules_url": "https://pinballrulesheets.com/jersey-jack/pirates-of-the-caribbean-jjp-rulesheet-wip",
       "primer_url": null
     },
+    "toy-story-4": {
+      "opdb_id": "GJ2o0-MrRye",
+      "name": "Toy Story 4",
+      "manufacturer": "Jersey Jack Pinball",
+      "manufacture_date": "2022-06-14",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/jersey-jack/toy-story-4-rulesheet",
+      "primer_url": null
+    },
     "guns-n-roses": {
       "opdb_id": "GqZZ1-M1r5Y",
       "name": "Guns N' Roses",
@@ -627,5 +706,5 @@
       "primer_url": null
     }
   },
-  "updated": "2026-10-31T01:42:26.043Z"
+  "updated": "2026-10-31T01:44:04.620Z"
 }
