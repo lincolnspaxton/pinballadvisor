@@ -95,12 +95,12 @@ if (prev && JSON.stringify(prev.machines) === JSON.stringify(out.machines)) {
 }
 
 // ---------------------------------------------------------------------------
-// Catalog: every physical machine from CATALOG_FROM onward, one entry per
+// Catalog: every physical machine (from CATALOG_FROM onward), one entry per
 // title (trims grouped together). New releases appear here automatically.
 // Reviewed machines are skipped because they already have full pages.
 // ---------------------------------------------------------------------------
 const CATALOG = new URL("data/catalog.json", ROOT);
-const CATALOG_FROM = 1990;
+const CATALOG_FROM = 0; // 0 = every era. Set to a year (e.g. 1990) to limit the catalog.
 
 const slug = s => String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "")
   .replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
@@ -117,7 +117,7 @@ const groups = new Map();
 for (const e of all) {
   if (e.entryType !== "machine" && e.entryType !== "alias") continue;
   const y = yearOf(e);
-  if (y < CATALOG_FROM) continue;
+  if (CATALOG_FROM && y < CATALOG_FROM) continue;
   if (e.manufactureDate && e.manufactureDate > today) continue; // announced but not out yet
   const g = e.opdbGroup || String(e.opdbId).split("-")[0];
   if (!g || reviewedGroups.has(g)) continue;
