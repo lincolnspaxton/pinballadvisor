@@ -1,5 +1,631 @@
 {
-  "source": "Open Pinball Database (opdb.org)",
-  "updated": null,
-  "machines": {}
+  "source": "Open Pinball Database (opdb.org), via the Match Play data export",
+  "machines": {
+    "godzilla": {
+      "opdb_id": "GweeP-MW95j",
+      "name": "Godzilla (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2021-09-14",
+      "ipdb_id": 6841,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Keith Elwin"
+      ],
+      "artists": [
+        "Jeremy Packer"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/stern-godzilla-rulesheet",
+      "primer_url": null
+    },
+    "jurassic-park": {
+      "opdb_id": "GK17D-MdEqz",
+      "name": "Jurassic Park (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2019-07-26",
+      "ipdb_id": 6573,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Keith Elwin"
+      ],
+      "artists": [
+        "Jonathan Bergeron"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/stern-jurassic-park-rulesheet",
+      "primer_url": null
+    },
+    "foo-fighters": {
+      "opdb_id": "GpeoL-MyNPq",
+      "name": "Foo Fighters (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2023-03-01",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/foo-fighters-rulesheet",
+      "primer_url": null
+    },
+    "jaws": {
+      "opdb_id": "GLWll-MXr4N",
+      "name": "JAWS (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2024-01-04",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/jaws-rulesheet",
+      "primer_url": null
+    },
+    "john-wick": {
+      "opdb_id": "GQK1P-MW9pj",
+      "name": "John Wick (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2024-05-06",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/john-wick-rulesheet",
+      "primer_url": null
+    },
+    "deadpool": {
+      "opdb_id": "G6lnq-Mq1kv",
+      "name": "Deadpool (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2018-08-01",
+      "ipdb_id": 6558,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "George Gomez"
+      ],
+      "artists": [
+        "Jeremy Packer",
+        "Greg Freres",
+        "Steven Martin"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/deadpool-rulesheet",
+      "primer_url": null
+    },
+    "halloween": {
+      "opdb_id": "Gj66Z-Mp4BN",
+      "name": "Halloween (SE)",
+      "manufacturer": "Spooky Pinball",
+      "manufacture_date": "2021-08-20",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/spooky/halloween-rulesheet",
+      "primer_url": null
+    },
+    "dune": {
+      "opdb_id": "Gd266-ME0l7",
+      "name": "Dune",
+      "manufacturer": "Barrels of Fun",
+      "manufacture_date": "2025-04-14",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/barrels-of-fun/dune-rulesheet",
+      "primer_url": null
+    },
+    "medieval-madness-remake": {
+      "opdb_id": "G5pe4-MrR1B",
+      "name": "Medieval Madness (Remake Special Edition)",
+      "manufacturer": "Chicago Gaming",
+      "manufacture_date": "2016-01-01",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/medieval_G5pe4.html"
+    },
+    "attack-from-mars-remake": {
+      "opdb_id": "G4do5-MkPnV",
+      "name": "Attack From Mars (Remake)",
+      "manufacturer": "Chicago Gaming",
+      "manufacture_date": "2017-06-01",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/afm_G4do5.html"
+    },
+    "twilight-zone": {
+      "opdb_id": "GrXzD-MjBPX",
+      "name": "Twilight Zone",
+      "manufacturer": "Bally",
+      "manufacture_date": "1993-05-04",
+      "ipdb_id": 2684,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [
+        "Pat Lawlor",
+        "Larry DeMar",
+        "Ted Estes"
+      ],
+      "artists": [
+        "John Youssi"
+      ],
+      "features": [
+        "Widebody"
+      ],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/twilightzone_GrXzD.html"
+    },
+    "the-addams-family": {
+      "opdb_id": "G4ODR-MDXEy",
+      "name": "The Addams Family",
+      "manufacturer": "Bally",
+      "manufacture_date": "1992-01-03",
+      "ipdb_id": 20,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [
+        "Larry DeMar",
+        "Pat Lawlor"
+      ],
+      "artists": [
+        "John Youssi"
+      ],
+      "features": [],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/addams_G4ODR.html"
+    },
+    "monster-bash": {
+      "opdb_id": "Gr3EW-MD3Nj",
+      "name": "Monster Bash",
+      "manufacturer": "Williams",
+      "manufacture_date": "1998-07-01",
+      "ipdb_id": 4441,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [
+        "George Gomez"
+      ],
+      "artists": [
+        "Kevin O'Connor"
+      ],
+      "features": [],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/monsterbash_Gr3EW.html"
+    },
+    "alien": {
+      "opdb_id": "G4PBO-MyNeb",
+      "name": "Alien (Remake)",
+      "manufacturer": "Pinball Brothers",
+      "manufacture_date": "2021-05-01",
+      "ipdb_id": null,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [],
+      "artists": [],
+      "features": [
+        "Widebody"
+      ],
+      "rules_url": "https://pinballrulesheets.com/pinball-brothers/pinball-brothers-alien-rulesheet",
+      "primer_url": null
+    },
+    "stranger-things": {
+      "opdb_id": "Gzy89-MNEeO",
+      "name": "Stranger Things (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2019-12-23",
+      "ipdb_id": 6642,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Brian Eddy"
+      ],
+      "artists": [
+        "Bob Stevlic"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/stranger-things-rulesheet",
+      "primer_url": null
+    },
+    "the-mandalorian": {
+      "opdb_id": "GBLLP-MkPpr",
+      "name": "The Mandalorian (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2021-05-11",
+      "ipdb_id": 6828,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Brian Eddy"
+      ],
+      "artists": [
+        "Randy Martinez"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/the-mandalorian-rulesheet",
+      "primer_url": null
+    },
+    "iron-maiden": {
+      "opdb_id": "G4dOQ-MyNbb",
+      "name": "Iron Maiden: Legacy of the Beast (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2018-04-01",
+      "ipdb_id": 6555,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Keith Elwin"
+      ],
+      "artists": [
+        "Jeremy Packer"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/iron-maiden-pinball-rulesheet",
+      "primer_url": null
+    },
+    "led-zeppelin": {
+      "opdb_id": "Gweel-M9Rk0",
+      "name": "Led Zeppelin (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2020-12-15",
+      "ipdb_id": 6760,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Steve Ritchie"
+      ],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/led-zeppelin-rulesheet",
+      "primer_url": null
+    },
+    "rush": {
+      "opdb_id": "G2Lkd-MNEdK",
+      "name": "Rush (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2022-01-01",
+      "ipdb_id": 6844,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "John Borg"
+      ],
+      "artists": [],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/stern-rush-rulesheet",
+      "primer_url": null
+    },
+    "black-knight-sword-of-rage": {
+      "opdb_id": "GD7Ld-ME0BP",
+      "name": "Black Knight: Sword of Rage (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2019-03-26",
+      "ipdb_id": 6567,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Steve Ritchie"
+      ],
+      "artists": [
+        "Kevin O'Connor",
+        "Dave Link",
+        "Harrison Drake",
+        "Danai Kittivathana",
+        "George Gomez"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/black-knight-sword-of-rage-rulesheet",
+      "primer_url": null
+    },
+    "tmnt": {
+      "opdb_id": "Gd2Xb-Mq1qv",
+      "name": "Teenage Mutant Ninja Turtles (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2020-06-01",
+      "ipdb_id": 6730,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "John Borg"
+      ],
+      "artists": [
+        "Jeremy Packer"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/stern-tmnt-rulesheet",
+      "primer_url": null
+    },
+    "james-bond-007": {
+      "opdb_id": "GQKyP-Mx0O4",
+      "name": "James Bond 007 (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2022-09-01",
+      "ipdb_id": 6896,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "George Gomez"
+      ],
+      "artists": [
+        "Kevin O'Connor"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/james-bond-007-rulesheet",
+      "primer_url": null
+    },
+    "venom": {
+      "opdb_id": "G3EBl-Mq1zy",
+      "name": "Venom (Pro)",
+      "manufacturer": "Stern",
+      "manufacture_date": "2023-07-15",
+      "ipdb_id": 7064,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Brian Eddy"
+      ],
+      "artists": [
+        "Jeremy Packer"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/stern/venom-rulesheet",
+      "primer_url": null
+    },
+    "wizard-of-oz": {
+      "opdb_id": "G4xyR-MJ2v0",
+      "name": "The Wizard of Oz",
+      "manufacturer": "Jersey Jack Pinball",
+      "manufacture_date": "2013-05-01",
+      "ipdb_id": 5800,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Joe Balcer"
+      ],
+      "artists": [
+        "Jerry Vanderstelt",
+        "Greg Freres",
+        "Matt Riesterer"
+      ],
+      "features": [
+        "Widebody"
+      ],
+      "rules_url": null,
+      "primer_url": null
+    },
+    "pirates-of-the-caribbean": {
+      "opdb_id": "GRbPY-MePOP",
+      "name": "Pirates of the Caribbean",
+      "manufacturer": "Jersey Jack Pinball",
+      "manufacture_date": "2018-01-01",
+      "ipdb_id": 6492,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Eric Meunier"
+      ],
+      "artists": [],
+      "features": [
+        "Widebody"
+      ],
+      "rules_url": "https://pinballrulesheets.com/jersey-jack/pirates-of-the-caribbean-jjp-rulesheet-wip",
+      "primer_url": null
+    },
+    "guns-n-roses": {
+      "opdb_id": "GqZZ1-M1r5Y",
+      "name": "Guns N' Roses",
+      "manufacturer": "Jersey Jack Pinball",
+      "manufacture_date": "2020-10-05",
+      "ipdb_id": 6764,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Eric Meunier",
+        "Saul \"Slash\" Hudson"
+      ],
+      "artists": [
+        "Dayne Henry Jr.",
+        "Jean-Paul de Win",
+        "Arian Buhler",
+        "Mark Molitor",
+        "Jesper Abell"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/jersey-jack/guns-n-roses-jjp-rulesheet",
+      "primer_url": null
+    },
+    "indiana-jones": {
+      "opdb_id": "G4xZy-MLno6",
+      "name": "Indiana Jones: The Pinball Adventure",
+      "manufacturer": "Williams",
+      "manufacture_date": "1993-01-08",
+      "ipdb_id": 1267,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [
+        "Mark Ritchie",
+        "Doug Watson"
+      ],
+      "artists": [
+        "Doug Watson"
+      ],
+      "features": [
+        "Widebody"
+      ],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/indianajones_G4xZy.html"
+    },
+    "star-trek-tng": {
+      "opdb_id": "GR6d8-M1rZd",
+      "name": "Star Trek: The Next Generation",
+      "manufacturer": "Williams",
+      "manufacture_date": "1993-01-01",
+      "ipdb_id": 2357,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [
+        "Steve Ritchie",
+        "Dwight Sullivan",
+        "Greg Freres"
+      ],
+      "artists": [
+        "Greg Freres"
+      ],
+      "features": [
+        "Widebody"
+      ],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/startrektng_GR6d8.html"
+    },
+    "funhouse": {
+      "opdb_id": "G5Dz7-Mq139",
+      "name": "Funhouse",
+      "manufacturer": "Williams",
+      "manufacture_date": "1990-11-01",
+      "ipdb_id": 966,
+      "type": "ss",
+      "display": "alphanumeric",
+      "player_count": 4,
+      "designers": [
+        "Pat Lawlor",
+        "Larry DeMar"
+      ],
+      "artists": [
+        "John Youssi"
+      ],
+      "features": [],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/funhouse_G5Dz7.html"
+    },
+    "theatre-of-magic": {
+      "opdb_id": "G5BLE-MQ75Y",
+      "name": "Theatre of Magic",
+      "manufacturer": "Bally",
+      "manufacture_date": "1995-03-28",
+      "ipdb_id": 2845,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [
+        "John Popadiuk"
+      ],
+      "artists": [
+        "Linda Deal (aka Doane)"
+      ],
+      "features": [],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/theatreofmagic_G5BLE.html"
+    },
+    "scared-stiff": {
+      "opdb_id": "G4xbP-Mp45Y",
+      "name": "Scared Stiff",
+      "manufacturer": "Bally",
+      "manufacture_date": "1996-01-09",
+      "ipdb_id": 3915,
+      "type": "ss",
+      "display": "dmd",
+      "player_count": 4,
+      "designers": [
+        "Dennis Nordman",
+        "Mark Weyna"
+      ],
+      "artists": [
+        "Greg Freres"
+      ],
+      "features": [],
+      "rules_url": null,
+      "primer_url": "https://pinballprimer.github.io/scaredstiff_G4xbP.html"
+    },
+    "rob-zombie": {
+      "opdb_id": "G5pp2-MBRK4",
+      "name": "Rob Zombie's Spookshow International (LE)",
+      "manufacturer": "Spooky Pinball",
+      "manufacture_date": "2016-02-01",
+      "ipdb_id": 6417,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Charlie Emery",
+        "Ben Heckendorn",
+        "Dennis Nordman"
+      ],
+      "artists": [
+        "Alex Horley",
+        "Matt Riesterer"
+      ],
+      "features": [],
+      "rules_url": null,
+      "primer_url": null
+    },
+    "oktoberfest": {
+      "opdb_id": "GLWBV-Mz2El",
+      "name": "Oktoberfest",
+      "manufacturer": "American Pinball",
+      "manufacture_date": "2018-10-01",
+      "ipdb_id": 6576,
+      "type": "ss",
+      "display": "lcd",
+      "player_count": 4,
+      "designers": [
+        "Joe Balcer"
+      ],
+      "artists": [
+        "Jeff Busch"
+      ],
+      "features": [],
+      "rules_url": "https://pinballrulesheets.com/american-pinball/oktoberfest-pinball-on-tap-rulesheet",
+      "primer_url": null
+    }
+  },
+  "updated": "2026-10-31T01:42:26.043Z"
 }
