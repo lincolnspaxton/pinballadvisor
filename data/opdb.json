@@ -190,7 +190,8 @@
       "display": "lcd",
       "player_count": 4,
       "designers": [
-        "Joe Balcer"
+        "Joe Balcer",
+        "Josh Kugler"
       ],
       "artists": [],
       "features": [],
@@ -704,5 +705,5 @@
       "primer_url": null
     }
   },
-  "updated": "2026-10-31T01:44:53.061Z"
+  "updated": "2026-11-19T18:17:36.062Z"
 }
